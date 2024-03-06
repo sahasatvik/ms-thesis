@@ -1,0 +1,92 @@
+\documentclass[12pt]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[scr]{rsfso}
+\usepackage{bm}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[bf, sc]{titlesec}
+\usepackage{fancyhdr}
+\usepackage[
+    pdftitle={Statistical Depth Functions},
+    pdfauthor={Satvik Saha},
+    colorlinks,
+    % linkcolor={red!80!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+]{hyperref}
+\usepackage[
+    hyperref=true,
+    url=false,
+    isbn=false,
+    eprint=false
+]{biblatex}
+
+\usepackage{lipsum}
+
+\addbibresource{references.bib}
+
+\geometry{a4paper, top = 1in, bottom = 1.5in}
+\graphicspath{{images/}}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LO]{\leftmark}
+
+
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\tod}{\overset{d\,}{\longrightarrow}}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+
+\title{Statistical Depth Functions}
+\author{Satvik Saha}
+\date{}
+
+\begin{document}
+
+    \input{chapters/titlepage}
+
+
+    \chapter*{Abstract}
+
+
+    \chapter*{Dedication}
+
+
+    \chapter*{Declaration}
+
+
+    \chapter*{Acknowledgments}
+
+
+    \tableofcontents
+
+
+    \chapter{Introduction}
+    \input{chapters/introduction}
+
+
+    \chapter{Conclusion}
+    \input{chapters/conclusion}
+
+
+    \nocite{*}
+    \printbibliography
+
+    \appendix
+
+
+\end{document}
