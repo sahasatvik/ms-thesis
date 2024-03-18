@@ -1,0 +1,26 @@
+\section{Depth contours}
+
+The following definitions are adapted from \cite{liu-parelius-singh-1999}.
+
+\begin{definition}
+    The contour of depth $t$ is the set $\{\vx \in \R^d : D(\vx, F) = t\}$.
+\end{definition}
+
+\begin{definition}
+    The region enclosed by the contour of depth $t$ is the set
+    \begin{equation}
+        R_F(t) \,=\, \{\vx \in \R^d : D(\vx, F) > t\}.
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    The $p$-th central region is the set
+    \begin{equation}
+        C_F(p) \,=\, \bigcap_{t}\; \{R_F(t) : P_F(R_F(t)) \geq p\}.
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    The $p$-th level contour, or center-outward contour surface, is the set
+    $Q_F(p) = \partial C_F(p)$.
+\end{definition}

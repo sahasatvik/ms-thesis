@@ -1,0 +1,47 @@
+\section{Depth-Depth plots}
+
+\begin{definition}[DD plot] \label{def:ddplot}
+    Let $F, G$ be two distributions on $\R^d$, and let $D$ be a depth
+    function. The Depth-Depth plot, also known as the DD plot, of $F$ and $G$
+    is given by
+    \begin{equation}
+        \DD(F, G) \,=\, \{(D(\vz, F), D(\vz, G)) : \vz \in \R^d\}.
+    \end{equation}
+\end{definition}
+\begin{remark}
+    The above definition generalizes naturally to involve more than two
+    distributions on $\R^d$.
+\end{remark}
+
+When the depth function $D$ only takes values in $[0, 1]$, the DD plot is a
+subset of $[0, 1]^2$ and hence easily visualized.
+Clearly when $F = G$, the corresponding DD plot is confined to the diagonal
+$\{(t, t) : t \in [0, 1]\}$.
+However, when $d \geq 2$ and $F, G$ are absolutely continuous, $\DD(F, G)$ has
+non-zero area (Lebesgue measure) when $F \neq G$.
+Assuming that $D$ is affine invariant, \textcite{liu-parelius-singh-1999}
+propose this area as an affine invariant measure of the discrepancy between
+$F$ and $G$.
+
+If the distributions $F, G$ are unknown, we may use data $\mathscr{D}_F =
+\{\vx_i\}$ and $\mathscr{D}_G = \{\vy_j\}$ where $\vx_1, \dots, \vx_n \iid F$
+and $\vy_1, \dots, \vy_m \iid G$, then construct empirical distributions
+$\hat{F}_n$ and $\hat{G}_m$.
+With this, we may examine the empirical DD plot
+\begin{equation}
+    \DD(\hat{F}_n, \hat{G}_n) \,=\, \{(D(\vz, \hat{F}_n), D(\vz, \hat{G}_m)) : \vz \in \mathscr{D}_F \cup \mathscr{D}_G\}.
+\end{equation}
+
+DD plots can be used as a diagnostic tool to detect differences in location,
+scale, skewness, and kurtosis between two multivariate distributions
+\parencite{liu-parelius-singh-1999}.
+\begin{enumerate}[itemsep=0em]
+    \item If the same point $\vz_0$ achieves maximum depths with respect to
+    both distributions $F$ and $G$, this indicates that $\vz_0$ is their
+    common center.
+
+    \item Suppose that $F$ and $G$ have the same center. If the points in
+    $\DD(\hat{F}_n, \hat{G}_m)$ arch above the diagonal, i.e.\ the bulk of
+    points are deeper in $G$ than in $F$, this indicates that $F$ has a
+    greater spread than $G$.
+\end{enumerate}

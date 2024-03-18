@@ -6,11 +6,14 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{thmtools}
 \usepackage[scr]{rsfso}
 \usepackage{bm}
 \usepackage{xcolor}
 \usepackage{graphicx}
-\usepackage[bf, sc]{titlesec}
+\usepackage{titlesec}
+\usepackage[titles]{tocloft}
+\usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage[
     pdftitle={Statistical Depth Functions},
@@ -22,10 +25,21 @@
 ]{hyperref}
 \usepackage[
     hyperref=true,
+    style=apa,
     url=false,
+    eprint=false,
     isbn=false,
-    eprint=false
+    doi=false,
 ]{biblatex}
+\usepackage{fnpct}
+\AdaptNote\footcite{oo+m}[footnote]{%
+  \setfnpct{dont-mess-around}%
+  \IfNoValueTF{#1}
+    {#NOTE{#3}}
+    {\IfNoValueTF{#2}
+       {#NOTE[#1]{#3}}
+       {#NOTE[#1][#2]{#3}}}}
+
 
 \usepackage{lipsum}
 
@@ -34,22 +48,28 @@
 \geometry{a4paper, top = 1in, bottom = 1.5in}
 \graphicspath{{images/}}
 
+\titleformat{\chapter}[display]
+  {\Huge}
+  {\itshape\chaptertitlename~\thechapter}
+  {0.5em}
+  {\bfseries\scshape}
+
 \pagestyle{fancy}
 \fancyhead{}
 \fancyhead[LO]{\leftmark}
+\setlength{\headheight}{16pt}
 
+\renewcommand\cftchapfont{\scshape\bfseries}
 
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\N}{\mathbb{N}}
+\newcommand{\chapterstar}[1]{
+    \chapter*{#1}
+    \addcontentsline{toc}{chapter}{\protect\hphantom{\numberline{\thesection}}#1}
+}
 
-\newcommand{\tod}{\overset{d\,}{\longrightarrow}}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.6em}
 
-\DeclareMathOperator*{\argmax}{arg\,max}
-\DeclareMathOperator*{\argmin}{arg\,min}
-
+\input{math}
 
 \title{Statistical Depth Functions}
 \author{Satvik Saha}
@@ -77,6 +97,26 @@
 
     \chapter{Introduction}
     \input{chapters/introduction}
+
+    \section{Centrality vs Density}
+    \section{Nonparametric procedures}
+
+
+    \chapter{Multivariate Data}
+    \input{chapters/multivariate}
+
+
+    \chapter{Functional Data}
+        \section{Classification}
+        \section{Clustering}
+        \section{Outlier detection}
+
+        \section{Partially Observed Functional Data}
+
+
+    \chapter{Local Depth Functions}
+        \section{Regression using Local Depth Regions}
+
 
 
     \chapter{Conclusion}
