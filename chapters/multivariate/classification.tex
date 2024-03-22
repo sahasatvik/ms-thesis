@@ -1,20 +1,21 @@
 \section{Classification}
 
 The $k$-class classification task involves assigning an observation $\vx$ to
-one of $k$ populations, described by distributions $F_i$ for $i \in \N_k$.
+one of $k$ populations, described by distributions $F_i$ for $1 \leq i \leq
+k$.
 The populations may also be associated with prior probabilities $\pi_i$.
 
 \begin{definition}[Classifier]
-    A classifier is a map $\hat{i}\colon \R^d \to \N_k$.
+    A classifier is a map $\hat{\iota}\colon \R^d \to \{1, \dots, k\}$.
 \end{definition}
 
 \begin{example}[Bayes classifier]
-    Suppose that the population densities $f_i$ for each $i \in \N_k$ are
+    Suppose that the population densities $f_i$ for each $1 \leq i \leq k$ are
     known.
     The Bayes classifier assigns $\vx$ to the $\hat{\iota}_B$-th population
     where
     \begin{equation}
-        \hat{\iota}_B(\vx) \,=\, \argmax_{i \in \N_k}\; \pi_i f_i(\vx).
+        \hat{\iota}_B(\vx) \,=\, \argmax_{1 \leq i \leq k}\; \pi_i f_i(\vx).
     \end{equation}
 \end{example}
 
@@ -43,21 +44,21 @@ The simplest depth based classifier is the maximum depth classifier
     The maximum depth classifier $\hat{\iota}_D$ for a choice of depth
     function $D$ is described by
     \begin{equation}
-        \hat{\iota}_D(\vx) \,=\, \argmax_{i \in \N_k}\; D(\vx, F_i).
+        \hat{\iota}_D(\vx) \,=\, \argmax_{1 \leq i \leq k}\; D(\vx, F_i).
     \end{equation}
 \end{example}
 
 In practice, instead of having direct access to the population distributions
 $F_i$, we have typically deal with labeled training data
 \begin{equation}
-    \mathscr{D} \,=\, \{(\vx_{ij}, i)\} \subset \R^d \times \N_k,
+    \mathscr{D} \,=\, \{(\vx_{ij}, i)\} \subset \R^d \times \{1, \dots, k\},
 \end{equation}
-where $\vx_{i1}, \dots, \vx_{in_i} \iid F_i$ for each $i \in \N_k$.
+where $\vx_{i1}, \dots, \vx_{in_i} \iid F_i$ for each $1 \leq i \leq k$.
 The empirical maximum depth classifier simply replaces the population
 distributions $F_i$ with their empirical counterparts $\hat{F}_i$ determined
 by $\vx_{i1}, \dots, \vx_{in_i}$. Thus, it is given by
 \begin{equation}
-    \hat{\iota}_{D, \mathscr{D}}(\vx) \,=\, \argmax_{i \in \N_k}\; D(\vx, \hat{F}_i).
+    \hat{\iota}_{D}(\vx) \,=\, \argmax_{1 \leq i \leq k}\; D(\vx, \hat{F}_i).
 \end{equation}
 Under certain restrictions, this classifier becomes asymptotically optimal in
 the following sense.
@@ -68,7 +69,7 @@ the following sense.
     density function $g$ such that $g(k\vx) \leq g(\vx)$ for every $\vx$ and
     $k > 1$. Further suppose that the priors on the populations are equal, and
     the depth function $D$ is one of HD, SD, MJD, PD. Then,
-    $\Delta(\hat{\iota}_{D, \mathscr{D}}) \to \Delta_B$ as $\min\{n_1, \dots,
+    $\Delta(\hat{\iota}_{D}) \to \Delta_B$ as $\min\{n_1, \dots,
     n_k\} \to \infty$.
 \end{theorem}
 
@@ -93,7 +94,7 @@ $\mathscr{D}$.
     The empirical misclassification rate of a classifier $\hat{\iota}$, with
     respect to data $\mathscr{D}$, is given by
     \begin{equation}
-        \Delta_{\mathscr{D}}(\hat{\iota}) \,=\, \sum_{i = 1}^k \frac{\pi_i}{n_i}\sum_{j = 1}^{n_i} \bm{1}(\hat{\iota}(\vx_{ij}) \neq i).
+        \hat{\Delta}(\hat{\iota}) \,=\, \sum_{i = 1}^k \frac{\pi_i}{n_i}\sum_{j = 1}^{n_i} \bm{1}(\hat{\iota}(\vx_{ij}) \neq i).
     \end{equation}
 \end{definition}
 
@@ -117,7 +118,7 @@ $\mathscr{D}$.
     separating curve $\hat{r}$ is chosen from a family $\Gamma$ so as to
     minimize the empirical misclassification rate, i.e.
     \begin{equation}
-        \hat{r} = \argmin_{r' \in \Gamma} \Delta_\mathscr{D}(\hat{\iota}_{D, r', \mathscr{D}}).
+        \hat{r} = \argmin_{r' \in \Gamma} \hat{\Delta}(\hat{\iota}_{D, r'}).
     \end{equation}
 \end{definition}
 \begin{remark}
@@ -145,8 +146,8 @@ give one such instance below.
             P(D(\vZ, F_i) = \delta \mid \vZ \sim F_i) = 0.
         \end{equation}
     \end{enumerate}
-    Then, $\Delta(\hat{\iota}_{D, \hat{r}, \mathscr{D}}) \to \Delta_B$ as
-    $\min\{n_1, n_2\} \to \infty$.
+    Then, $\Delta(\hat{\iota}_{D, \hat{r}}) \to \Delta_B$ as $\min\{n_1, n_2\}
+    \to \infty$.
 \end{lemma}
 
 In all the depth based classifiers we have seen so far, the classification
@@ -185,7 +186,7 @@ Furthermore, $r \in \Gamma$ is chosen so as to best separate the training data
 $\mathscr{D}$ transformed into the depth feature space.
 However, we can in principle use the transformed training data
 \begin{equation}
-    \mathscr{D}^D \,=\, \{(\vx^D_{ij}, i)\} \subset [0, 1]^k \times \N_k
+    \mathscr{D}^D \,=\, \{(\vx^D_{ij}, i)\} \subset [0, 1]^k \times \{1, \dots, k\}
 \end{equation}
 along with any multivariate classification algorithm (LDA, QDA, $k$NN, GLM,
 etc) to devise suitable decision regions.
