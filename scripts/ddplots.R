@@ -12,19 +12,21 @@ purple <- "purple"
 
 N <- 150
 
-cairo_pdf("../images/ddplots.pdf", onefile = TRUE, width = 8.5, height = 4)
+cairo_pdf("../images/ddplots.pdf", onefile = TRUE, width = 8, height = 4)
 
 theme.data <- list(
-        geom_point(size = 2, alpha = 0.8),
+        geom_point(size = 1.5, alpha = 1),
         scale_color_manual(values = c(orange, purple)),
+        scale_shape_manual(values = c(3, 4)),
         labs(
                 x = "x",
                 y = "y",
-                color = "Group"
+                title = "Data"
         ),
         theme(
                 legend.position = "none",
-                plot.background = element_rect(fill = 'transparent', color = NA),
+                plot.background = element_rect(fill = "transparent", color = NA),
+                panel.background = element_rect(fill = "#f7f7f7", colour = NA),
                 text = element_text(family = "Fira Sans"),
                 panel.grid.major = element_blank(),
                 panel.grid.minor = element_blank(),
@@ -36,19 +38,21 @@ theme.data <- list(
 )
 
 theme.dd <- list(
-        geom_point(size = 2, alpha = 0.8),
+        geom_point(size = 1.5, alpha = 1),
         geom_abline(aes(intercept = 0, slope = 1)),
         scale_color_manual(values = c(orange, purple)),
+        scale_shape_manual(values = c(3, 4)),
         xlim(0, 1),
         ylim(0, 1),
         labs(
                 x = "Depth (Orange)",
                 y = "Depth (Purple)",
-                color = "Group",
+                title = "DD Plot"
         ),
         theme(
                 legend.position = "none",
-                plot.background = element_rect(fill = 'transparent', color = NA),
+                plot.background = element_rect(fill = "transparent", color = NA),
+                panel.background = element_rect(fill = "#f7f7f7", colour = NA),
                 text = element_text(family = "Fira Sans"),
                 axis.title.x = element_text(colour = orange),
                 axis.title.y = element_text(colour = purple),
