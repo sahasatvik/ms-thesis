@@ -1,4 +1,5 @@
 \section{Classification}
+\label{ch:multivariate_classification}
 
 The $k$-class classification task involves assigning an observation $\vx$ to
 one of $k$ populations, described by distributions $F_i$ for $1 \leq i \leq
@@ -23,7 +24,7 @@ One way of measuring the performance of a classifier (given the population
 distributions and their priors) is by measuring its average misclassification
 rate.
 
-\begin{definition}
+\begin{definition}[Average misclassification rate]
     The average misclassification rate of a classifier $\hat{\iota}$ is given
     by
     \begin{equation}
@@ -75,7 +76,8 @@ the following sense.
 
 Note that this result deals with elliptic population densities differing only
 in location.
-Relax this assumption, and instead suppose that $f_i$ are elliptic of the form
+Relax this assumption, and instead suppose that $f_i \sim \Ell(h_i; \vmu_i,
+\Sigma)$, i.e.
 \begin{equation}
     f_i(\vx) = c_i |\Sigma|^{-1/2} h_i\left((\vx - \vmu_i)^\top \Sigma^{-1} (\vx - \vmu_i)\right)
 \end{equation}
@@ -90,7 +92,7 @@ Using this observation, the DD classifier \parencite{li-albertos-liu-2012}
 picks separating functions $r_{ij}$ which best classify the training data
 $\mathscr{D}$.
 
-\begin{definition}
+\begin{definition}[Empirical misclassification rate]
     The empirical misclassification rate of a classifier $\hat{\iota}$, with
     respect to data $\mathscr{D}$, is given by
     \begin{equation}
@@ -113,17 +115,19 @@ $\mathscr{D}$.
     % $\Gamma$ so as to minimize the average classification error, i.e.\ \[
     %     r = \argmin_{r' \in \Gamma} \Delta(\hat{\iota}_{D, r'}).
     % \]
-    The empirical DD classifier $\hat{\iota}_{D, \hat{r}, \mathscr{D}}$
-    replaces $F_i$ by their empirical counterparts $\hat{F}_i$. Here, the
-    separating curve $\hat{r}$ is chosen from a family $\Gamma$ so as to
-    minimize the empirical misclassification rate, i.e.
+    The empirical DD classifier $\hat{\iota}_{D, \hat{r}}$ replaces $F_i$ by
+    their empirical counterparts $\hat{F}_i$.
+    Here, the separating curve $\hat{r}$ is chosen from a family $\Gamma$ so
+    as to minimize the empirical misclassification rate, i.e.
     \begin{equation}
-        \hat{r} = \argmin_{r' \in \Gamma} \hat{\Delta}(\hat{\iota}_{D, r'}).
+        \hat{r} = \argmin_{r \in \Gamma} \hat{\Delta}(\hat{\iota}_{D, r}).
     \end{equation}
 \end{definition}
 \begin{remark}
     The maximum depth classifier $\hat{\iota}_D$ is simply the DD classifier
     $\hat{\iota}_{D, \id}$, where $\id(x) = x$.
+    Figure~\ref{fig:ddplots_location_scale} clearly illustrates how this
+    choice of separating function may not always be appropriate.
 \end{remark}
 
 \textcite{li-albertos-liu-2012} show that under certain restrictions, the
@@ -140,8 +144,8 @@ give one such instance below.
         \begin{equation}
             \sup_{\vz \in \R^d} |D(\vz, \hat{F}_i) - D(\vz, F_i)| \toas 0.
         \end{equation}
-        \item For each $i \in \N_2$, the distributions $F_i$ are elliptical
-        and satisfy for all $\delta \in \R$
+        \item The distributions $F_i$ are elliptical and satisfy for all
+        $\delta \in \R$
         \begin{equation}
             P(D(\vZ, F_i) = \delta \mid \vZ \sim F_i) = 0.
         \end{equation}

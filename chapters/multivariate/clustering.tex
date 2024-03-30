@@ -1,0 +1,118 @@
+\section{Clustering}
+
+The unsupervised clustering grouping a collection of observations, such that
+points within the same group are more similar to each other than those from
+different groups.
+
+\begin{definition}[Clustering]
+    Given observations $\vx_1, \dots, \vx_N \in \R^d$, a clustering assignment
+    is a choice of a partition $I_1, \dots, I_K$ of $\{1, \dots, N\}$.
+\end{definition}
+
+With this notation, the $k$-th cluster consists of the points $\{\vx_i\}_{i
+\in I_k}$.
+A good cluster assignment is one that maximizes similarity within clusters, as
+well as dissimilarity between clusters.
+Thus, the problem of clustering can be framed as the optimization of some
+objective function which combines these notions of similarity and
+dissimilarity.
+A simple algorithm such as the $K$-means clustering seeks to minimize
+\begin{equation}
+    \{I_1, \dots, I_K\} \mapsto \frac{1}{N} \sum_{k = 1}^K \sum_{i \in I_k} \norm{\vx_i - \vmu_k}^2,
+\end{equation}
+the average sum of square distances between each point and its cluster mean
+\begin{equation}
+    \vmu_k = \frac{1}{|I_k|} \sum_{i \in I_k} \vx_i
+    = \argmin_{\vmu \in \R^d} \sum_{i \in I_k} \norm{\vx_i - \vmu}^2.
+\end{equation}
+\textcite{jornsten-2004} proposes a depth based approach to this problem, by
+examining the depth of a point within its cluster, relative to its depth
+within the best competing cluster.
+
+In this section, we will abbreviate $D_k(\vx) = D(\vx, \hat{F}_{I_k})$, i.e.\
+the empirical depth of $\vx$ with respect to the points in the $k$-th cluster.
+\textcite{jornsten-2004} chooses $L_1$ depth, the empirical version of spatial
+depth.
+
+\begin{definition}
+    The within cluster depth of $\vx_i$ is $D_i^w = D_k(\vx_i)$, where $i \in
+    I_k$.
+\end{definition}
+
+To deal with dissimilarity between clusters, we represent each cluster by its
+$L_1$-median.
+
+\begin{definition}[$L_1$-median]
+    The $L_1$-median of the $k$-th cluster is given by
+    \begin{equation}
+        \vth_k = \argmin_{\vth \in \R^d} \sum_{i \in I_k} \norm{\vx_i - \vth}.
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    The between cluster depth of $\vx_i$ is $D_i^b = D_\ell(\vx_i)$, where
+    \begin{equation}
+        \ell = \argmin_{k \colon i \notin I_k} \norm{\vx_i - \vth_k}.
+    \end{equation}
+\end{definition}
+
+In other words, the between cluster depth of $\vx_i$ is its depth within the
+best competing cluster.
+
+\begin{definition}[Relative depth]
+    The relative depth of $\vx_i$ is $\ReD_i = D_i^w - D_i^b$.
+\end{definition}
+
+A point $\vx_i$ is \emph{well clustered} if $\ReD_i$ is very high, i.e.\ it is
+deep within its own cluster, and has low depth with respect to its next best
+competing cluster.
+Thus, to obtain a good clustering, we may choose to maximize the objective
+function
+\begin{equation}
+    \{I_1, \dots, I_K\} \,\mapsto\, \frac{1}{N} \sum_{k = 1}^K \sum_{i \in I_k} \ReD_i,
+\end{equation}
+which is simply the average relative depth.
+This maximization can be achieved iteratively, starting with a random cluster
+assignment and reassigning a subset of observations with low $\ReD_i$ to their
+nearest competing clusters.
+The reassignment is accepted if the objective function increases, and the
+process is repeated.
+\textcite{jornsten-2004} also proposes simulated annealing to overcome the
+problem of getting trapped in local maxima.
+Here, the reassignment is accepted with some probability $P(\beta, \Delta)$
+where $\Delta$ is the change in the objective function value, even if the
+objective function decreases at that step.
+$P(\beta, \Delta)$ is chosen to decrease with increasing $\beta$ and $\Delta$.
+The tuning parameter $\beta$ can be increased every iteration so that the
+probability of accepting poorer clustering assignments drops to zero
+eventually.
+
+Another notion of similarity and dissimilarity involves \emph{silhouette
+width}.
+
+\begin{definition}[Silhouette width]
+    Denote the average distance of $\vz$ from points in the $k$-th cluster not
+    equal to $\vz$ by
+    \begin{equation}
+        \bar{d}_k(\vz) = \frac{1}{|\{i \in I_k\colon \vx_i \neq \vz\}|} \sum_{\stackrel{i \in I_k}{\vx_i \neq \vz}} \norm{\vx_i - \vz}.
+    \end{equation}
+    The silhouette width of $\vx_i$ where $i \in I_k$ is given by
+    \begin{equation}
+        \Sil_i = \frac{b_i - a_i}{\max\{a_i, b_i\}}, \qquad
+        a_i = \bar{d}_k(\vx_i), \quad
+        b_i = \min_{\ell \neq k} \bar{d}_\ell(\vx_i).
+    \end{equation}
+\end{definition}
+
+It has been observed that the silhouette width is greatly affected by
+differences in scale between clusters, while the relative depth is not.
+An objective function of the form
+\begin{equation}
+    \{I_1, \dots, I_K\} \,\mapsto\, \frac{1}{N} \sum_{k = 1}^K \sum_{i \in I_k} (1 - \lambda)\Sil_i + \lambda\ReD_i
+\end{equation}
+may be used to combine both notions.
+Here, $\lambda \in [0, 1]$ controls the influence of the relative depth.
+It seems that small values of $\lambda$ encourages equal scale clusters, while
+large values of $\lambda$ allows unequal scale clusters.
+Thus, $\lambda$ may be tuned accordingly to favour these different kinds of
+clustering assignments.

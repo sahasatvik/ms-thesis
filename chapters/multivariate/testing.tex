@@ -1,0 +1,185 @@
+\section{Testing}
+
+We are mainly interested in the two sample homogeneity test.
+Given samples from $F$ and $G$, we wish to test the null hypothesis $H_0: F =
+G$ against an alternate hypothesis that $F$ and $G$ differ in location or
+scale.
+
+When $F, G$ are distributions on $\R$, rank based tests such as the Wilcoxon
+rank-sum test or the Siegel-Tukey test are readily available.
+A very useful tool in this setting is the probability integral transform.
+
+\begin{proposition}
+    Let $\vX \sim F$, and let the distribution $F$ be continuous.
+    Then, $F(\vX) \sim \UU[0, 1]$.
+\end{proposition}
+
+Since $F(\vX_j)$ has the same rank within $\{F(\vX_i)\}$ as does $\vX_j$
+within $\{\vX_i\}$, the above result is the key towards establishing many
+distribution-free tests and procedures.
+
+
+In the multivariate setting, \textcite{liu-singh-1993} use the following depth
+based analogue.
+
+\begin{definition}
+    Denote
+    \begin{equation}
+        R(\vz, F) = P(D(\vX, F) \leq D(\vz, F) \mid \vX \sim F).
+    \end{equation}
+\end{definition}
+
+Note that in the empirical setting, $R(\vz, \hat{F}_n)$ is simply the
+proportion of sample points $\{\vX_i\}$ which are deeper in $F$ than $\vz$.
+
+
+\begin{proposition}[\cite{liu-singh-1993}]
+    Let $\vX \sim F$, and let the distribution of $D(\vX, F)$ be continuous.
+    Then, $R(\vX, F) \sim \UU[0, 1]$.
+\end{proposition}
+
+
+\begin{definition}
+    Denote the quality index
+    \begin{equation}
+        Q(F, G) = P(D(\vX, F) \leq D(\vY, F) \mid \vX \sim F,\, \vY \sim G).
+    \end{equation}
+\end{definition}
+
+Note that $Q(F, G)$ and $Q(G, F)$ are not necessarily the same.
+We may also write
+\begin{equation}
+    Q(F, G) = \E_{\vY \sim G}[R(\vY, F)].
+\end{equation}
+
+
+It is clear that $Q(F, G) = 1/2$ when $F = G$.
+It can be shown under special circumstances that $Q(F, G) < 1/2$ if $F, G$
+differ in terms of location or scale.
+This will form the basis of our testing scheme, with $H_0: F = G$ versus $H_A:
+Q(F, G) < 1/2$.
+
+Here, we restrict our attention to elliptical distributions on $\R^d$.
+
+\begin{definition}[Elliptical distributions]
+    We say that a distribution is elliptical if it has a density of the form
+    \begin{equation}
+        f(\vx) = c\, |\Sigma|^{-1/2}\, h\left((\vx - \vmu)^\top \Sigma^{-1} (\vx - \vmu)\right)
+    \end{equation}
+    for some non-increasing function $h$.
+    This is denoted by $\Ell(h; \vmu, \Sigma)$.
+\end{definition}
+
+% \begin{proposition}[\cite{liu-singh-1993}]
+%     Let $F \sim \Ell(h; \vmu, \Sigma)$ and $G_t \sim \Ell(h; \vmu +
+%     t\hat{\vv}, \Sigma)$ for some unit vector $\hat{\vv}$ and $t \geq 0$.
+%     Further suppose that $D(\cdot, F)$ has the affine invariance and
+%     monotonicity properties.
+%     Then, $Q(F, G_t)$ is non-increasing with increasing $t$.
+% \end{proposition}
+
+% \begin{proposition}[\cite{liu-singh-1993}]
+%     Let $F \sim \Ell(h; \vmu, \Sigma_1)$ and $G \sim \Ell(h; \vmu, \Sigma_2)$
+%     where $\Sigma_1 - \Sigma_2$ is positive definite.
+%     Further suppose that $D(\cdot, F)$ has the affine invariance property.
+%     Then, $Q(F, G) \leq 1/2$.
+% \end{proposition}
+
+The quality index obeys the following properties.
+
+\begin{proposition}[\cite{liu-singh-1993}]
+    Let $F \sim \Ell(h; \vmu_1, \Sigma_1)$ and $G \sim \Ell(h; \vmu_2,
+    \Sigma_2)$ where $\Sigma_1 - \Sigma_2$ is positive definite.
+    Further suppose that $D(\cdot, F)$ has the affine invariance and
+    monotonicity properties.
+    Then, $Q(F, G) \leq 1/2$ decreases monotonically as $\vmu_2$ is moved away
+    from $\vmu_1$ along any line.
+\end{proposition}
+
+\begin{proposition}[\cite{liu-singh-1993}]
+    Let $F \sim \Ell(h; \vmu, \Sigma_1)$ and $G \sim \Ell(h; \vmu,
+    \Sigma_2)$ where $\Sigma_1 - \Sigma_2$ is positive definite.
+    Consider Huber's contamination of the form
+    \begin{equation}
+        G_\alpha = (1 - \alpha)F + \alpha G
+    \end{equation}
+    where $0 \leq \alpha \leq 1$.
+    Then, $Q(F, G_\alpha)$ decreases monotonically as $\alpha$ increases.
+\end{proposition}
+
+This motivates a modified Wilcoxon rank-sum test in the multivariate setting,
+using the quality index $Q(F, G)$.
+Let $\vX_1, \dots, \vX_n \iid F$, and $\vY_1, \dots, \vY_m \iid G$.
+Since $R(\cdot, F), Q(F, \cdot)$ depend on $D(\cdot, F)$, the latter has to be
+approximated using $D(\cdot, \hat{F}_{n_0})$, where $\hat{F}_{n_0}$ is based
+on a (fairly large) additional sample $\vZ_1, \dots, \vZ_{n_0} \iid F$, with
+$n_0 \gg n, m$.
+With this, we compute
+\begin{equation}
+    R(\,\cdot\,, \hat{F}_{n_0}) = \frac{1}{n_0} \sum_{i = 1}^{n_0} \bm{1}(D(\vZ_i, \hat{F}_{n_0}) \leq D(\,\cdot\,, \hat{F}_{n_0})).
+\end{equation}
+Assign ranks $1, \dots, n + m$ to the arranged values $R(\vX_i,
+\hat{F}_{n_0}), R(\vY_j, \hat{F}_{n_0})$ (ascending order), and define $W$ to
+be the sum of ranks of the $R(\vY_j, \hat{F}_{n_0})$.
+If necessary, break ties at random.
+Under the null hypothesis $F = G$, it is clear that $W$ has the same
+distribution as the sum of $m$ numbers drawn without replacement from $\{1,
+\dots, n + m\}$.
+Under the alternate hypothesis $Q(F, G) < 1/2$, the ranks of $R(\vY_j,
+\hat{F}_{n_0})$ will tend to be lower on average, making $W$ smaller.
+
+\begin{theorem}[\cite{liu-singh-1993}]
+    Let $H_{n, m}$ be the distribution of the sum of $m$ numbers drawn
+    randomly without replacement from $\{1, \dots, n + m\}$.
+    Suppose that $F$ admits a density function $f$.
+    Under the null hypothesis $F = G$, we have $W \sim H_{n, m}$.
+\end{theorem}
+
+It is also possible to approximate $Q(F, G)$ more directly via $Q(\hat{F}_n,
+\hat{G}_m)$ and perform our test this way.
+This sidesteps the need for the `reference' sample $\vZ_1, \dots, \vZ_{n_0}
+\iid F$.
+Note that
+\begin{equation}
+    Q(\hat{F}_n, \hat{G}_m)
+    = \frac{1}{m}\sum_{j = 1}^m R(\vY_j, \hat{F}_n)
+    = \frac{1}{nm}\sum_{i, j} \bm{1}(D(\vX_i, \hat{F}_n) \leq D(\vY_j, \hat{F}_n)).
+\end{equation}
+This estimate is indeed consistent under mild assumptions.
+
+\begin{theorem}[\cite{liu-singh-1993}]
+    Suppose that the distribution of $D(\vY, F)$ is continuous where $\vY \sim
+    G$, and that
+    \begin{equation}
+        \sup_{\vz \in \R^d} |D(\vz, \hat{F}_n) - D(\vz, F)| \toas 0.
+    \end{equation}
+    Then, $Q(\hat{F}_n, \hat{G}_n) \toas Q(F, G)$ as $\min\{n, m\} \to
+    \infty$.
+\end{theorem}
+
+This allows us to determine the asymptotic null distribution of $Q(\hat{F}_n,
+\hat{G}_m)$.
+
+\begin{theorem}[\cite{liu-singh-1993}]
+    Let $F$ be absolutely continuous, such that $\E_{\vX \sim F} \norm{\vX}^4
+    < \infty$.
+    Using Mahalanobis depth to define $Q$, we have
+    \begin{equation}
+        S(\hat{F}_n, \hat{G}_m) = \left[\frac{1}{12}\left(\frac{1}{n} + \frac{1}{m}\right)\right]^{-1/2} \left[Q(\hat{F}_n, \hat{G}_m) - \frac{1}{2}\right] \tod \NN(0, 1)
+    \end{equation}
+    as $\min\{n, m\} \to \infty$, under the null hypothesis $F = G$.
+\end{theorem}
+
+Observe that given two samples, we have a choice between using $Q(\hat{F}_n,
+\hat{G}_m)$ or $Q(\hat{G}_m, \hat{F}_n)$.
+\textcite{shi-zhang-fu-2023} propose a weighted combination of the form
+\begin{equation}
+    W^\alpha_{n, m} = \alpha S(\hat{F}_n, \hat{G}_m)^2 + (1 - \alpha) S(\hat{G}_m, \hat{F}_n)^2
+\end{equation}
+for $\alpha \in [0, 1]$, or a maximum
+\begin{equation}
+    M_{n, m} = \max\{S(\hat{F}_n, \hat{G}_m)^2, S(\hat{G}_m, \hat{F}_n)^2\}.
+\end{equation}
+Under similar assumptions, they show that both $W^\alpha_{n, m} \tod \chi^2_1$
+and $M_{n, m} \tod \chi^2_1$ as $\min\{n, m\} \to \infty$ and $n / m$
+converges to a positive constant, under the null hypothesis $F = G$.

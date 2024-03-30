@@ -1,11 +1,40 @@
+
+It is desirable for a depth function $D\colon \R^d \times \mathscr{F} \to \R$
+to satisfy the following properties \cite{zuo-serfling-2000}.
+\begin{description}
+    \item[P1 (Affine invariance)] For any random vector $\vX$ in $\R^d$, any
+    $d \times d$ nonsingular matrix $A$, and any $d$-vector $\bm{b}$,
+    \begin{equation}
+        D(A\vx + \bm{b}, F_{A\vX + \bm{b}}) = D(\vx, F_{\vX}).
+    \end{equation}
+
+    \item[P2 (Maximum depth at center)] For any $F \in \mathscr{F}$ having
+    center $\vth$,
+    \begin{equation}
+        D(\vth, F) = \sup_{\vx \in \R^d} D(\vx, F).
+    \end{equation}
+
+    \item[P3 (Monotonicity along rays)] For any $F \in \mathscr{F}$ having
+    deepest point $\vth$ and for $\alpha \in [0, 1]$,
+    \begin{equation}
+        D(\vx, F) \leq D(\vth + \alpha(\vx - \vth), F).
+    \end{equation}
+
+    \item[P4 (Vanishing at infinity)] For any $F \in \mathscr{F}$,
+    \begin{equation}
+        D(\vx, F) \to 0 \;\text{ as }\;\norm{\vx} \to \infty.
+    \end{equation}
+\end{description}
+
+
 \input{chapters/multivariate/depthcontours}
 
 \input{chapters/multivariate/ddplots}
 
-\section{Testing}
+\input{chapters/multivariate/testing}
 
 \input{chapters/multivariate/classification}
 
-\section{Clustering}
+\input{chapters/multivariate/clustering}
 
 \section{Outlier detection}

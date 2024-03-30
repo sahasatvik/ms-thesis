@@ -9,8 +9,13 @@
 \usepackage{thmtools}
 \usepackage[scr]{rsfso}
 \usepackage{bm}
-\usepackage{xcolor}
+\usepackage[usenames, dvipsnames]{xcolor}
 \usepackage{graphicx}
+\usepackage[
+    font=small,
+    labelfont=bf,
+]{caption}
+\usepackage{subcaption}
 \usepackage{titlesec}
 \usepackage[titles]{tocloft}
 \usepackage{enumitem}
@@ -56,7 +61,7 @@
 
 \pagestyle{fancy}
 \fancyhead{}
-\fancyhead[LO]{\leftmark}
+\fancyhead[LO]{\textsc{\nouppercase{\leftmark}}}
 \setlength{\headheight}{16pt}
 
 \renewcommand\cftchapfont{\scshape\bfseries}
