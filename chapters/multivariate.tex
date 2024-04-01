@@ -1,30 +1,60 @@
 
 It is desirable for a depth function $D\colon \R^d \times \mathscr{F} \to \R$
-to satisfy the following properties \cite{zuo-serfling-2000}.
-\begin{description}
-    \item[P1 (Affine invariance)] For any random vector $\vX$ in $\R^d$, any
-    $d \times d$ nonsingular matrix $A$, and any $d$-vector $\bm{b}$,
-    \begin{equation}
-        D(A\vx + \bm{b}, F_{A\vX + \bm{b}}) = D(\vx, F_{\vX}).
-    \end{equation}
+to satisfy the following properties, described by
+\textcite{zuo-serfling-2000}.
 
-    \item[P2 (Maximum depth at center)] For any $F \in \mathscr{F}$ having
-    center $\vth$,
-    \begin{equation}
-        D(\vth, F) = \sup_{\vx \in \R^d} D(\vx, F).
-    \end{equation}
+\begin{enumerate}
+    \item[\textbf{P1}.] \emph{Affine invariance.}
+        For any random vector $\vX$ in $\R^d$, any $d \times d$ nonsingular
+        matrix $A$, and any $d$-vector $\bm{b}$,
+        \begin{equation}
+            D(A\vx + \bm{b}, F_{A\vX + \bm{b}}) \;=\; D(\vx, F_{\vX}).
+        \end{equation}
+        This makes $D(\vX, F_{\vX})$ independent of the choice of coordinate
+        system.
 
-    \item[P3 (Monotonicity along rays)] For any $F \in \mathscr{F}$ having
-    deepest point $\vth$ and for $\alpha \in [0, 1]$,
-    \begin{equation}
-        D(\vx, F) \leq D(\vth + \alpha(\vx - \vth), F).
-    \end{equation}
+    \item[\textbf{P2}.] \emph{Maximality at center.}
+        For any $F \in \mathscr{F}$ having `center' $\vth$,
+        \begin{equation}
+            D(\vth, F) \;=\; \sup_{\vx \in \R^d} D(\vx, F).
+        \end{equation}
+        This means that the deepest point coincides with some center of
+        symmetry of the distribution $F$.
 
-    \item[P4 (Vanishing at infinity)] For any $F \in \mathscr{F}$,
-    \begin{equation}
-        D(\vx, F) \to 0 \;\text{ as }\;\norm{\vx} \to \infty.
-    \end{equation}
-\end{description}
+    \item[\textbf{P3}.] \emph{Monotonicity relative to deepest point.}
+        For any $F \in \mathscr{F}$ having deepest point $\vth$ and for
+        $\alpha \in [0, 1]$,
+        \begin{equation}
+            D(\vx, F) \;\leq\; D(\vth + \alpha(\vx - \vth), F).
+        \end{equation}
+        Thus, $D(\Cdot, F)$ monotonically decreases along any ray pointing
+        away from the deepest point.
+
+    \item[\textbf{P4}.] \emph{Vanishing at infinity.}
+        For any $F \in \mathscr{F}$,
+        \begin{equation}
+            D(\vx, F) \to 0 \quad\text{ as }\quad\norm{\vx} \to \infty.
+        \end{equation}
+\end{enumerate}
+
+Furthermore, we demand that $D$ be non-negative and bounded.
+Thus, we may assume hereon that $D$ only takes values in $[0, 1]$.
+
+The notion of a `center' of a distribution in \textbf{P2} is typically
+described in terms of symmetry.
+We say that a random vector $\vX$ is \emph{centrally symmetric} about
+$\vth \in \R^d$ if $\vX - \vth \eqd \vth - \vX$.
+Similarly, we say that $\vX$ is \emph{angularly symmetric} about $\vth$ if
+$(\vX - \vth) / \norm{\vX - \vth}$ is centrally symmetric about $\bm0$.
+An even more restrictive notion of symmetry is \emph{spherical symmetry},
+where we demand that $U(\vX - \vth) \eqd \vX - \vth$ for every orthonormal
+matrix $U$.
+\emph{Elliptical symmetry} requires that $V\vX$ is spherically symmetric about
+$\vth$ for some nonsingular matrix $V$.
+Finally, the weakest notions of symmetry discussed here is \emph{halfspace
+symmetry}, where we impose $P(\vX \in H) \geq 1/2$ for every closed halfspace
+in $\R^d$ containing $\vth$.
+Thus, the symmetries in decreasing order of strength are $S > E > C > A > H$.
 
 
 \input{chapters/multivariate/depthcontours}
