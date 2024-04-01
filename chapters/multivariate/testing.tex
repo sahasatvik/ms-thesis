@@ -73,7 +73,7 @@ Here, we restrict our attention to elliptical distributions on $\R^d$.
 % \begin{proposition}[\cite{liu-singh-1993}]
 %     Let $F \sim \Ell(h; \vmu, \Sigma)$ and $G_t \sim \Ell(h; \vmu +
 %     t\hat{\vv}, \Sigma)$ for some unit vector $\hat{\vv}$ and $t \geq 0$.
-%     Further suppose that $D(\cdot, F)$ has the affine invariance and
+%     Further suppose that $D(\Cdot, F)$ has the affine invariance and
 %     monotonicity properties.
 %     Then, $Q(F, G_t)$ is non-increasing with increasing $t$.
 % \end{proposition}
@@ -81,7 +81,7 @@ Here, we restrict our attention to elliptical distributions on $\R^d$.
 % \begin{proposition}[\cite{liu-singh-1993}]
 %     Let $F \sim \Ell(h; \vmu, \Sigma_1)$ and $G \sim \Ell(h; \vmu, \Sigma_2)$
 %     where $\Sigma_1 - \Sigma_2$ is positive definite.
-%     Further suppose that $D(\cdot, F)$ has the affine invariance property.
+%     Further suppose that $D(\Cdot, F)$ has the affine invariance property.
 %     Then, $Q(F, G) \leq 1/2$.
 % \end{proposition}
 
@@ -90,7 +90,7 @@ The quality index obeys the following properties.
 \begin{proposition}[\cite{liu-singh-1993}]
     Let $F \sim \Ell(h; \vmu_1, \Sigma_1)$ and $G \sim \Ell(h; \vmu_2,
     \Sigma_2)$ where $\Sigma_1 - \Sigma_2$ is positive definite.
-    Further suppose that $D(\cdot, F)$ has the affine invariance and
+    Further suppose that $D(\Cdot, F)$ has the affine invariance and
     monotonicity properties.
     Then, $Q(F, G) \leq 1/2$ decreases monotonically as $\vmu_2$ is moved away
     from $\vmu_1$ along any line.
@@ -110,13 +110,13 @@ The quality index obeys the following properties.
 This motivates a modified Wilcoxon rank-sum test in the multivariate setting,
 using the quality index $Q(F, G)$.
 Let $\vX_1, \dots, \vX_n \iid F$, and $\vY_1, \dots, \vY_m \iid G$.
-Since $R(\cdot, F), Q(F, \cdot)$ depend on $D(\cdot, F)$, the latter has to be
-approximated using $D(\cdot, \hat{F}_{n_0})$, where $\hat{F}_{n_0}$ is based
+Since $R(\Cdot, F), Q(F, \Cdot)$ depend on $D(\Cdot, F)$, the latter has to be
+approximated using $D(\Cdot, \hat{F}_{n_0})$, where $\hat{F}_{n_0}$ is based
 on a (fairly large) additional sample $\vZ_1, \dots, \vZ_{n_0} \iid F$, with
 $n_0 \gg n, m$.
 With this, we compute
 \begin{equation}
-    R(\,\cdot\,, \hat{F}_{n_0}) = \frac{1}{n_0} \sum_{i = 1}^{n_0} \bm{1}(D(\vZ_i, \hat{F}_{n_0}) \leq D(\,\cdot\,, \hat{F}_{n_0})).
+    R(\Cdot, \hat{F}_{n_0}) = \frac{1}{n_0} \sum_{i = 1}^{n_0} \bm{1}(D(\vZ_i, \hat{F}_{n_0}) \leq D(\Cdot, \hat{F}_{n_0})).
 \end{equation}
 Assign ranks $1, \dots, n + m$ to the arranged values $R(\vX_i,
 \hat{F}_{n_0}), R(\vY_j, \hat{F}_{n_0})$ (ascending order), and define $W$ to

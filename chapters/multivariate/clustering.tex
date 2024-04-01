@@ -77,12 +77,12 @@ assignment and reassigning a subset of observations with low $\ReD_i$ to their
 nearest competing clusters.
 The reassignment is accepted if the objective function increases, and the
 process is repeated.
-\textcite{jornsten-2004} also proposes simulated annealing to overcome the
-problem of getting trapped in local maxima.
-Here, the reassignment is accepted with some probability $P(\beta, \Delta)$
-where $\Delta$ is the change in the objective function value, even if the
+\textcite{jornsten-2004} also suggests the use of simulated annealing to
+overcome the problem of getting trapped in local maxima.
+Here, the reassignment is accepted with some probability $P(\beta, \delta)$
+where $\delta$ is the change in the objective function value, even if the
 objective function decreases at that step.
-$P(\beta, \Delta)$ is chosen to decrease with increasing $\beta$ and $\Delta$.
+$P(\beta, \delta)$ is chosen to decrease with increasing $\beta$ and $\delta$.
 The tuning parameter $\beta$ can be increased every iteration so that the
 probability of accepting poorer clustering assignments drops to zero
 eventually.
