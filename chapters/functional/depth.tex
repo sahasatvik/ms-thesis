@@ -1,0 +1,68 @@
+\section{Functional depth functions}
+
+Let $D$ be a multivariate depth function.
+We can use this to define functional depths as follows.
+
+\begin{definition}
+    The integrated depth, or Fraiman-Muniz depth, is defined as
+    \begin{equation}
+        D_F(\vX, F_{\vX}) = \int_{[0, 1]} D(\vX(t), F_{\vX(t)})\:w(t)\:dt.
+    \end{equation}
+    Here, $w$ is a weight function.
+\end{definition}
+
+\begin{definition}
+    The infimal depth is defined as
+    \begin{equation}
+        D_{Inf}(\vX, F_{\vX}) = \inf_{t \in [0, 1]} D(\vX(t), F_{\vX(t)}).
+    \end{equation}
+\end{definition}
+
+
+\textcite{pintado-romo-2009} later introduced the notion of band depth for
+univariate functional data.
+
+\begin{definition}
+    The band depth, for some index $J \geq 2$, is defined as
+    \begin{equation}
+        D_B^J(\vX, F_{\vX}) = \sum_{j = 2}^J\, P_{\vX_i \iid F_{\vX}}(\vX \in \conv(\vX_1, \dots, \vX_j)).
+    \end{equation}
+\end{definition}
+The empirical version of band depth is defined as
+\begin{equation}
+    D_B^J(\vX, \hat{F}_n) = \sum_{j = 2}^J\binom{n}{j}^{-1} \sum_{\substack{1 \leq i_1 < \dots < i_j \leq n}} \bm{1}(\vX \in \conv(\vX_{i_1}, \dots, \vX_{i_j})).
+\end{equation}
+This is simply the proportion of $j$-tuples of curves (for $2 \leq j \leq J$)
+which envelope $\vX$.
+
+\begin{definition}
+    Define the enveloping time
+    \begin{equation}
+        ET(\vX;\, \vX_1, \dots, \vX_j) = m_1(\{t \in [0, 1]\colon \vX \in \conv(\vX_1, \dots, \vX_j)\}).
+    \end{equation}
+    The modified band depth is defined as
+    \begin{equation}
+        D_{MB}^J(\vX, F_{\vX}) = \sum_{j = 2}^J\, \E_{\vX_i \iid F_{\vX}}\left[ ET(\vX;\, \vX_1, \dots, \vX_j)\right].
+    \end{equation}
+    where $\vX_1, \vX_2 \iid F_{\vX}$ and $m_1$ is the Lebesgue measure on
+    $\R$.
+\end{definition}
+The empirical version of modified band depth is defined as
+\begin{equation}
+    D_{MB}^J(\vX, \hat{F}_n) = \sum_{j = 2}^J\binom{n}{j}^{-1} \sum_{\substack{1 \leq i_1 < \dots < i_j \leq n}} ET(\vX;\, \vX_{i_1}, \dots, \vX_{i_j}).
+\end{equation}
+
+
+\begin{definition}
+    We say that $\vY$ is in the hypograph of $\vX$, denoted, $\vY \in
+    H_{\vX}$, if $\vY(t) \leq \vX(t)$ for all $t \in [0, 1]$.
+    Similarly, we say that $\vY$ is in the epigraph of $\vX$, denoted, $\vY
+    \in E_{\vX}$, if $\vY(t) \geq \vX(t)$ for all $t \in [0, 1]$.
+\end{definition}
+
+\begin{definition}
+    The half-region depth is defined as
+    \begin{equation}
+        D_{HR}(\vX, F_{\vX}) = \min\{P_{\vY \sim F}(\vY \in H_{\vX}),\, P_{\vY \sim F}(\vY \in E_{\vX})\}.
+    \end{equation}
+\end{definition}

@@ -1,0 +1,106 @@
+\section{Multivariate depth functions}
+
+\begin{definition}[Halfspace/Tukey depth]
+    The halfspace depth, or Tukey depth, is defined as
+    \begin{equation}
+        D_H(\vx, F) = \inf_{\vv \in S^{d - 1}} P_{\vX \sim F}(\vv^\top(\vX - \vx) \geq 0).
+    \end{equation}
+    Equivalently, denoting the collection of all closed halfspaces in $\R^d$
+    containing $\vx$ by $\mathcal{H}_{\vx}$, we have
+    \begin{equation}
+        D_H(\vx, F) = \inf_{H \in \mathcal{H}_{\vx}} P_{\vX \sim F}(\vX \in H).
+    \end{equation}
+\end{definition}
+
+\begin{remark}
+    When $d = 1$, the halfspace depth reduces to
+    \begin{equation}
+        D_H(x, F) = \min\{P_F(-\inf, x],\, P_F[x, \inf)\}.
+    \end{equation}
+\end{remark}
+
+\begin{definition}[Mahalanobis depth]
+    Let $\vX \sim F$ have mean $\vmu$ and covariance matrix $\Sigma$.
+    The Mahalanobis depth is defined as
+    \begin{equation}
+        D_{M}(\vx, F) = \left(1 + (\vx - \vmu)^\top \Sigma^{-1}(\vx - \vmu)\right)^{-1}.
+    \end{equation}
+\end{definition}
+
+\begin{remark}
+    The mean and covariance in the above definition may be replaced with more
+    robust estimates $\vmu^*$ and $\Sigma^*$, for instance using the minimum
+    covariance determinant (MCD) method.
+    The corresponding depth function is called the robust Mahalanobis depth.
+\end{remark}
+
+\begin{definition}[Spatial depth]
+    The spatial depth is defined as
+    \begin{equation}
+        D_{Sp}(\vx, F) = 1 - \left\Vert \E_{\vX \sim F}\left[\frac{\vx - \vX}{\norm{\vx - \vX}}\right] \right\Vert.
+    \end{equation}
+\end{definition}
+
+\begin{remark}
+    Spatial depth defined as above does not obey \textbf{P1}.
+    We may define an affine invariant version of spatial depth as
+    \begin{equation}
+        D_{AISp}(\vx, F) = 1 - \left\Vert \E_{\vX \sim F}\left[\frac{\Sigma^{-1/2}(\vx - \vX)}{(\vx - \vX)^\top\Sigma^{-1}(\vx - \vX)}\right] \right\Vert.
+    \end{equation}
+\end{remark}
+
+\begin{remark}
+    \textcite{nagy-2017} showed that spatial depth does not obey \textbf{P3}.
+\end{remark}
+
+
+\begin{definition}[Projection depth]
+    The projection depth is defined as
+    \begin{equation}
+        D_P(\vx, F) = \left(1 + \sup_{\vv \in S^{d - 1}} \frac{|\ip{\vv}{\vx} - \med(\ip{\vv}{\vX})|}{\MAD(\ip{\vv}{\vX})}\right)^{-1}, \quad
+        \vX \sim F.
+    \end{equation}
+\end{definition}
+
+\begin{definition}[Simplicial depth]
+    The simplicial depth is defined as
+    \begin{equation}
+        D_{Sim}(\vx, F) = P_{\vX_i \iid F}(\vx \in \conv(\vX_1, \dots, \vX_{d + 1})),
+    \end{equation}
+    where $\conv(\vx_1, \dots, \vx_{d + 1})$ denotes the convex hull of $\{\vx_1, \dots, \vx_{d + 1}\}$.
+\end{definition}
+
+\begin{definition}[Oja depth]
+    The simplicial volume depth, or Oja depth, is defined as
+    \begin{equation}
+        D_{Oja}(\vX, F) = \left(1 + \E_{\vX_i \iid F}\left[\vol(\conv(\vx, \vX_1, \dots, \vX_d))\right]\right)^{-1}.
+    \end{equation}
+\end{definition}
+
+
+
+
+\begin{definition}[Projection property]
+    We say that a depth function $D$ has the projection property if
+    \begin{equation}
+        D(\vx, F_{\vX}) = \inf_{\vv \in S^{d - 1}} D(\ip{\vv}{\vx}, F_{\ip{\vv}{\vX}}).
+    \end{equation}
+\end{definition}
+
+Depths which have this property can be approximated by calculating the
+univariate depths of the projected data along many directions $\vv$.
+
+\begin{lemma}
+    The halfspace depth, Mahalanobis depth, and projection depth have the
+    projection property.
+\end{lemma}
+
+
+\begin{definition}[Random Tukey depth]
+    Let $\vv_1, \dots, \vv_n$ be a realization of an iid sample from $\UU(S^{d
+    - 1})$.
+    The random Tukey depth is defined as
+    \begin{equation}
+        D_{RT}(\vx, F_{\vX}) = \min_{1 \leq i \leq n} D_H(\ip{\vv_i}{\vx}, F_{\ip{\vv_i}{\vX}}).
+    \end{equation}
+\end{definition}

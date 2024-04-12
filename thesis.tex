@@ -9,6 +9,7 @@
 \usepackage{thmtools}
 \usepackage[scr]{rsfso}
 \usepackage{bm}
+% \usepackage{newpxtext,newpxmath}
 \usepackage[usenames, dvipsnames]{xcolor}
 \usepackage{graphicx}
 \usepackage[
@@ -24,7 +25,7 @@
     pdftitle={Statistical Depth Functions},
     pdfauthor={Satvik Saha},
     colorlinks,
-    % linkcolor={red!80!black},
+    % linkcolor={Blue},
     citecolor={blue!50!black},
     urlcolor={blue!80!black}
 ]{hyperref}
@@ -55,9 +56,9 @@
 
 \titleformat{\chapter}[display]
   {\Huge}
-  {\itshape\chaptertitlename~\thechapter}
+  {\itshape\textcolor{black!70!white}{\chaptertitlename~\thechapter}}
   {0.5em}
-  {\bfseries\scshape}
+  {\scshape\bfseries}
 
 \pagestyle{fancy}
 \fancyhead{}
@@ -112,15 +113,10 @@
 
 
     \chapter{Functional Data}
-        \section{Classification}
-        \section{Clustering}
-        \section{Outlier detection}
-
-        \section{Partially Observed Functional Data}
-
+    \input{chapters/functional}
 
     \chapter{Local Depth Functions}
-        \section{Regression using Local Depth Regions}
+    \input{chapters/localdepth}
 
 
 

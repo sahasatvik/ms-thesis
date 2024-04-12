@@ -1,5 +1,5 @@
 \section{Classification}
-\label{ch:multivariate_classification}
+\label{sec:multivariate_classification}
 
 The $k$-class classification task involves assigning an observation $\vx$ to
 one of $k$ populations, described by distributions $F_i$ for $1 \leq i \leq
@@ -28,7 +28,7 @@ rate.
     The average misclassification rate of a classifier $\hat{\iota}$ is given
     by
     \begin{equation}
-        \Delta(\hat{\iota}) \,=\, \sum_{i = 1}^k \pi_i P(\hat{\iota}(\vX) \neq i \mid \vX \sim F_i).
+        \Delta(\hat{\iota}) \,=\, \sum_{i = 1}^k\, \pi_i\,P_{\vX \sim F_i}(\hat{\iota}(\vX) \neq i).
     \end{equation}
 \end{definition}
 
@@ -54,7 +54,8 @@ $F_i$, we have typically deal with labeled training data
 \begin{equation}
     \mathscr{D} \,=\, \{(\vx_{ij}, i)\} \subset \R^d \times \{1, \dots, k\},
 \end{equation}
-where $\vx_{i1}, \dots, \vx_{in_i} \iid F_i$ for each $1 \leq i \leq k$.
+where $\vx_{i1}, \dots, \vx_{in_i}$ is an instance of an iid sample from $F_i$
+for each $1 \leq i \leq k$.
 The empirical maximum depth classifier simply replaces the population
 distributions $F_i$ with their empirical counterparts $\hat{F}_i$ determined
 by $\vx_{i1}, \dots, \vx_{in_i}$. Thus, it is given by

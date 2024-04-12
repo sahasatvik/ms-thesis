@@ -1,4 +1,5 @@
 \section{Depth contours}
+\label{sec:multivariate_depthcontours}
 
 The following definitions are adapted from \cite{liu-parelius-singh-1999}.
 
@@ -36,3 +37,15 @@ The following definitions are adapted from \cite{liu-parelius-singh-1999}.
 \end{example}
 
 
+\begin{definition}
+    Let $\vX_1, \dots, \vX_n \iid F$.
+    We introduce depth based order statistics $\vX_{[1]}, \dots, \vX_{[n]}$,
+    which are a reordering of the sample in decreasing order of depth, i.e.\
+    $D(\vX_{[1]}, F) \geq \dots \geq D(\vX_{[n]}, F)$.
+\end{definition}
+
+With this, given $\vX_1, \dots, \vX_n \iid F$, the sample $p$-th central
+region is given by
+\begin{equation}
+    C_{\hat{F}_n}(p) = \conv(\vX_{[1]}, \dots, \vX_{[\lceil np \rceil]}).
+\end{equation}
