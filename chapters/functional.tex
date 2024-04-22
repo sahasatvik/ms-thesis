@@ -1,8 +1,32 @@
+Consider a class of functions $\mathscr{X}$ of the form $\vx\colon [0, 1] \to
+\R^d$, and let $\mathscr{F}$ be a suitable class of distributions on
+$\mathscr{X}$.
+
+It is desirable for a depth function $D\colon \mathscr{X} \times \mathscr{F}
+\to \R$ to satisfy the following properties \parencite{gijbels-nagy-2017}.
+\begin{enumerate}
+    \item[\textbf{P0}.] \emph{Non-degeneracy.}
+    For $F \in \mathscr{F}$,
+    \begin{equation}
+        \inf_{\vx \in \mathscr{X}} D(\vx, F) \,<\,
+        \sup_{\vx \in \mathscr{X}} D(\vx, F).
+    \end{equation}
+\end{enumerate}
+
+The property \textbf{P0} requires some care; the natural functional analogue
+to halfspace/Tukey depth when $\mathscr{X}$ is a Hilbert space,
+\begin{equation}
+    D_H(\vx, F) = \inf_{\vv \in \mathscr{X}} P_{\vX \sim F}(\ip{\vv}{\vX} \leq \ip{\vv}{\vx}),
+\end{equation}
+turns out to be degenerate for a wide class of distributions $\mathscr{F}$
+\parencite{chakraborty-chaudhuri-2014a}.
+
 \input{chapters/functional/depth}
 
 \input{chapters/functional/classification}
 
-\section{Clustering}
-\section{Outlier detection}
+\input{chapters/functional/outlier}
 
-\section{Partially Observed Functional Data}
+% \section{Clustering}
+
+\input{chapters/functional/pofd}

@@ -1,23 +1,126 @@
 \section{Multivariate depth functions}
 
 \begin{definition}[Halfspace/Tukey depth]
+    Denote the collection of all closed halfspaces in $\R^d$ containing $\vx$
+    by $\mathcal{H}_{\vx}$.
     The halfspace depth, or Tukey depth, is defined as
     \begin{equation}
-        D_H(\vx, F) = \inf_{\vv \in S^{d - 1}} P_{\vX \sim F}(\vv^\top(\vX - \vx) \geq 0).
-    \end{equation}
-    Equivalently, denoting the collection of all closed halfspaces in $\R^d$
-    containing $\vx$ by $\mathcal{H}_{\vx}$, we have
-    \begin{equation}
-        D_H(\vx, F) = \inf_{H \in \mathcal{H}_{\vx}} P_{\vX \sim F}(\vX \in H).
+        D_H(\vx, F) = \inf_{H \in \mathcal{H}_{\vx}} P_{F}(H).
     \end{equation}
 \end{definition}
 
 \begin{remark}
+    If $F \in \mathscr{F}$ is supported on a convex region $C \subset \R^d$,
+    then $D(\Cdot, F)$ vanishes outside $C$.
+\end{remark}
+
+\begin{proposition}
+    The halfspace depth can be formulated as
+    \begin{equation}
+        D_H(\vx, F) = \inf_{\vv \in S^{d - 1}} P_{\vX \sim F}(\ip{\vv}{\vX} \leq \ip{\vv}{\vx}).
+    \end{equation}
+\end{proposition}
+
+\begin{remark}
     When $d = 1$, the halfspace depth reduces to
     \begin{equation}
-        D_H(x, F) = \min\{P_F(-\inf, x],\, P_F[x, \inf)\}.
+        D_H(x, F) = \min\{P_F(-\infty, x],\, P_F[x, \infty)\}.
     \end{equation}
 \end{remark}
+
+% \textcite{albertos-reyes-2008b} showed that the halfspace depth fully
+% characterizes discrete measures with countable support.
+% This is a generalization of a result by \textcite{koshevoy-2002}.
+
+% \begin{theorem}[\cite{albertos-reyes-2008b}]
+%     Let $F_1, F_2 \in \mathscr{F}$ where $F_1$ is a discrete measure with
+%     countable support.
+%     If $D_H(\vx, F_1) = D_H(\vx, F_2)$ for all $\vx \in \R^d$ then $F_1 =
+%     F_2$.
+% \end{theorem}
+
+\textcite{struyf-rousseeuw-1999} showed that halfspace depth fully
+characterizes empirical distributions.
+
+\begin{theorem}[\cite{struyf-rousseeuw-1999}]
+    The empirical distribution of any dataset $\{\vX_i\}_{i = 1}^n \subset
+    \R^d$ is uniquely determined by its halfspace depth function $D(\Cdot,
+    \hat{F}_n)$.
+\end{theorem}
+
+\textcite{nagy-2020} offers a comprehensive overview of this characterization
+problem.
+Indeed, \textcite{nagy-2021} supplies examples of distinct probability
+distributions $F_1, F_2$ such that $D_H(\Cdot, F_1) = D_H(\Cdot, F_2)$.
+It can be shown that for an $\alpha$-symmetric distribution $F$ that $D_H(\vx,
+F) = G(-\norm{\vx}_{\alpha^*})$, where $G$ is the marginal distribution of the
+first component of $\vX \sim F$ and $1/\alpha + 1/\alpha^* = 1$.
+
+Halfspace depth also enjoys the following continuity property.
+
+\begin{theorem}[\cite{mizera-volauf-2002}]
+    Let $F \in \mathscr{F}$ be such that the probability of every hyperplane
+    in $\R^d$ is zero, i.e.\ for all $\alpha \in \R$ and $\vv \in S^{d - 1}$,
+    \begin{equation}
+        P_{\vX \sim F}(\ip{\vv}{\vX} = \alpha) \;=\; 0. \label{eq:halfspace_continuity}
+    \end{equation}
+    Then for $\vx_n \to \vx$ and $F_n \tod F$, we have $D_H(\vx_n, F_n) \to
+    D_H(\vx, F)$.
+\end{theorem}
+\begin{remark}
+    Equation~\ref{eq:halfspace_continuity} is satisfied whenever $F$ is
+    absolutely continuous.
+\end{remark}
+\begin{remark}
+    It follows that if $F \in \mathscr{F}$ satisfies
+    Equation~\ref{eq:halfspace_continuity}, then the map $D_H(\Cdot, F)$ is
+    continuous.
+\end{remark}
+
+\begin{corollary}
+    Let $F \in \mathscr{F}$ satisfy Equation~\ref{eq:halfspace_continuity}.
+    Then, for $F_n \tod F$, and compact $K \subset \R^d$,
+    \begin{equation}
+        \sup_{\vx \in K} |D_H(\vx, F_n) - D_H(\vx, F)| \to 0.
+    \end{equation}
+\end{corollary}
+\begin{proof}
+    Denoting $g = D(\Cdot, F)$, $g_n = D_H(\Cdot, F_n)$, we have the
+    continuity of $g$ along with $g_n(\vx_n) \to g(\vx)$ whenever $\vx_n \to
+    \vx$ in $K$.
+    If the given conclusion is false, we may pass to a subsequence of $g_n$
+    and find $\epsilon > 0$ such that each $\sup_{\vx \in K} |g_n(\vx) -
+    g(\vx)| \geq \epsilon$.
+    Using the compactness of $K$, we pass to a further subsequence and find
+    $\vx \in K$ such that $\vx_n \to \vx$.
+    This contradicts $|g_n(\vx_n) - g(\vx_n)| \geq \epsilon$.
+\end{proof}
+
+\begin{theorem}\label{thm:halfspace_uniform}
+    Let $F \in \mathscr{F}$ satisfy Equation~\ref{eq:halfspace_continuity}.
+    Then, for $F_n \tod F$,
+    \begin{equation}
+        \sup_{\vx \in \R^d} |D_H(\vx, F_n) - D_H(\vx, F)| \to 0.
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    Let $K_r = \{\vx \in \R^d\colon \norm{\vx} \leq r\}$ be a continuity set
+    of $F$.
+    Observe that $D_H(\vy, F) \leq P_F(K_r^c)$ for $\vy \in K_r^c$, hence
+    \begin{equation}
+        \sup_{\vy \in K_r^c} |D_H(\vy, F_n) - D_H(\vy, F)| \leq P_{F_n}(K_r^c) + P_F(K_r^c).
+    \end{equation}
+    As $n \to \infty$, we have $P_{F_n}(K_r^c) \to P_F(K_r^c) = p_r$ (say).
+    Thus, denoting $\delta_n(X) = \sup_{\vx \in X} |D_H(\vx, F_n) - D_H(\vx,
+    F)|$, we have
+    \begin{align}
+        \limsup_{n \to \infty} \delta_n(\R^d)
+        &\leq \lim_{n \to \infty} \delta_n(K_r) + \limsup_{n \to \infty} \delta_n(K_r^c) \\
+        &\leq 0 + 2p_r.
+    \end{align}
+    Using $p_r \to 0$ as $r \to \infty$ completes the proof.
+\end{proof}
+
 
 \begin{definition}[Mahalanobis depth]
     Let $\vX \sim F$ have mean $\vmu$ and covariance matrix $\Sigma$.
@@ -34,23 +137,93 @@
     The corresponding depth function is called the robust Mahalanobis depth.
 \end{remark}
 
+The Mahalanobis depth is trivially continuous in $\vx$, i.e.\ obeys
+\textbf{C1}.
+Furthermore, it also satisfies \textbf{C2} as long as $F$ has a regular
+covariance matrix \parencite{mosler-mozharovskyi-2022}.
+
 \begin{definition}[Spatial depth]
     The spatial depth is defined as
     \begin{equation}
         D_{Sp}(\vx, F) = 1 - \left\Vert \E_{\vX \sim F}\left[\frac{\vx - \vX}{\norm{\vx - \vX}}\right] \right\Vert.
     \end{equation}
+    We use the convention $\bm0/0 = \bm0$.
 \end{definition}
 
 \begin{remark}
     Spatial depth defined as above does not obey \textbf{P1}.
+    Indeed, spatial depth is only invariant under spherical transformations of
+    the form $U\vX + \bm{b}$ for orthonormal $U$.
     We may define an affine invariant version of spatial depth as
     \begin{equation}
-        D_{AISp}(\vx, F) = 1 - \left\Vert \E_{\vX \sim F}\left[\frac{\Sigma^{-1/2}(\vx - \vX)}{(\vx - \vX)^\top\Sigma^{-1}(\vx - \vX)}\right] \right\Vert.
+        D_{AISp}(\vx, F) = 1 - \left\Vert \E_{\vX \sim F}\left[\frac{\Sigma^{-1/2}(\vx - \vX)}{\sqrt{(\vx - \vX)^\top\Sigma^{-1}(\vx - \vX)}}\right] \right\Vert.
     \end{equation}
 \end{remark}
 
 \begin{remark}
     \textcite{nagy-2017} showed that spatial depth does not obey \textbf{P3}.
+\end{remark}
+
+\begin{lemma}\label{lem:spatial_vanish}
+    Spatial depth obeys \textbf{P4}, i.e.\ $D_{Sp}(\vx, F) \to 0$ as
+    $\norm{\vx} \to \infty$.
+\end{lemma}
+\begin{proof}
+    Let $\delta > 0$, and let $M > 0$ such that $P_{\vX \sim F}(\norm{\vX} >
+    M) = \delta$.
+    Denote $\vY = (\vx - \vX) / \norm{\vx - \vX}$, and observe that
+    \begin{equation}
+        \E_{\vX \sim F}\left[\vY\right]
+        = (1 - \delta)\E\left[\vY\mid \norm{\vX} \leq M\right] +
+          \delta\E\left[\vY\mid \norm{\vX} > M\right]
+    \end{equation}
+    Thus, using $\norm{\vY} = 1$ and the reverse triangle inequality,
+    \begin{equation}
+        \norm{\E\left[\vY\right]}
+        \geq (1 - \delta)\norm{\E\left[\vY\mid \norm{\vX} \leq M\right]} - \delta.
+    \end{equation}
+    Let $\alpha = \arccos((1 - 2\delta)/(1 - \delta))$, and let $r_\alpha =
+    M/\sin\alpha$.
+    It follows that the ball $\{\vx \in \R^d\colon \norm{\vx} \leq M\}$
+    subtends an angle of at most $2\alpha$ from any point $\vx$ such that
+    $\norm{\vx} > r_\alpha$.
+    This gives $\norm{\E[\vY \mid \norm{\vX} \leq M]} \geq \cos\alpha$.
+    Thus, for $\norm{\vx} > r_\alpha$,
+    \begin{equation}
+        \norm{\E[\vY]} \geq (1 - \delta)\cos\alpha - \delta = 1 - 3\delta,
+    \end{equation}
+    whence $D_{Sp}(\vx, F) \leq 3\delta$.
+\end{proof}
+
+Spatial depth also enjoys the following continuity properties.
+
+\begin{theorem}
+    Spatial depth obeys \textbf{C1} when $F$ is non-atomic, as well as
+    \textbf{C2}.
+\end{theorem}
+\begin{proof}
+    Consider the spatial map
+    \begin{equation}
+        S_F\colon \R^d \to \R^d, \qquad
+        \vx \mapsto \E_{\vX \sim F}\left[\frac{\vx - \vX}{\norm{\vx - \vX}}\right].
+    \end{equation}
+    The Dominated Convergence Theorem guarantees the continuity of $S_F$,
+    hence of $D_{Sp}(\Cdot, F) = 1 - \norm{S_F(\Cdot)}$.
+    Furthermore, if $F_n \tod F$, we have $S_{F_n}(\vx) \to S_F(\vx)$ by the
+    Portmanteau Lemma for all $\vx \in \R^d$.
+\end{proof}
+
+\begin{theorem}[\cite{serfling-2002}]
+    For $F \in \mathscr{F}$ and compact $K \subset \R^d$,
+    \begin{equation}
+        \sup_{\vx \in K} |D_{Sp}(\vx, \hat{F}_n) - D_{Sp}(\vx, F)| \toas 0.
+    \end{equation}
+\end{theorem}
+
+\begin{remark}
+    This result can be generalized from compact subsets $K$ to the whole of
+    $\R^d$, using Lemma~\ref{lem:spatial_vanish} and arguments similar to the
+    proof of Theorem~\ref{thm:halfspace_uniform}.
 \end{remark}
 
 
@@ -95,6 +268,9 @@ univariate depths of the projected data along many directions $\vv$.
     projection property.
 \end{lemma}
 
+The halfspace depth in particular is often computationally challenging.
+Thus, the property motivates the definition of the random Tukey depth
+\parencite{albertos-reyes-2008a}.
 
 \begin{definition}[Random Tukey depth]
     Let $\vv_1, \dots, \vv_n$ be a realization of an iid sample from $\UU(S^{d

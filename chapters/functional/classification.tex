@@ -13,6 +13,9 @@ classification procedures naturally generalize to the functional setting.
 
 
 
+\textcite{dai-genton-2018} proposed a method which measures the outlyingness
+of $\vx$ with respect to a population via depth as follows.
+
 \begin{definition}
     Let $\vX$ be a $d$-variate stochastic process of continuous functions.
     At each time point $t \in [0, 1]$, the directional outlyingness is defined
@@ -69,7 +72,6 @@ When $D'$ is chosen to be the robust Mahalanobis depth, we have the classifier
 \begin{equation}
     \hat{\iota}_{RM}(\vX) = \argmax_{1 \leq i \leq k} D_{RM}(\vY(\vX, F_i), F_{\vY(\vX, F_i)}).
 \end{equation}
-
 
 
 \begin{definition}

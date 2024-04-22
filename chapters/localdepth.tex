@@ -2,4 +2,84 @@
 
 \section{Local depth regions}
 
+Given a distribution $F_{\vX}$, we may define a symmetrized distribution about
+a point $\vx \in \mathscr{X}$ as
+\begin{equation}
+    F^{\vx}_{\vX} = \frac{1}{2}F_{\vX} + \frac{1}{2}F_{2\vx - \vX}. \label{eq:local_symmetrization}
+\end{equation}
+With this, $\vx$ becomes the point of central symmetry, hence the deepest
+point in $F^{\vx}_{\vX}$ with respect to a depth function $D$ that obeys
+\textbf{P2}.
+Thus, the $\beta$-th central regions of $F^{\vx}_{\vX}$ behave like
+neighbourhoods of $\vx$.
+
+\begin{definition}[\cite{paindaveine-bever-2013}]
+    The probability-$\beta$ depth-based neighbourhood of $\vx$ with respect to
+    the distribution $F$ is defined as
+    \begin{equation}
+        N^{\vx}_\beta(F) = C_{F^{\vx}}(\beta),
+    \end{equation}
+    i.e.\ the $\beta$-th central region of $F$ symmetrized about $\vx$.
+\end{definition}
+
+When working with a sample $\mathscr{D} = \{\vX_i\}_{i = 1}^n$ from $F$, we
+may obtain the $\beta$ depth-based neighbourhood of $\vx$ by first computing
+the reflected sample $\mathscr{D}' = \{2\vx - \vX_i\}_{i = 1}^n$, then
+arranging the elements of the symmetrized sample $\mathscr{D}^{\vx} =
+\mathscr{D} \cup \mathscr{D}'$ in descending order by their empirical depth
+values and choosing the first $\beta$ proportion of elements.
+The neighbourhood $N^{\vx}_\beta(\hat{F}_n)$ is the convex hull of these
+elements.
+
+
+\begin{definition}[\cite{paindaveine-bever-2013}]
+    Let $D$ be a depth function, and let $F^{\vx}_\beta$ denote the
+    distribution $F$ conditional on the neighbourhood $N^{\vx}_\beta(F)$.
+    The corresponding local depth function at locality level $\beta \in (0,
+    1]$ is defined as
+    \begin{equation}
+        LD_\beta(\vx, F) = D(\vx, F^{\vx}_\beta)
+    \end{equation}
+\end{definition}
+
+Again, when working with a sample $\mathscr{D} = \{\vX_i\}_{i = 1}^n$, we
+obtain $LD_\beta(\vx, \hat{F}_n)$ by arranging the elements of $\mathscr{D}$
+in descending order by their empirical depth values in the symmetrized sample
+$\mathscr{D}^{\vx}$, choosing the first $\beta$ proportion of elements, and
+computing the depth of $\vx$ with respect to these elements.
+
+\begin{remark}
+    When $\beta = 1$, the local depth $LD_1$ reduces to the original global
+    depth $D$.
+\end{remark}
+
+\begin{remark}
+    The notions of depth based neighbourhoods and local depth make sense for
+    any distribution $F$ on a space $\mathscr{X}$ as long as the process of
+    symmetrization around $\vx \in \mathscr{X}$ can be achieved.
+\end{remark}
+
 \section{Regression based on local depth}
+
+\begin{definition}
+    Let $D$ be a depth function, and let $\tilde{F}^{\vx}_\beta$ denote the
+    symmetrized distribution $F^{\vx}$ conditional on the neighbourhood
+    $N^{\vx}_\beta(F)$.
+    Given $\vx \in \mathscr{X}$, we may define a local depth kernel at
+    locality level $\beta$ centered at $\vx$ as
+    \begin{equation}
+        K^{\vx}_\beta\colon N^{\vx}_\beta(F) \to \R, \qquad
+        \vz \mapsto D(\vz, \tilde{F}^{\vx}_\beta).
+    \end{equation}
+    This naturally extends to a map $\mathscr{X} \to \R$ as
+    $K^{\vx}_\beta(\vz) = 0$ for $\vz \notin N^{\vx}_\beta(F)$.
+\end{definition}
+
+
+We propose the (linear) estimator
+\begin{equation}
+    \hat{\vy}_\beta(\vx) = \sum_i w_i(\vx)\, \vy_i, \qquad
+    w_i(\vx) = \frac{K^{\vx}_\beta(\vx_i)}{\sum_j K^{\vx}_\beta(\vx_j)}.
+\end{equation}
+The locality level $\beta \in (0, 1]$ is a tuning parameter which may be
+chosen via methods such as cross-validation.
