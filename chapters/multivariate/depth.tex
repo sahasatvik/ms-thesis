@@ -169,20 +169,20 @@ covariance matrix \parencite{mosler-mozharovskyi-2022}.
     $\norm{\vx} \to \infty$.
 \end{lemma}
 \begin{proof}
-    Let $\delta > 0$, and let $M > 0$ such that $P_{\vX \sim F}(\norm{\vX} >
-    M) = \delta$.
+    Let $\epsilon > 0$, and let $M > 0$ such that $P_{\vX \sim F}(\norm{\vX} >
+    M) = \epsilon$.
     Denote $\vY = (\vx - \vX) / \norm{\vx - \vX}$, and observe that
     \begin{equation}
         \E_{\vX \sim F}\left[\vY\right]
-        = (1 - \delta)\E\left[\vY\mid \norm{\vX} \leq M\right] +
-          \delta\E\left[\vY\mid \norm{\vX} > M\right]
+        = (1 - \epsilon)\E\left[\vY\mid \norm{\vX} \leq M\right] +
+          \epsilon\E\left[\vY\mid \norm{\vX} > M\right]
     \end{equation}
     Thus, using $\norm{\vY} = 1$ and the reverse triangle inequality,
     \begin{equation}
         \norm{\E\left[\vY\right]}
-        \geq (1 - \delta)\norm{\E\left[\vY\mid \norm{\vX} \leq M\right]} - \delta.
+        \geq (1 - \epsilon)\norm{\E\left[\vY\mid \norm{\vX} \leq M\right]} - \epsilon.
     \end{equation}
-    Let $\alpha = \arccos((1 - 2\delta)/(1 - \delta))$, and let $r_\alpha =
+    Let $\alpha = \arccos((1 - 2\epsilon)/(1 - \epsilon))$, and let $r_\alpha =
     M/\sin\alpha$.
     It follows that the ball $\{\vx \in \R^d\colon \norm{\vx} \leq M\}$
     subtends an angle of at most $2\alpha$ from any point $\vx$ such that
@@ -190,9 +190,9 @@ covariance matrix \parencite{mosler-mozharovskyi-2022}.
     This gives $\norm{\E[\vY \mid \norm{\vX} \leq M]} \geq \cos\alpha$.
     Thus, for $\norm{\vx} > r_\alpha$,
     \begin{equation}
-        \norm{\E[\vY]} \geq (1 - \delta)\cos\alpha - \delta = 1 - 3\delta,
+        \norm{\E[\vY]} \geq (1 - \epsilon)\cos\alpha - \epsilon = 1 - 3\epsilon,
     \end{equation}
-    whence $D_{Sp}(\vx, F) \leq 3\delta$.
+    whence $D_{Sp}(\vx, F) \leq 3\epsilon$.
 \end{proof}
 
 Spatial depth also enjoys the following continuity properties.
