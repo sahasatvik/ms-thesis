@@ -30,3 +30,53 @@ on our partially observed dataset, via depth based procedures using POIFD
 values.
 Another natural problem is one of curve reconstruction: given a partially
 observed curve $(\vX, O)$, can we estimate $\vX$ on $M = [0, 1]\setminus O$?
+For instance, we may search for a reconstruction operator $\mathcal{R}\colon
+L_2(O) \to L_2(M)$ that minimizes the mean integrated prediction squared error
+$\E\left[\norm{\vX_M - \mathcal{R}(\vX_O)}^2\right]$.
+Here, $\vX_O$ denotes the curve $\vX$ restricted to $O$, and similarly for
+$\vX_M$.
+The best predictor in this sense is the conditional expectation $\E[\vX_M |
+\vX_O]$, which is in general a non-linear operator.
+Thus, \textcite{kraus-2015} and \textcite{kneip-liebl-2020} search for
+continuous linear operators $\mathcal{A}$, using methods based on estimating
+terms of the Karhunen-Lo\'eve expansion of $\vX$.
+
+\textcite{elias-jimenez-shang-2023} offer a depth based solution
+to the reconstruction problem, adapted from a similar algorithm for
+time-series forecasting \parencite{elias-jimenez-shang-2022}.
+The main idea involves selecting a collection of curves, with indices
+$\mathscr{I}$, which best envelope $(\vX, O)$, then taking a weighted linear
+combination.
+In particular, they suggest
+\begin{equation}
+    \hat{\vX}(t) = \frac{\sum_{i \in \mathscr{I}(t)} w_i \vX_i(t)}{\sum_{i \in \mathscr{I}(t)} w_i}, \qquad
+    w_i = \exp\left(-\theta\;\frac{\norm{(\vX, O) - (\vX_i, O_i)}}{\delta}\right),
+    \label{eq:pofd_predictor}
+\end{equation}
+where $\mathscr{I}(t) = \mathscr{I} \cap \mathscr{J}(t) = \{i \in
+\mathscr{I}\colon t \in O_i\}$ and $\delta = \min_{i \in \mathscr{I}}
+\norm{(\vX, O) - (\vX_i, O_i)}$.
+Here, $\theta$ is a tuning parameter, perhaps chosen by minimizing the mean
+squared error on $(\vX, O)$.
+Furthermore, we have denoted
+\begin{equation}
+    \norm{(\vX, O) - (\vX', O')} = \frac{1}{m(O \cap O')}\left(\int_{O \cap O'} \norm{\vX(t) - \vX'(t)}^2 \:dt\right)^{1/2}.
+    \label{eq:pofd_norm}
+\end{equation}
+
+Choosing the best envelope $\mathscr{I}$ involves both depth and distance.
+\textcite{elias-jimenez-shang-2023} use the following three criteria to
+devise an algorithm that iteratively selects $\mathscr{I}$.
+\begin{enumerate}
+    \item $(\vX, O)$ should be as deep as possible in the collection of curves
+    $\{(\vX, O)\} \cup \{(\vX_i, O_i)\}_{i \in \mathscr{I}}$, in the sense of
+    POIFD.
+
+    \item $(\vX, O)$ should be enveloped by $\{(\vX_i, O_i)\}_{i \in
+    \mathscr{I}}$ as much as possible, i.e.\ we want to maximize the
+    enveloping time $ET((\vX, O); \{\vX_i, O_i\}_{i \in \mathscr{I}})$.
+
+    \item $\{(\vX_i, O_i)\}_{i \in \mathscr{I}}$ should contain as many near
+    curves to $(\vX, O)$ as possible, in the sense of the distance
+    \ref{eq:pofd_norm}.
+\end{enumerate}
