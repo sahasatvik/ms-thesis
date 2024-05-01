@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 
+library(cowplot)
 library(carData)
 data(Anscombe)
 

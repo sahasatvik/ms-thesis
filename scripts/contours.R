@@ -2,7 +2,6 @@
 
 library(ddalpha)
 library(ggplot2)
-library(cowplot)
 library(tibble)
 library(dplyr)
 library(extrafont)
