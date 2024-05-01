@@ -88,7 +88,7 @@ p.mv <- ggplot(wine.mv, aes(x = abs(MO), y = VO, shape = outlier, color = outlie
         scale_y_log10() +
         theme.mv
 
-png("../images/MO_VO_wine.png", width = 8, height = 4, units = "in", res = 160)
+cairo_pdf("../images/MO_VO_wine.pdf", width = 8, height = 4)
 
 plot_grid(p.data, p.mv)
 

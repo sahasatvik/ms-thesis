@@ -53,7 +53,7 @@ p.data <- ggplot(wine.df, aes(x = variable, y = value / 1e5, group = as.factor(i
         scale_x_reverse(expand = expansion(mult = 0.01)) +
         theme.data
 
-png("../images/outliergram_wine.png", width = 8, height = 4, units = "in", res = 160)
+cairo_pdf("../images/outliergram_wine.pdf", width = 8, height = 4)
 
 plot_grid(p.data, og$plot)
 

@@ -91,7 +91,7 @@ p.cs <- ggplot(wine.cs, aes(x = centrality, y = stability, shape = outlier, colo
         scale_y_log10() +
         theme.cs
 
-png("../images/centrality_stability_wine.png", width = 8, height = 4, units = "in", res = 160)
+cairo_pdf("../images/centrality_stability_wine.pdf", width = 8, height = 4)
 
 plot_grid(p.data, p.cs)
 
@@ -105,7 +105,7 @@ O.df <- pivot_longer(O.df, -id)
 O.df$name <- as.double(O.df$name)
 
 
-png("../images/outlyingness_heatmap_wine.png", width = 8, height = 4, units = "in", res = 160)
+cairo_pdf("../images/outlyingness_heatmap_wine.pdf", width = 8, height = 4)
 
 theme.hm <- list(
         labs(

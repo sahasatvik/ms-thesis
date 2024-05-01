@@ -130,7 +130,7 @@ p.mv <- ggplot(octane.mv, aes(x = abs(MO), y = VO, shape = outlier, color = outl
 
 
 
-png("../images/outlyingness_octane.png", width = 8, height = 8, units = "in", res = 160)
+cairo_pdf("../images/outlyingness_octane.pdf", width = 8, height = 8)
 
 plot_grid(p.data, og$plot, p.cs, p.mv, ncol = 2)
 
@@ -174,7 +174,7 @@ p.hm2 <- ggplot(mutate(O.df, value = ifelse(id %in% octane.outliers, 0, value)),
         ggtitle("(Zeroed curves #25, 26, 36-39)")
 
 
-png("../images/outlyingness_heatmap_octane.png", width = 8, height = 4, units = "in", res = 160)
+cairo_pdf("../images/outlyingness_heatmap_octane.pdf", width = 8, height = 4)
 
 plot_grid(p.hm, p.hm2)
 
