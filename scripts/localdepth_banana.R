@@ -1,10 +1,10 @@
 #!/usr/bin/env Rscript
 
+library(cowplot)
+
 source("contours.R")
 source("../../datadepth/localdepth.R")
 
-
-cairo_pdf("../images/localdepth_banana.pdf", onefile = TRUE, width = 8, height = 4)
 
 Z <- mvrnorm(500, mu = c(0, 0), Sigma = matrix(c(1, 0.9, 0.9, 1), 2))
 a <- 1
@@ -33,6 +33,8 @@ spatial.local <- show_contour(
         title = "Local spatial depth, β = 0.2"
 )
 
+
+cairo_pdf("../images/localdepth_banana.pdf", onefile = TRUE, width = 8, height = 4)
 
 plot_grid(spatial, spatial.local)
 

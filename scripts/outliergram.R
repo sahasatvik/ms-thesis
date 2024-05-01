@@ -1,6 +1,5 @@
 #!/usr/bin/env Rscript
 
-library(reshape2)
 library(ggplot2)
 library(ggrepel)
 library(extrafont)
@@ -15,8 +14,8 @@ MBD <- function(X, Xref) rowMeans(apply(combn(1:nrow(Xref), 2), 2, function(idx)
 outliergram <- function(X, mbd.cut = 0.2) {
         n <- nrow(X)
         mei <- MEI(X, X)
-        # mbd <- MBD(X, X)
-        mbd <- roahd::MBD(X)
+        mbd <- MBD(X, X)
+        # mbd <- roahd::MBD(X)
 
         a0 <- a2 <- -2 / (n * (n - 1))
         a1 <- 2 * (n + 1) / (n - 1)
@@ -76,7 +75,7 @@ outliergram <- function(X, mbd.cut = 0.2) {
                 geom_ribbon(data = df.lines, aes(ymin = y.cut, ymax = y), fill = orange, alpha = 0.2) +
                 geom_line(data = df.lines, color = orange) +
                 geom_point(aes(shape = outlier, color = outlier)) +
-                geom_text_repel(aes(label = ifelse(outlier != "F", as.character(id), ""), color = outlier), direction = "x") +
+                geom_text_repel(aes(label = ifelse(outlier != "F", as.character(id), ""), color = outlier), direction = "both") +
                 theme.og
 
         return(list(plot = p.og, df = df.og))

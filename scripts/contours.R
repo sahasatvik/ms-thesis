@@ -26,7 +26,9 @@ theme.data <- list(
                 axis.ticks.y = element_blank(),
                 axis.text.x = element_blank(),
                 axis.text.y = element_blank(),
-        )
+        ),
+        scale_x_continuous(expand = expansion(mult = 0.02)),
+        scale_y_continuous(expand = expansion(mult = 0.02))
 )
 
 

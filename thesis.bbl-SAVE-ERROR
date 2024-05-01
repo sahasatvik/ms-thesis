@@ -1401,6 +1401,7 @@
       \strng{authorbibnamehash}{81149dc1cb4165fb0825433eb8b7b0ce}
       \strng{authornamehash}{81149dc1cb4165fb0825433eb8b7b0ce}
       \strng{authorfullhash}{81149dc1cb4165fb0825433eb8b7b0ce}
+      \field{extraname}{1}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{extradatescope}{labelyear}
@@ -1427,6 +1428,55 @@
       \verb{url}
       \verb https://doi.org/10.1198/jasa.2009.0108
       \endverb
+    \endentry
+    \entry{pintado-romo-2011}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=3e9df13fb855de948844c7a01bad00bc}{%
+           family={López-Pintado},
+           familyi={L\bibinithyphendelim P\bibinitperiod},
+           given={Sara},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4893e2371da881715e5743d8eaeee135}{%
+           family={Romo},
+           familyi={R\bibinitperiod},
+           given={Juan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{81149dc1cb4165fb0825433eb8b7b0ce}
+      \strng{fullhash}{81149dc1cb4165fb0825433eb8b7b0ce}
+      \strng{bibnamehash}{81149dc1cb4165fb0825433eb8b7b0ce}
+      \strng{authorbibnamehash}{81149dc1cb4165fb0825433eb8b7b0ce}
+      \strng{authornamehash}{81149dc1cb4165fb0825433eb8b7b0ce}
+      \strng{authorfullhash}{81149dc1cb4165fb0825433eb8b7b0ce}
+      \field{extraname}{2}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A new definition of depth for functional observations is introduced based on the notion of “half-region” determined by a curve. The half-region depth provides a simple and natural criterion to measure the centrality of a function within a sample of curves. It has computational advantages relative to other concepts of depth previously proposed in the literature which makes it applicable to the analysis of high-dimensional data. Based on this depth a sample of curves can be ordered from the center-outward and order statistics can be defined. The properties of the half-region depth, such as consistency and uniform convergence, are established. A simulation study shows the robustness of this new definition of depth when the curves are contaminated. Finally, real data examples are analyzed.}
+      \field{issn}{0167-9473}
+      \field{journaltitle}{Computational Statistics \& Data Analysis}
+      \field{number}{4}
+      \field{title}{A half-region depth for functional data}
+      \field{volume}{55}
+      \field{year}{2011}
+      \field{pages}{1679\bibrangedash 1695}
+      \range{pages}{17}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.csda.2010.10.024
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0167947310004123
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0167947310004123
+      \endverb
+      \keyw{Functional data,Data depth,Order statistics,High-dimensional data}
     \endentry
     \entry{mizera-volauf-2002}{article}{}
       \name{author}{2}{}{%
@@ -3518,6 +3568,7 @@
       \strng{authorbibnamehash}{81149dc1cb4165fb0825433eb8b7b0ce}
       \strng{authornamehash}{81149dc1cb4165fb0825433eb8b7b0ce}
       \strng{authorfullhash}{81149dc1cb4165fb0825433eb8b7b0ce}
+      \field{extraname}{1}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{extradatescope}{labelyear}
@@ -3544,6 +3595,55 @@
       \verb{url}
       \verb https://doi.org/10.1198/jasa.2009.0108
       \endverb
+    \endentry
+    \entry{pintado-romo-2011}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=3e9df13fb855de948844c7a01bad00bc}{%
+           family={López-Pintado},
+           familyi={L\bibinithyphendelim P\bibinitperiod},
+           given={Sara},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4893e2371da881715e5743d8eaeee135}{%
+           family={Romo},
+           familyi={R\bibinitperiod},
+           given={Juan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{81149dc1cb4165fb0825433eb8b7b0ce}
+      \strng{fullhash}{81149dc1cb4165fb0825433eb8b7b0ce}
+      \strng{bibnamehash}{81149dc1cb4165fb0825433eb8b7b0ce}
+      \strng{authorbibnamehash}{81149dc1cb4165fb0825433eb8b7b0ce}
+      \strng{authornamehash}{81149dc1cb4165fb0825433eb8b7b0ce}
+      \strng{authorfullhash}{81149dc1cb4165fb0825433eb8b7b0ce}
+      \field{extraname}{2}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{A new definition of depth for functional observations is introduced based on the notion of “half-region” determined by a curve. The half-region depth provides a simple and natural criterion to measure the centrality of a function within a sample of curves. It has computational advantages relative to other concepts of depth previously proposed in the literature which makes it applicable to the analysis of high-dimensional data. Based on this depth a sample of curves can be ordered from the center-outward and order statistics can be defined. The properties of the half-region depth, such as consistency and uniform convergence, are established. A simulation study shows the robustness of this new definition of depth when the curves are contaminated. Finally, real data examples are analyzed.}
+      \field{issn}{0167-9473}
+      \field{journaltitle}{Computational Statistics \& Data Analysis}
+      \field{number}{4}
+      \field{title}{A half-region depth for functional data}
+      \field{volume}{55}
+      \field{year}{2011}
+      \field{pages}{1679\bibrangedash 1695}
+      \range{pages}{17}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.csda.2010.10.024
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S0167947310004123
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S0167947310004123
+      \endverb
+      \keyw{Functional data,Data depth,Order statistics,High-dimensional data}
     \endentry
     \entry{mizera-volauf-2002}{article}{}
       \name{author}{2}{}{%

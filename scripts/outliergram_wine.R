@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 
+library(reshape2)
 library(cowplot)
 library(dplyr)
 library(ggplot2)
@@ -49,7 +50,7 @@ p.data <- ggplot(wine.df, aes(x = variable, y = value / 1e5, group = as.factor(i
         geom_line(data = filter(wine.df, outlier == "F"),   linewidth = 0.5, color = "grey") +
         geom_line(data = filter(wine.df, outlier == "d"),   linewidth = 0.2, color = purple, alpha = 0.6) +
         geom_line(data = filter(wine.df, outlier == "mbd"), linewidth = 0.2, color = red, alpha = 0.8) +
-        scale_x_reverse() +
+        scale_x_reverse(expand = expansion(mult = 0.01)) +
         theme.data
 
 png("../images/outliergram_wine.png", width = 8, height = 4, units = "in", res = 160)

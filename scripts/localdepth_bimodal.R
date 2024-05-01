@@ -1,10 +1,10 @@
 #!/usr/bin/env Rscript
 
+library(cowplot)
+
 source("contours.R")
 source("../../datadepth/localdepth.R")
 
-
-cairo_pdf("../images/localdepth_bimodal.pdf", onefile = TRUE, width = 8, height = 4)
 
 Z1 <- mvrnorm(200, mu = c(2, 2), Sigma = matrix(c(1, 0, 0, 1), 2))
 Z2 <- mvrnorm(200, mu = c(-2, -2), Sigma = matrix(c(1, 0, 0, 1), 2))
@@ -33,6 +33,8 @@ spatial.local <- show_contour(
         title = "Local spatial depth, β = 0.2"
 )
 
+
+cairo_pdf("../images/localdepth_bimodal.pdf", onefile = TRUE, width = 8, height = 4)
 
 plot_grid(spatial, spatial.local)
 
