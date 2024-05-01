@@ -11,7 +11,7 @@ MBD <- function(X, Xref) rowMeans(apply(combn(1:nrow(Xref), 2), 2, function(idx)
                 apply(X, 1, function(x) mean((L <= x) & (x <= U)))
 }))
 
-outliergram <- function(X, mbd.cut = 0.2) {
+outliergram <- function(X, F = 1.5, mbd.cut = 0.2, ids = c(), x.min = 0, x.max = 1) {
         n <- nrow(X)
         mei <- MEI(X, X)
         mbd <- MBD(X, X)
@@ -22,17 +22,18 @@ outliergram <- function(X, mbd.cut = 0.2) {
 
         parabola <- function(x) (a0 + a1 * x + a2 * n^2 * x^2)
 
-        x <- seq(0, 1, length.out = 100)
+        x <- seq(x.min, x.max, length.out = 100)
         y <- parabola(x)
 
         d <- parabola(mei) - mbd
         q <- quantile(d, probs = c(0.25, 0.75))
-        d.cut <- q[2] + 1.5 * diff(q)
+        d.cut <- q[2] + F * diff(q)
 
         y.cut <- y - d.cut
         outlier <- factor(
                 (d >= d.cut) +
                 2 * (mbd < mbd.cut),
+                levels = 0:2,
                 labels = c("F", "d", "mbd")
         )
 
@@ -57,7 +58,7 @@ outliergram <- function(X, mbd.cut = 0.2) {
         theme.og <- list(
                 scale_color_manual(values = c(orange, purple, red)),
                 scale_shape_manual(values = c(3, 4, 4)),
-                xlim(0, 1),
+                xlim(x.min, x.max),
                 labs(
                         x = "MEI",
                         y = "MBD",
@@ -75,7 +76,7 @@ outliergram <- function(X, mbd.cut = 0.2) {
                 geom_ribbon(data = df.lines, aes(ymin = y.cut, ymax = y), fill = orange, alpha = 0.2) +
                 geom_line(data = df.lines, color = orange) +
                 geom_point(aes(shape = outlier, color = outlier)) +
-                geom_text_repel(aes(label = ifelse(outlier != "F", as.character(id), ""), color = outlier), direction = "both") +
+                geom_text_repel(aes(label = ifelse((outlier != "F") | (id %in% ids), as.character(id), ""), color = outlier), direction = "both") +
                 theme.og
 
         return(list(plot = p.og, df = df.og))
