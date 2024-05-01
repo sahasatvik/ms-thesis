@@ -46,23 +46,36 @@ The empirical version of band depth is defined as
 \end{equation}
 This is simply the proportion of $j$-tuples of curves (for $2 \leq j \leq J$)
 which envelope $\vx$.
+Note that if two curves intersect at a point, a third curve is enveloped by
+them only when it passes through the point of intersection, i.e.\ with
+probability zero.
+Thus, we generally use $J = 3$.
+
 
 \begin{definition}[Modified band depth]
     Define the enveloping time
     \begin{equation}
-        ET(\vx;\, \vx_1, \dots, \vx_j) = m_1(\{t \in [0, 1]\colon \vx \in \conv(\vx_1, \dots, \vx_j)\}),
+        \ET(\vx;\, \vx_1, \dots, \vx_j) = m_1(\{t \in [0, 1]\colon \vx \in \conv(\vx_1, \dots, \vx_j)\}),
     \end{equation}
     where $m_1$ is the Lebesgue measure on $\R$.
     The modified band depth is defined as
     \begin{equation}
-        D_{MB}^J(\vx, F_{\vX}) = \sum_{j = 2}^J\, \E_{\vX_i \iid F_{\vX}}\left[ ET(\vx;\, \vX_1, \dots, \vX_j)\right].
+        D_{MB}^J(\vx, F_{\vX}) = \sum_{j = 2}^J\, \E_{\vX_i \iid F_{\vX}}\left[ \ET(\vx;\, \vX_1, \dots, \vX_j)\right].
     \end{equation}
 \end{definition}
 The empirical version of modified band depth is defined as
 \begin{equation}
-    D_{MB}^J(\vx, \hat{F}_n) = \sum_{j = 2}^J\binom{n}{j}^{-1} \sum_{\substack{1 \leq i_1 < \dots < i_j \leq n}} ET(\vx;\, \vx_{i_1}, \dots, \vx_{i_j}).
+    D_{MB}^J(\vx, \hat{F}_n) = \sum_{j = 2}^J\binom{n}{j}^{-1} \sum_{\substack{1 \leq i_1 < \dots < i_j \leq n}} \ET(\vx;\, \vx_{i_1}, \dots, \vx_{i_j}).
+\end{equation}
+We generally use $J = 2$ for ease of computation, and denote the corresponding
+modified band depth simply as $D_{MB}(\Cdot, \Cdot)$, dropping the
+superscript.
+\begin{equation}
+    D_{MB}(\vx, \hat{F}_n) = \binom{n}{2}^{-1}\sum_{i = 1}^n\sum_{j = i + 1}^n \ET(\vx; \vx_i, \vx_j).
 \end{equation}
 
+
+Later, \textcite{pintado-romo-2011} introduced the half-region depth.
 
 \begin{definition}
     We say that $\vy$ is in the hypograph of $\vx$, denoted, $\vy \in
@@ -75,5 +88,20 @@ The empirical version of modified band depth is defined as
     The half-region depth is defined as
     \begin{equation}
         D_{HR}(\vx, F) = \min\{P_F(H_{\vx}),\, P_F(E_{\vx})\}.
+    \end{equation}
+\end{definition}
+
+The quantity $P_F(E_{\vx})$ is called the epigraph index, which measures the
+proportion of curves that lie entirely above $\vx$.
+
+\begin{definition}[Modified half-region depth]
+    Denote the superior modified hypograph (MHI) and epigraph (MEI) indices
+    \begin{align}
+        \MHI_F(\vx) &= \E_{\vX \sim F}[m_1(\{t \in [0, 1]\colon \vx(t) \geq \vX(t)\})], \\
+        \MEI_F(\vx) &= \E_{\vX \sim F}[m_1(\{t \in [0, 1]\colon \vx(t) \leq \vX(t)\})].
+    \end{align}
+    The modified half-region depth is defined as
+    \begin{equation}
+        D_{MHR}(\vx, F) = \min\{\MHI_F(\vx),\, \MEI_F(\vx)\}.
     \end{equation}
 \end{definition}

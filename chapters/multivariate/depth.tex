@@ -5,6 +5,7 @@
     \includegraphics[width = \textwidth, page = 1]{contours}
     \caption{
         Depth contours with respect to purple points.
+        Darker contours have higher depth.
     }
     \label{fig:depthcontours}
 \end{figure}
@@ -115,13 +116,13 @@ first component of $\vX \sim F$ and $1/\alpha + 1/\alpha^* = 1$.
     Denote $\vY = (\vx - \vX) / \norm{\vx - \vX}$, and observe that
     \begin{equation}
         \E_{\vX \sim F}\left[\vY\right]
-        = (1 - \epsilon)\E\left[\vY\mid \norm{\vX} \leq M\right] +
-          \epsilon\E\left[\vY\mid \norm{\vX} > M\right]
+        = (1 - \epsilon)\E\left[\vY|\, \norm{\vX} \leq M\right] +
+          \epsilon\E\left[\vY|\, \norm{\vX} > M\right]
     \end{equation}
     Thus, using $\norm{\vY} = 1$ and the reverse triangle inequality,
     \begin{equation}
         \norm{\E\left[\vY\right]}
-        \geq (1 - \epsilon)\norm{\E\left[\vY\mid \norm{\vX} \leq M\right]} - \epsilon.
+        \geq (1 - \epsilon)\norm{\E\left[\vY|\, \norm{\vX} \leq M\right]} - \epsilon.
     \end{equation}
     Let $\alpha = \arccos((1 - 2\epsilon)/(1 - \epsilon))$, and let $r_\alpha =
     M/\sin\alpha$.
