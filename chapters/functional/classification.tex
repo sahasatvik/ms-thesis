@@ -12,6 +12,7 @@ classification procedures naturally generalize to the functional setting.
 
 
 
+\subsection{Outlyingness matrices}
 
 \textcite{dai-genton-2018} proposed a method which measures the outlyingness
 of $\vx$ with respect to a population via depth as follows.
@@ -63,7 +64,7 @@ It is easily verified that
 corresponding to the curve $\vX$ for the purposes of classification.
 For instance, one may define the classifier
 \begin{equation}
-    \hat{\iota}(\vX) = \hat{\iota}_{D'}(\vY(\vX, F_i)) = \argmax_{1 \leq i \leq k} D'(\vY(\vX, F_i), F_{\vY(\vX, F_i)}),
+    \hat{\iota}(\vX) = \argmax_{1 \leq i \leq k} D'(\vY(\vX, F_i), F_{\vY(\vX, F_i)}),
 \end{equation}
 where $D'$ is a multivariate depth function.
 This is simply a maximum depth classifier applied on the feature vectors
@@ -108,11 +109,18 @@ For instance, a $\VOM$ based classifier may be defined as
 
 
 
+\subsection{Random projections}
+
 Another approach is to use a feature vector consisting of multiple projections
 of $\vX$.
 Given functions $\vv_1, \dots, \vv_d$ chosen at random, we examine the
 $d$-variate feature vectors
 \begin{equation}
-    \vZ(\vX) = \left(\ip{\vv_1}{\vX}, \dots, \ip{\vv_d}{\vX}\right)
+    \bm{V}(\vX, F_{\vX}) = \left(\ip{\vv_1}{\vX}, \dots, \ip{\vv_d}{\vX}\right)
 \end{equation}
 and apply a depth based multivariate classifier.
+For instance, given a multivariate depth function $D'$, we may define a
+classifier
+\begin{equation}
+    \hat{\iota}^d_{D'}(\vX) = \argmax_{1 \leq i \leq k} D'(\bm{V}(\vX, F_i), F_{\bm{V}(\vX, F_i)}).
+\end{equation}

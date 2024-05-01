@@ -1,24 +1,5 @@
 \section{Functional depth functions}
 
-Let $D$ be a multivariate depth function.
-We can use this to define functional depths as follows.
-
-\begin{definition}[Fraiman-Muniz depth]
-    The integrated depth, or Fraiman-Muniz depth, is defined as
-    \begin{equation}
-        D_F(\vx, F_{\vX}) = \int_{[0, 1]} D(\vx(t), F_{\vX(t)})\:w(t)\:dt.
-    \end{equation}
-    Here, $w$ is a weight function.
-\end{definition}
-
-\begin{definition}[Infimal depth]
-    The infimal depth is defined as
-    \begin{equation}
-        D_{Inf}(\vx, F_{\vX}) = \inf_{t \in [0, 1]} D(\vx(t), F_{\vX(t)}).
-    \end{equation}
-\end{definition}
-
-
 For $\mathscr{X} = L_2$, the spatial depth has its natural functional
 analogue.
 
@@ -30,6 +11,37 @@ analogue.
     where $\norm{\Cdot}_2$ denotes the standard $L_2$ norm.
 \end{definition}
 
+
+\subsection{Summary depths}
+
+Let $D$ be a multivariate depth function.
+We can use this to define the depth of a curve $\vx$ by first computing the
+multivariate $D$-depth of each time slice $\vx(t)$, then `summarizing' these
+depths over all $t \in [0, 1]$.
+One possibility is to take a simple or weighted time average as follows.
+
+\begin{definition}[Fraiman-Muniz depth]
+    The integrated depth, or Fraiman-Muniz depth, is defined as
+    \begin{equation}
+        D_F(\vx, F_{\vX}) = \int_{[0, 1]} D(\vx(t), F_{\vX(t)})\:w(t)\:dt.
+    \end{equation}
+    Here, $w$ is a weight function.
+\end{definition}
+
+Alternatively, we may choose the lowest or `worst' depth over time.
+This way, low depth values over small portions of time, which indicate a
+deviation from centrality, are better reflected in the summary.
+
+\begin{definition}[Infimal depth]
+    The infimal depth is defined as
+    \begin{equation}
+        D_{Inf}(\vx, F_{\vX}) = \inf_{t \in [0, 1]} D(\vx(t), F_{\vX(t)}).
+    \end{equation}
+\end{definition}
+
+
+
+\subsection{Band depths}
 
 \textcite{pintado-romo-2009} later introduced the notion of band depth for
 univariate functional data.
@@ -74,6 +86,9 @@ superscript.
     D_{MB}(\vx, \hat{F}_n) = \binom{n}{2}^{-1}\sum_{i = 1}^n\sum_{j = i + 1}^n \ET(\vx; \vx_i, \vx_j).
 \end{equation}
 
+
+
+\subsection{Half-region depths}
 
 Later, \textcite{pintado-romo-2011} introduced the half-region depth.
 

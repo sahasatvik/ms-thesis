@@ -10,11 +10,6 @@ orange <- "#e99352"
 purple <- "purple"
 
 theme.data <- list(
-        labs(
-                x = "x",
-                y = "y",
-                color = "depth"
-        ),
         theme(
                 legend.position = "none",
                 plot.background = element_rect(fill = "transparent", color = NA),
@@ -37,7 +32,9 @@ show_contour <- function(
         grid.n = 50,
         grid.breaks = seq(0, 1, length.out = 16)^2,
         depth = depth.spatial,
-        title = ""
+        title = "",
+        xlab = "x",
+        ylab = "y"
 ) {
         delta.X <- diff(range(df$X)) * 0.1
         delta.Y <- diff(range(df$Y)) * 0.1
@@ -57,6 +54,8 @@ show_contour <- function(
                 ylim(min(grid.Y), max(grid.Y)) +
                 theme.data +
                 labs(
+                        x = xlab,
+                        y = ylab,
                         title = title,
                 )
 }
