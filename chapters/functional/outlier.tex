@@ -1,7 +1,48 @@
 \section{Outlier detection}
 
+A curve $\vx\colon [0, 1] \to \R$ may exhibit outlying behaviour with respect
+to a body of curves in many ways; we use the useful classification as detailed
+in \textcite{hubert-rousseeuw-segeart-2015}.
+It may deviate significantly over a short interval, in which case we call it
+an \emph{isolated outlier}.
+Alternatively, it may deviate over a large, or perhaps even the whole
+interval, in which case we call it a \emph{persistent outlier}.
+If this deviation is in terms of shape -- for instance, the curve may be
+rougher or smoother -- we call it a \emph{shape outlier}.
+Otherwise, if the curve has the same shape as the rest but appears above or
+below them, we call it a \emph{shift outlier}.
+Another possibility is that the curve differs in scale, in which case we call
+it an \emph{amplitude outlier}.
+
+An important consideration when dealing with shape outliers is that each time
+slice $\vx(t)$ may be fairly inconspicuous with respect to the marginal
+$F_{\vX(t)}$.
+Thus, it seems clear that a tool like the Fraiman-Muniz depth may succeed in
+identifying shift or amplitude outliers, but fall short against shape
+outliers.
+In general, the basic algorithm of iteratively selecting curves with low
+functional depth as outliers is often insufficient.
+
+A common approach towards examining the shapes of curves in a dataset is to
+bundle it with their derivatives.
+
 
 \subsection{Outliergrams}
+
+\begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{outliergram_wine}
+    \caption{
+        Outliergram for the NMR spectra of 40 wine samples.
+        The three purple curves have been identified as shape outliers, as
+        they fall outside the orange ribbon in the outliergram.
+        Although the red curves lie on the orange parabola, they have low MBD
+        and extreme MEI values, indicating that they lie above or below the
+        main mass of curves.
+    }
+    \label{fig:outliergram_wine}
+\end{figure}
+
 
 \textcite{gil-romo-2014} combined the notions of the modified epigraph index
 (MEI) and the modified band depth (MBD), proposing the outliergram as a tool
@@ -19,37 +60,25 @@ is indicative of the outlyingness of $\vx_i$.
 \textcite{gil-romo-2014} consider shape outlying curves as those for which
 $d_i \geq d^* = Q_3 + 1.5\IQR$, where $Q_3$ and $\IQR$ are the third quartile
 and the interquartile range of $\{d_i\}_{i = 1}^n$ respectively.
-The graph $\{(\MEI(\vx_i), \MBD(\vx_i))\}_{i = 1}^n$ is called the
-\emph{outliergram}.
-Shape outliers are those whose $(\MEI, \MBD)$ falls outside a ribbon of height
-$d^*$ under the parabola $a_0 + a_1 x^2 + a_2n^2x^2$.
 
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{outliergram_wine}
-    \caption{
-        Outliergram for the NMR spectra of 40 wine samples.
-        The three purple curves have been identified as shape outliers, as
-        they fall outside the orange ribbon in the outliergram.
-        Although the red curves lie on the orange parabola, they have low MBD
-        and extreme MEI values, indicating that they lie above or below the
-        main mass of curves.
-    }
-    \label{fig:outliergram_wine}
-\end{figure}
+\begin{definition}[Outliergram]
+    The outliergram for a dataset $\mathscr{D} = \{\vx_i\}_{i = 1}^n$ is the
+    graph
+    \begin{equation}
+        \{(\MEI(\vx_i, \hat{F}_n),\, \MBD(\vx_i, \hat{F}_n))\colon 1 \leq i \leq n\}.
+    \end{equation}
+    Shape outliers are curves $\vx_i$ such that $(\MEI_i, \MBD_i)$ falls
+    outside a ribbon of height $d^*$ under the parabola $a_0 + a_1 \MEI +
+    a_2n^2\MEI^2$.
+\end{definition}
+
+Figure~\ref{fig:outliergram_wine} illustrates the use of the outliergram.
+We have also highlighted curves with fairly low or high MEI values as shift
+outliers; a low MEI value indicates that the curve lies above the main mass of
+curves, and a high MEI indicates that it lies below.
 
 
-
-\subsection{Centrality-stability diagrams}
-
-In their discussion of methods of functional outlier detection,
-\textcite{hubert-rousseeuw-segeart-2015} proposed the centrality-stability
-diagram, where both the `centrality' of a curve (measured by depth) and its
-variability in cross-sectional outlyingness over time are accounted for.
-
-We observe that the MO-VO diagram from \textcite{dai-genton-2018} neatly falls
-under a general category of centrality-stability diagrams.
-
+\subsection{Centrality-Stability diagrams}
 
 \begin{figure}
     \centering
@@ -67,7 +96,7 @@ under a general category of centrality-stability diagrams.
     \centering
     \includegraphics[width = \textwidth]{centrality_stability_wine}
     \caption{
-        Centrality-stability diagram for the NMR spectra of 40 wine samples.
+        Centrality-Stability diagram for the NMR spectra of 40 wine samples.
         The red curves are seen to deviate in terms of centrality, indicated
         by the fact that the corresponding points in the centrality-stability
         diagram fall towards the right.
@@ -77,11 +106,109 @@ under a general category of centrality-stability diagrams.
     \label{fig:centrality_stability_wine}
 \end{figure}
 
+In their discussion of methods of functional outlier detection,
+\textcite{hubert-rousseeuw-segeart-2015} proposed the centrality-stability
+diagram, where both the `centrality' of a curve (measured by depth) and its
+variability in cross-sectional outlyingness over time are accounted for.
+A deviation in centrality may point towards a shift outlier, while a deviation
+in stability may point towards an isolated or shape outlier.
+
+\textcite{hubert-rousseeuw-segeart-2015} begin by choosing a multivariate
+depth function of the form $D'(\vx(t), F_{\vX(t)}) = (1 + O(\vx(t)))^{-1}$,
+where $O(\Cdot)$ is an outlyingness function.
+The Mahalanobis, projection, and Oja depths clearly fit this description.
+Here, for the purposes of computation in the univariate case, we choose
+\begin{equation}
+    O(x(t)) = \frac{|x(t) - \med(X(t)|}{\MAD(X(t))},
+\end{equation}
+instead of using the skew-adjusted version; the differences are minor enough
+for us to ignore.
+The variation in $O(\vx(\Cdot))$ over time for different curves, in the form
+of an \emph{outlyingess heatmap}, is quite revealing;
+Figure~\ref{fig:outlyingness_heatmap_wine} shows that curves may have large
+outlyingness for short or long intervals.
+
+Corresponding to $D'$, we have an integrated Fraiman-Muniz depth
+\begin{equation}
+    D_F(\vx, F) = \int_{[0, 1]} (1 + O(\vx(t)))^{-1}\:dt.
+\end{equation}
+However, a spike in outlyingess over a short time interval, such as in curve
+\#37 in Figure~\ref{fig:outlyingness_heatmap_wine}, may potentially be `washed
+out' in this averaging.
+With this, we seek a method of detecting sharp bursts in outlyingness.
+Note that by setting
+\begin{equation}
+    \widetilde{\MOt}(\vx, F) = \int_{[0, 1]} O(\vx(t)) \:dt,% = \int_{[0, 1]} \left(\frac{1}{D'(\vx(t), F_{\vX(t)})} - 1\right) \:dt,
+\end{equation}
+Cauchy-Schwarz gives us the relation
+\begin{equation}
+    D_F(\vx, F) \Cdot (1 + \widetilde{\MOt}(\vx, F)) \geq 1.
+\end{equation}
+Equality is achieved only when $O(\vx(\Cdot))$ remains constant over time.
+Any sudden variation in outlyingness over time will be detected by the
+\emph{stability deviation}
+\begin{equation}
+    \Delta S(\vx, F) \;=\; (1 + \widetilde{\MOt}(\vx, F)) - \frac{1}{D_F(\vx, F)},
+\end{equation}
+the difference between the arithmetic and harmonic means of $1 +
+O(\vx(\Cdot))$.
+Defining the \emph{centrality deviation} simply as $\Delta C(\vx, F) = 1 -
+D_F(\vx, F)$, we have our \emph{centrality-stability diagram}.
+
+\begin{definition}[Centrality-Stability diagram]
+    The centrality-stability diagram for a dataset $\mathscr{D} = \{\vx_i\}_{i
+    = 1}^n$ is the graph
+    \begin{equation}
+        \{(\Delta C(\vx_i, \hat{F}_n),\, \Delta S(\vx_i, \hat{F}_n))\colon 1 \leq i \leq n\}.
+    \end{equation}
+\end{definition}
+
+\begin{remark}
+    We make a distinction between $\MO$ from Definition~\ref{def:MO} and
+    $\widetilde{\MOt}$; the outlyingness $O(\Cdot)$ used in the latter is real
+    and positive.
+\end{remark}
+
+Figure~\ref{fig:centrality_stability_wine} illustrates the use of the
+centrality-stability diagram as a summary of the outlyingness heatmap from
+Figure~\ref{fig:outlyingness_heatmap_wine}.
+This time, the isolated outlier curve \#37 is well separated from the shift
+and shape outliers, unlike in the outliergram in
+Figure~\ref{fig:outliergram_wine}.
+
+
+
+
+\subsection{MO-VO diagrams}
+
+We observe that the MO-VO diagram from \textcite{dai-genton-2018} neatly falls
+under a general category of centrality-stability diagrams.
+The quantity $\MO(\vx, F)$ may indeed be treated as a measure of deviation
+from centrality of $\vx$.
+Again, $\VO(\vx, F)$ being the variance of $\vO(t)$, may be treated as a
+measure of deviation from stability, since it captures the variability of
+outlyingness over time and is sensitive to changes over short intervals.
+
+For the purposes of computation in the univariate case, we use the directional
+outlyingess function
+\begin{equation}
+    O(x(t)) = \frac{x(t) - \med(X(t))}{\MAD(X(t))}.
+\end{equation}
+Figure~\ref{fig:MO_VO_wine} illustrates the use of the MO-VO diagram.
+Note the similarities with the centrality-stability diagram from
+Figure~\ref{fig:centrality_stability_wine}.
+
+
 \begin{figure}
     \centering
     \includegraphics[width = \textwidth]{MO_VO_wine}
     \caption{
         MO-VO diagram for the NMR spectra of 40 wine samples.
+        We plot $|\MOt|$ rather than MO here for better comparison with the
+        centrality stability diagram in
+        Figure~\ref{fig:centrality_stability_wine}; nevertheless, the signed
+        MO values would reveal whether the shift outliers lie above or below
+        the main mass of curves.
     }
     \label{fig:MO_VO_wine}
 \end{figure}
@@ -111,6 +238,9 @@ under a general category of centrality-stability diagrams.
         While the outliergram does not clearly identify these outliers, the
         centrality-stability and MO-VO diagrams show a marked separation from
         the main curves.
+        Indeed, there is no cutoff $d^*$ defining the lower boundary of the
+        orange ribbon in the outliergram which properly excludes the six
+        outliers.
     }
     \label{fig:outlyingness_octane}
 \end{figure}
