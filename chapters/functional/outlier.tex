@@ -1,5 +1,17 @@
 \section{Outlier detection}
 
+\begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{wine}
+    \caption{
+        NMR spectra of 40 wine samples, from the R package \texttt{speaq},
+        with some curves showing outlying behaviour highlighted.
+        The green curve \#37 is an isolated outlier, the blue and red curves
+        are shift outliers, and the purple curve is a shape outlier.
+    }
+    \label{fig:wine}
+\end{figure}
+
 A curve $\vx\colon [0, 1] \to \R$ may exhibit outlying behaviour with respect
 to a body of curves in many ways; we use the useful classification as detailed
 in \textcite{hubert-rousseeuw-segeart-2015}.
@@ -24,7 +36,7 @@ In general, the basic algorithm of iteratively selecting curves with low
 functional depth as outliers is often insufficient.
 
 A common approach towards examining the shapes of curves in a dataset is to
-bundle it with their derivatives.
+bundle them with their derivatives.
 
 
 \subsection{Outliergrams}
@@ -181,6 +193,20 @@ Figure~\ref{fig:outliergram_wine}.
 
 \subsection{MO-VO diagrams}
 
+\begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{MO_VO_wine}
+    \caption{
+        MO-VO diagram for the NMR spectra of 40 wine samples.
+        We plot $|\MOt|$ rather than MO here for better comparison with the
+        centrality stability diagram in
+        Figure~\ref{fig:centrality_stability_wine}; nevertheless, the signed
+        MO values would reveal whether the shift outliers lie above or below
+        the main mass of curves.
+    }
+    \label{fig:MO_VO_wine}
+\end{figure}
+
 We observe that the MO-VO diagram from \textcite{dai-genton-2018} neatly falls
 under a general category of centrality-stability diagrams.
 The quantity $\MO(\vx, F)$ may indeed be treated as a measure of deviation
@@ -199,40 +225,14 @@ Note the similarities with the centrality-stability diagram from
 Figure~\ref{fig:centrality_stability_wine}.
 
 
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{MO_VO_wine}
-    \caption{
-        MO-VO diagram for the NMR spectra of 40 wine samples.
-        We plot $|\MOt|$ rather than MO here for better comparison with the
-        centrality stability diagram in
-        Figure~\ref{fig:centrality_stability_wine}; nevertheless, the signed
-        MO values would reveal whether the shift outliers lie above or below
-        the main mass of curves.
-    }
-    \label{fig:MO_VO_wine}
-\end{figure}
 
-
-
-
-
-\begin{figure}
-    \centering
-    \includegraphics[width = \textwidth]{outlyingness_heatmap_octane}
-    \caption{
-        Outlyingness heatmap for the NIR spectra of 39 gasoline samples.
-        The outlying curves have been zeroed out in the second diagram.
-    }
-    \label{fig:outlyingness_heatmap_octane}
-\end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width = \textwidth]{outlyingness_octane}
     \caption{
         Outliergram, centrality-stability, and MO-VO diagrams for the NIR
-        spectra of 39 gasoline samples.
+        spectra of 39 gasoline samples, from the R package \texttt{rrcov}.
         The six purple curves \#25, 26, 36-39 correspond to samples containing
         added alcohol.
         While the outliergram does not clearly identify these outliers, the
@@ -245,5 +245,16 @@ Figure~\ref{fig:centrality_stability_wine}.
     \label{fig:outlyingness_octane}
 \end{figure}
 
+\begin{figure}
+    \centering
+    \includegraphics[width = \textwidth]{outlyingness_heatmap_octane}
+    \caption{
+        Outlyingness heatmap for the NIR spectra of 39 gasoline samples.
+        The outlying curves have been zeroed out in the second diagram.
+    }
+    \label{fig:outlyingness_heatmap_octane}
+\end{figure}
 
 
+We use all of the above diagnostic tools on a different dataset in
+Figures~\ref{fig:outlyingness_heatmap_octane} and \ref{fig:outlyingness_octane}.
