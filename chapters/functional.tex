@@ -1,6 +1,8 @@
 Consider a class of functions $\mathscr{X}$ of the form $\vx\colon [0, 1] \to
-\R^d$, and let $\mathscr{F}$ be a suitable class of distributions on
-$\mathscr{X}$.
+\R^d$, equipped with a norm, and let $\mathscr{F}$ be a suitable class of
+distributions on $\mathscr{X}$.
+Typically, we choose $\mathscr{X}$ to be either $L_2[0, 1]$ or $\mathcal{C}[0,
+1]$.
 
 It is desirable for a depth function $D\colon \mathscr{X} \times \mathscr{F}
 \to \R$ to satisfy the following properties \parencite{gijbels-nagy-2017}.
@@ -23,6 +25,106 @@ turns out to be degenerate for a wide class of distributions $\mathscr{F}$
 For example, when $\mathscr{X} = C[0, 1]$ with the supremum norm and $\vX$ is
 a Gaussian process with a positive definite covariance kernel, we have
 $D_H(\Cdot, F_{\vX}) = 0$ almost surely.
+A similar result holds for the analogue to the projection depth.
+However, neither the functional random Tukey depth nor the functional spatial
+depth
+\begin{equation}
+    D_S(\vx, F_{\vX}) = 1 - \left\Vert \E_{\vX \sim F} \left[\frac{\vx - \vX\;\,}{\norm{\vx - \vX}_2}\right] \right\Vert_2
+\end{equation}
+suffer this deficiency when $\mathscr{X} = L_2$
+\parencite{albertos-reyes-2008a, gijbels-nagy-2017}.
+
+
+
+The notion of affine invariance in \textbf{P1} can be generalized in many
+ways; \textcite{gijbels-nagy-2017} recommend the following.
+
+\begin{enumerate}
+    \item[\textbf{P1S}.] \emph{Scalar-affine invariance.}
+    For $a, b \in \R$ with $a$ non-zero and $\vx \in \mathscr{X}$,
+    \begin{equation}
+        D(a\vx + b, F_{a\vX + b}) = D(\vx, F_{\vX}).
+    \end{equation}
+
+    \item[\textbf{P1F}.] \emph{Function-affine invariance.}
+    For $a, b, x \in \mathscr{X}$ with $ax \in \mathscr{X}$,
+    \begin{equation}
+        D(ax + b, F_{aX + b}) = D(x, F_{X}).
+    \end{equation}
+\end{enumerate}
+
+
+When generalizing \textbf{P2}, we must first define a notion of symmetry of $F
+\in \mathscr{F}$.
+To this end, we say that $F_{\vX}$ is symmetric about $\vth \in \mathscr{X}$
+if for all $\varphi \in \mathscr{X}^*$, we have $\varphi(\vX)$ is symmetric
+about $\varphi(\vth)$.
+Again, we are free to choose our notion of univariate symmetry for
+$\varphi(\vX)$.
+\textcite{gijbels-nagy-2017} consider central and halfspace symmetry.
+
+\begin{enumerate}
+    \item[\textbf{P2C}.] \emph{Maximality at center of central symmetry.}
+    Any centrally symmetric $F \in \mathscr{F}$ is symmetric about $\vth \in
+    \mathscr{X}$ if and only if $D(\vth, F) = \sup_{\vx \in \mathscr{X}}
+    D(\vx, F)$.
+
+    \item[\textbf{P2H}.] \emph{Maximality at center of halfspace symmetry.}
+    Any halfspace symmetric $F \in \mathscr{F}$ is symmetric about $\vth \in
+    \mathscr{X}$ if and only if $D(\vth, F) = \sup_{\vx \in \mathscr{X}}
+    D(\vx, F)$.
+\end{enumerate}
+
+Earlier, \textcite{reyes-battey-2016} proposed the following variant of
+\textbf{P2}.
+\begin{enumerate}
+    \item[\textbf{P2G}.] \emph{Maximality at Gaussian process mean.}
+    For a zero-mean, stationary, almost surely continuous Gaussian process $F
+    \in \mathscr{F}$, we have $D(\vth, F) = \sup_{\vx \in \mathscr{X}} D(\vx,
+    F)$ where $\theta$ is the zero mean function.
+\end{enumerate}
+The above notions of maximality at the center are \textbf{P2H} $>$
+\textbf{P2C} $>$ \textbf{P2G} in order of strength.
+
+The propertes \textbf{P3} and \textbf{P4} have straightforward generalization.
+\begin{enumerate}
+    \item[\textbf{P3D}.] \emph{Monotonicity relative to deepest point.}
+    For $F \in \mathscr{F}$ such that $D(\vth, F) = \sup_{\vx \in \mathscr{X}}
+    D(\vx, F)$, we have for $\alpha \in [0, 1]$,
+    \begin{equation}
+        D(\vx, F) \leq D(\vth + \alpha(\vx - \vth), F).
+    \end{equation}
+
+    \item[\textbf{P4V}.] \emph{Vanishing at infinity.} For any $F \in
+    \mathscr{F}$,
+    \begin{equation}
+        D(\vx, F) \to 0\;\text{ as }\; \norm{x} \to \infty.
+    \end{equation}
+\end{enumerate}
+
+
+\textcite{reyes-battey-2016} and \textcite{gijbels-nagy-2017} also deal with
+the notions of continuity in $F$.
+Let $d_{\mathscr{F}}$ metrize the topology of weak convergence in
+$\mathscr{F}$.
+\begin{enumerate}
+    \item[\textbf{C2W}.] \emph{Weak continuity in $F$.}
+    For all $\epsilon > 0$ and $F \in \mathscr{F}$, there exists $\delta > 0$
+    such that for all $G \in \mathscr{F}$ such that $d_{\mathscr{F}}(F, G) <
+    \delta$, we have $|D(\vx, F) - D(\vx, G)| < \epsilon$, $F$-almost surely.
+
+    \item[\textbf{C2U}.] \emph{Uniform continuity in $F$.}
+    For all $\epsilon > 0$ and $F \in \mathscr{F}$, there exists $\delta > 0$
+    such that for all $G \in \mathscr{F}$ such that $d_{\mathscr{F}}(F, G) <
+    \delta$, we have $\sup_{\vx \in \mathscr{X}} |D(\vx, F) - D(\vx, G)| <
+    \epsilon$.
+\end{enumerate}
+
+
+\textcite[Table 1]{gijbels-nagy-2017} provides a detailed summary of which of
+these properties are satisfied by the depth functions discussed in the
+following section.
+
 
 \input{chapters/functional/depth}
 

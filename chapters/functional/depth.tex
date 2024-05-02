@@ -1,17 +1,5 @@
 \section{Functional depth functions}
 
-For $\mathscr{X} = L_2$, the spatial depth has its natural functional
-analogue.
-
-\begin{definition}[Functional spatial depth]
-    The spatial depth for $\mathscr{X} = L_2$ is defined as
-    \begin{equation}
-        D_S(\vx, F_{\vX}) = 1 - \left\Vert \E_{\vX \sim F} \left[\frac{\vx - \vX\;\,}{\norm{\vx - \vX}_2}\right] \right\Vert_2,
-    \end{equation}
-    where $\norm{\Cdot}_2$ denotes the standard $L_2$ norm.
-\end{definition}
-
-
 \subsection{Summary depths}
 
 Let $D$ be a multivariate depth function.
@@ -54,7 +42,7 @@ univariate functional data.
 \end{definition}
 The empirical version of band depth is defined as
 \begin{equation}
-    D_B^J(\vx, \hat{F}_n) = \sum_{j = 2}^J\binom{n}{j}^{-1} \sum_{\substack{1 \leq i_1 < \dots < i_j \leq n}} \bm{1}(\vx \in \conv(\vx_{i_1}, \dots, \vx_{i_j})).
+    D_B^J(\vx, \hat{F}_n) = \sum_{j = 2}^J\binom{n}{j}^{-1} \hspace{-1em}\sum_{\substack{1 \leq i_1 < \dots < i_j \leq n}} \bm{1}(\vx \in \conv(\vx_{i_1}, \dots, \vx_{i_j})).
 \end{equation}
 This is simply the proportion of $j$-tuples of curves (for $2 \leq j \leq J$)
 which envelope $\vx$.
@@ -77,7 +65,7 @@ Thus, we generally use $J = 3$.
 \end{definition}
 The empirical version of modified band depth is defined as
 \begin{equation}
-    D_{MB}^J(\vx, \hat{F}_n) = \sum_{j = 2}^J\binom{n}{j}^{-1} \sum_{\substack{1 \leq i_1 < \dots < i_j \leq n}} \ET(\vx;\, \vx_{i_1}, \dots, \vx_{i_j}).
+    D_{MB}^J(\vx, \hat{F}_n) = \sum_{j = 2}^J\binom{n}{j}^{-1} \hspace{-1em} \sum_{\substack{1 \leq i_1 < \dots < i_j \leq n}} \ET(\vx;\, \vx_{i_1}, \dots, \vx_{i_j}).
 \end{equation}
 We generally use $J = 2$ for ease of computation, and denote the corresponding
 modified band depth simply as $D_{MB}(\Cdot, \Cdot)$, dropping the
