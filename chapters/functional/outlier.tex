@@ -217,6 +217,15 @@ Again, $\VO(\vx, F)$ being the variance of $\vO(t)$, may be treated as a
 measure of deviation from stability, since it captures the variability of
 outlyingness over time and is sensitive to changes over short intervals.
 
+\begin{definition}[MO-VO diagram]
+    The MO-VO diagram for a dataset $\mathscr{D} = \{\vx_i\}_{i = 1}^n$ is the
+    graph
+    \begin{equation}
+        \{(\norm{\MO(\vx_i, \hat{F}_n)},\, \VO(\vx_i, \hat{F}_n))\colon 1 \leq i \leq n\}.
+    \end{equation}
+\end{definition}
+
+
 For the purposes of computation in the univariate case, we use the directional
 outlyingess function
 \begin{equation}
@@ -258,5 +267,6 @@ Figure~\ref{fig:centrality_stability_wine}.
 \end{figure}
 
 
-We use all of the above diagnostic tools on a different dataset in
-Figures~\ref{fig:outlyingness_heatmap_octane} and \ref{fig:outlyingness_octane}.
+We demonstrate all of the above diagnostic tools on a different dataset in
+Figures~\ref{fig:outlyingness_heatmap_octane} and
+\ref{fig:outlyingness_octane}.

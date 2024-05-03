@@ -47,9 +47,21 @@ The empirical version of band depth is defined as
 This is simply the proportion of $j$-tuples of curves (for $2 \leq j \leq J$)
 which envelope $\vx$.
 Note that if two curves intersect at a point, a third curve is enveloped by
-them only when it passes through the point of intersection, i.e.\ with
-probability zero.
+them only when it passes through the point of intersection.
+For most commonly used $F_{\vX}$, this happens with probability zero, making
+the band depth for $J = 2$ degenerate.
 Thus, we generally use $J = 3$.
+
+
+\begin{remark}
+    The band depth may fail to satisfy \textbf{P0} even for $J \geq 3$.
+    It follows from \textcite[Theorem~3.2]{chakraborty-chaudhuri-2014a} that
+    when $\mathscr{X} = \mathcal{C}[0, 1]$ and $\vX$ is a Feller process (for
+    instance, Brownian motion) such that $P(X_0 = 0) = 1$ and the distribution
+    of each $\vX_t$ for $t \in (0, 1]$ is non-atomic and symmetric about $0$,
+    the band depth $D^J_B(\Cdot, F_{\vX}) = 0$ almost surely.
+    The following modification of the band depth resolves this issue.
+\end{remark}
 
 
 \begin{definition}[Modified band depth]
@@ -96,6 +108,12 @@ Later, \textcite{pintado-romo-2011} introduced the half-region depth.
 
 The quantity $P_F(E_{\vx})$ is called the epigraph index, which measures the
 proportion of curves that lie entirely above $\vx$.
+
+\begin{remark}
+    The half-region depth may also fail to satisfy \textbf{P0}, with the same
+    counterexample used earlier for the degeneracy of the band depth
+    \parencite[Theorem~3.2]{chakraborty-chaudhuri-2014a}.
+\end{remark}
 
 \begin{definition}[Modified half-region depth]
     Denote the superior modified hypograph (MHI) and epigraph (MEI) indices
