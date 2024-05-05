@@ -2,13 +2,14 @@
 
 \subsection{Summary depths}
 
-Let $D$ be a multivariate depth function.
+Let $D$ be a univariate or multivariate depth function.
 We can use this to define the depth of a curve $\vx$ by first computing the
 multivariate $D$-depth of each time slice $\vx(t)$, then `summarizing' these
 depths over all $t \in [0, 1]$.
 One possibility is to take a simple or weighted time average as follows.
 
 \begin{definition}[Fraiman-Muniz depth]
+    \label{def:FM_depth}
     The integrated depth, or Fraiman-Muniz depth, is defined as
     \begin{equation}
         D_F(\vx, F_{\vX}) = \int_{[0, 1]} D(\vx(t), F_{\vX(t)})\:w(t)\:dt.
@@ -28,6 +29,25 @@ deviation from centrality, are better reflected in the summary.
 \end{definition}
 
 
+\textcite{nagy-gijbels-hlubinka-2017}, motivated by the problem of detecting
+\emph{shape outliers}, extend the definitions of Fraiman-Muniz depth and
+infimal depth as follows.
+We will examine their significance briefly in
+Section~\ref{sec:functional_outlier}.
+
+\begin{definition} \label{def:J_FM_depth}
+    The $J$-th order integrated depth is defined as
+    \begin{equation}
+        D_F^J(\vx, F_{\vX}) = \int_{[0, 1]^J} D((\vx(t_1), \dots, \vx(t_J))^\top, F_{(\vX(t_1), \dots, \vX(t_J))^\top}) \:w(\bm{t})\:d\bm{t}.
+    \end{equation}
+\end{definition}
+
+\begin{definition} \label{def:J_Inf_depth}
+    The $J$-th order infimal depth is defined as
+    \begin{equation}
+        D_{Inf}^J(\vx, F_{\vX}) = \inf_{\bm{t} \in [0, 1]^J} D((\vx(t_1), \dots, \vx(t_J))^\top, F_{(\vX(t_1), \dots, \vX(t_J))^\top}.
+    \end{equation}
+\end{definition}
 
 \subsection{Band depths}
 
