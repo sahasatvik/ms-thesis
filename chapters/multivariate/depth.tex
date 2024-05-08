@@ -11,6 +11,9 @@
 \end{figure}
 
 
+The earliest formulation of a depth function may be attributed to
+\textcite{tukey-1975}.
+
 \begin{definition}[Halfspace/Tukey depth]
     Denote the collection of all closed halfspaces in $\R^d$ containing $\vx$
     by $\mathcal{H}_{\vx}$.
@@ -38,34 +41,6 @@
         D_H(x, F) = \min\{P_F(-\infty, x],\, P_F[x, \infty)\}.
     \end{equation}
 \end{remark}
-
-% \textcite{albertos-reyes-2008b} showed that the halfspace depth fully
-% characterizes discrete measures with countable support.
-% This is a generalization of a result by \textcite{koshevoy-2002}.
-
-% \begin{theorem}[\cite{albertos-reyes-2008b}]
-%     Let $F_1, F_2 \in \mathscr{F}$ where $F_1$ is a discrete measure with
-%     countable support.
-%     If $D_H(\vx, F_1) = D_H(\vx, F_2)$ for all $\vx \in \R^d$ then $F_1 =
-%     F_2$.
-% \end{theorem}
-
-\textcite{struyf-rousseeuw-1999} showed that halfspace depth fully
-characterizes empirical distributions.
-
-\begin{theorem}[\cite{struyf-rousseeuw-1999}]
-    The empirical distribution of any dataset $\{\vX_i\}_{i = 1}^n \subset
-    \R^d$ is uniquely determined by its halfspace depth function $D(\Cdot,
-    \hat{F}_n)$.
-\end{theorem}
-
-\textcite{nagy-2020} offers a comprehensive overview of this characterization
-problem.
-Indeed, \textcite{nagy-2021} supplies examples of distinct probability
-distributions $F_1, F_2$ such that $D_H(\Cdot, F_1) = D_H(\Cdot, F_2)$.
-It can be shown that for an $\alpha$-symmetric distribution $F$ that $D_H(\vx,
-F) = G(-\norm{\vx}_{\alpha^*})$, where $G$ is the marginal distribution of the
-first component of $\vX \sim F$ and $1/\alpha + 1/\alpha^* = 1$.
 
 
 
@@ -188,7 +163,8 @@ first component of $\vX \sim F$ and $1/\alpha + 1/\alpha^* = 1$.
 Depths which have this property can be approximated by calculating the
 univariate depths of the projected data along many directions $\vv$.
 
-\begin{lemma}
+
+\begin{lemma}[\cite{mosler-mozharovskyi-2022}]
     The halfspace depth, Mahalanobis depth, and projection depth have the
     projection property.
 \end{lemma}
@@ -340,5 +316,51 @@ The spatial depth is similarly well behaved.
     $\R^d$, using Lemma~\ref{lem:spatial_vanish} and arguments similar to the
     proof of Theorem~\ref{thm:halfspace_uniform}.
 \end{remark}
+
+
+
+\subsection{Characterization properties}
+
+It seems natural to ask the question -- do depth functions completely
+characterize a distribution, the way density functions do?
+In other words, can we recover $F \in \mathscr{F}$ from $D(\Cdot, F)$?
+For most depth functions, the answer is `no', unless we greatly restrict the
+class of functions $\mathscr{F}$ under consideration.
+For instance, the Mahalanobis depth $D_M(\Cdot, F)$ only depends on the first
+two moments of $F$, and thus has no hope of distinguishing between
+distributions which differ in higher moments.
+On the other hand, if we only consider a family of elliptical distributions
+$\Ell(h; \Cdot, \Cdot)$ for strictly monotonically decreasing $h$, it can be
+shown that any depth $D$ satisfying \textbf{P1} and \textbf{C1} uniquely
+determines $F$ \parencite{mosler-mozharovskyi-2022}.
+
+
+\begin{definition}[Elliptical distributions]
+    \label{def:elliptical}
+    We say that a distribution is elliptical if it has a density of the form
+    \begin{equation}
+        f(\vx) = c\, |\Sigma|^{-1/2}\, h\left((\vx - \vmu)^\top \Sigma^{-1} (\vx - \vmu)\right)
+    \end{equation}
+    for some non-increasing function $h$.
+    This is denoted by $\Ell(h; \vmu, \Sigma)$.
+\end{definition}
+
+
+A positive result for the halfspace depth is that it fully characterizes
+empirical distributions.
+
+\begin{theorem}[\cite{struyf-rousseeuw-1999}]
+    The empirical distribution of any dataset $\{\vX_i\}_{i = 1}^n \subset
+    \R^d$ is uniquely determined by its halfspace depth function $D(\Cdot,
+    \hat{F}_n)$.
+\end{theorem}
+
+\textcite{nagy-2020} offers a comprehensive overview of the halfspace depth
+characterization problem.
+Indeed, \textcite{nagy-2021} supplies examples of distinct probability
+distributions $F_1, F_2$ such that $D_H(\Cdot, F_1) = D_H(\Cdot, F_2)$.
+It can be shown that for an $\alpha$-symmetric distribution $F$ that $D_H(\vx,
+F) = G(-\norm{\vx}_{\alpha^*})$, where $G$ is the marginal distribution of the
+first component of $\vX \sim F$ and $1/\alpha + 1/\alpha^* = 1$.
 
 

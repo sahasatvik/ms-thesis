@@ -59,17 +59,8 @@ It can be shown under special circumstances that $Q(F, G) < 1/2$ if $F, G$
 differ in terms of location or scale.
 This will form the basis of our testing scheme, with $H_0: F = G$ versus $H_A:
 Q(F, G) < 1/2$.
+Specifically, we restrict our attention to elliptical distributions on $\R^d$.
 
-Here, we restrict our attention to elliptical distributions on $\R^d$.
-
-\begin{definition}[Elliptical distributions]
-    We say that a distribution is elliptical if it has a density of the form
-    \begin{equation}
-        f(\vx) = c\, |\Sigma|^{-1/2}\, h\left((\vx - \vmu)^\top \Sigma^{-1} (\vx - \vmu)\right)
-    \end{equation}
-    for some non-increasing function $h$.
-    This is denoted by $\Ell(h; \vmu, \Sigma)$.
-\end{definition}
 
 % \begin{proposition}[\cite{liu-singh-1993}]
 %     Let $F \sim \Ell(h; \vmu, \Sigma)$ and $G_t \sim \Ell(h; \vmu +
@@ -85,8 +76,6 @@ Here, we restrict our attention to elliptical distributions on $\R^d$.
 %     Further suppose that $D(\Cdot, F)$ has the affine invariance property.
 %     Then, $Q(F, G) \leq 1/2$.
 % \end{proposition}
-
-The quality index obeys the following properties.
 
 \begin{proposition}[\cite{liu-singh-1993}]
     Let $F \sim \Ell(h; \vmu_1, \Sigma_1)$ and $G \sim \Ell(h; \vmu_2,
@@ -199,3 +188,8 @@ for $\alpha \in [0, 1]$, or a maximum
 Under similar assumptions, they show that both $W^\alpha_{n, m} \tod \chi^2_1$
 and $M_{n, m} \tod \chi^2_1$ as $\min\{n, m\} \to \infty$ and $n / m$
 converges to a positive constant, under the null hypothesis $F = G$.
+
+For multisample homogeneity testing, \textcite{chenouri-small-2012} construct
+a Kruskal-Wallis-like test, with the role of univariate ranks replaced by the
+depth based ranks $R(\Cdot, \hat{F})$ within the pooled data.
+The resulting test is shown to be powerful for both location and scale shifts.

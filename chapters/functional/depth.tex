@@ -6,7 +6,8 @@ Let $D$ be a univariate or multivariate depth function.
 We can use this to define the depth of a curve $\vx$ by first computing the
 multivariate $D$-depth of each time slice $\vx(t)$, then `summarizing' these
 depths over all $t \in [0, 1]$.
-One possibility is to take a simple or weighted time average as follows.
+One possibility is to take a simple or weighted time average, as in the
+integrated depth \parencite{fraiman-muniz-2001}.
 
 \begin{definition}[Fraiman-Muniz depth]
     \label{def:FM_depth}
@@ -17,7 +18,8 @@ One possibility is to take a simple or weighted time average as follows.
     Here, $w$ is a weight function.
 \end{definition}
 
-Alternatively, we may choose the lowest or `worst' depth over time.
+Alternatively, we may choose the lowest or `worst' depth over time
+\parencite{mosler-2013}.
 This way, low depth values over small portions of time, which indicate a
 deviation from centrality, are better reflected in the summary.
 

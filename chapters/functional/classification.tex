@@ -9,6 +9,9 @@ the depth feature vectors
 \end{equation}
 By simply choosing an appropriate functional data depth $D$, all of these
 classification procedures naturally generalize to the functional setting.
+The most flexible of these is the DD$^G$ classifier
+\parencite{albertos-bande-fuente-2017}, which allows for any multivariate
+classification procedure on the transformed data $\mathscr{D}^D$.
 
 
 
@@ -63,6 +66,11 @@ It is easily verified that
     \vY(\vX, F_{\vX}) = (\MO^\top,\, \VO)^\top
 \end{equation}
 corresponding to the curve $\vX$ for the purposes of classification.
+The $\MO$ gives a sense of how outlying the curve $\vX$ is within $F_{\vX}$ as
+a whole, while the $\VO$ measures the amount of variation in the outlyingness
+over time.
+Loosely speaking, $\MO$ is affected by the position, while $\VO$ is affected
+by the shape of $\vX$ within $F_{\vX}$.
 For instance, one may define the classifier
 \begin{equation}
     \hat{\iota}(\vX) = \argmax_{1 \leq i \leq k} D'(\vY(\vX, F_i), F_{\vY(\vX, F_i)}),

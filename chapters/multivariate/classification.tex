@@ -102,6 +102,20 @@ $\mathscr{D}$.
 \end{definition}
 
 
+\begin{figure}
+    \centering
+    \includegraphics[width = \textwidth, page = 1]{classify}
+    \caption{
+        The DD classifier using spatial depth and a polynomial separating
+        curve.
+        The orange and purple shaded regions indicate the prediction rule
+        learned from the training data; the black line marks the separating
+        boundary.
+    }
+    \label{fig:dd_classifier}
+\end{figure}
+
+
 \begin{definition}[DD classifier]
     Suppose that $k = 2$, that $D$ is a depth function, and that $r\colon [0,
     1] \to [0, 1]$ is an increasing function. The DD classifier
@@ -195,7 +209,7 @@ However, we can in principle use the transformed training data
 \end{equation}
 along with any multivariate classification algorithm (LDA, QDA, $k$NN, GLM,
 etc) to devise suitable decision regions.
-This is the basis of the DD$^G$ classifier
+This is precisely the formulation of the DD$^G$ classifier
 \parencite{albertos-bande-fuente-2017}.
 
 
