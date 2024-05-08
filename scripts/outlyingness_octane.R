@@ -34,7 +34,7 @@ octane.cs <- mutate(octane.cs, outlier = factor(
 
 octane.mv <- MO_VO(
         octane,
-        outlyingness = function(y) ((y - median(y)) / mad(y))
+        outlyingness = function(y, y.ref) ((y - median(y.ref)) / mad(y.ref))
 )
 octane.mv <- mutate(octane.mv, outlier = factor(
         as.numeric(VO > 10),

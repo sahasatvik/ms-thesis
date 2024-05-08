@@ -111,6 +111,7 @@ $\mathscr{D}$.
         The orange and purple shaded regions indicate the prediction rule
         learned from the training data; the black line marks the separating
         boundary.
+        The classification accuracy here is 88\%.
     }
     \label{fig:dd_classifier}
 \end{figure}
@@ -138,11 +139,16 @@ $\mathscr{D}$.
         \hat{r} = \argmin_{r \in \Gamma} \hat{\Delta}(\hat{\iota}_{D, r}).
     \end{equation}
 \end{definition}
+
+Figure~\ref{fig:dd_classifier} shows the DD classifier applied on normal
+populations.
+
 \begin{remark}
     The maximum depth classifier $\hat{\iota}_D$ is simply the DD classifier
     $\hat{\iota}_{D, \id}$, where $\id(x) = x$.
     Figure~\ref{fig:ddplots_location_scale} clearly illustrates how this
-    choice of separating function may not always be appropriate.
+    choice of separating function may not always be appropriate, especially
+    when the different populations have scale differences.
 \end{remark}
 
 \textcite{li-albertos-liu-2012} show that under certain restrictions, the

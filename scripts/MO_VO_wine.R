@@ -16,7 +16,7 @@ colnames(wine) <- wave
 
 wine.mv <- MO_VO(
         wine,
-        outlyingness = function(y) ((y - median(y)) / mad(y))
+        outlyingness = function(y, y.ref) ((y - median(y.ref)) / mad(y.ref))
 )
 wine.mv <- mutate(wine.mv, outlier = factor(
         as.numeric(abs(MO) > 1.5) +

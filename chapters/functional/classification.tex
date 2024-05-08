@@ -15,6 +15,28 @@ classification procedure on the transformed data $\mathscr{D}^D$.
 
 
 
+\begin{figure}
+    \centering
+    \includegraphics[width = \textwidth, page = 1]{phoneme}
+    \caption{
+        Classification of periodograms of digitized
+        speech\protect\footnotemark, by
+        phonemes (`aa', `ao', `dcl', `iy', `sh').
+        The thick colored lines in the plot on the left mark the median curve
+        across 400 examples in each of the five groups.
+        The boxplot shows classification accuracies (with 50\% of the data set
+        aside for training) for the following methods: maximum depth
+        classification using the first order (FM) and second order (FM$^2$)
+        Fraiman-Muniz depths in red, the RM and VOM classifiers in green, and
+        the maximum depth Mahalanobis (PM) and spatial (PSp) depth classifiers
+        after applying $d = 10$ projections in blue.
+    }
+    \label{fig:phoneme_classification}
+\end{figure}
+\footnotetext{\url{http://www-stat.stanford.edu/ElemStatLearn}}
+
+
+
 \subsection{Outlyingness matrices}
 
 \textcite{dai-genton-2018} proposed a method which measures the outlyingness
