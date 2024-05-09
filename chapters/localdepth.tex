@@ -90,6 +90,22 @@ computing the depth of $\vx$ with respect to these elements.
 
 \section{Regression based on local depth}
 
+\begin{figure}
+    \centering
+    \includegraphics[width = \textwidth, page = 1]{localregression_univariate}
+    \caption{
+        Regression curves for the \texttt{cars} and \texttt{carData::Prestige}
+        datasets available in R.
+        The black curve indicates the local depth based estimate, the dashed
+        red curve indicates the Nadaraya-Watson kernel based estimate, and the
+        dashed green and blue curves indicate the local linear and quadratic
+        estimates respectively.
+        The locality levels and relevant bandwidths have been obtained by
+        leave-one-out cross validation.
+    }
+    \label{fig:localregression_univariate}
+\end{figure}
+
 \begin{definition}
     Let $D$ be a depth function, and let $\tilde{F}^{\vx}_\beta$ denote the
     symmetrized distribution $F^{\vx}$ conditional on the neighbourhood
