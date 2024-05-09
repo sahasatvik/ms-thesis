@@ -20,16 +20,17 @@ classification procedure on the transformed data $\mathscr{D}^D$.
     \includegraphics[width = \textwidth, page = 1]{phoneme}
     \caption{
         Classification of periodograms of digitized
-        speech\protect\footnotemark, by
-        phonemes (`aa', `ao', `dcl', `iy', `sh').
+        speech\protect\footnotemark, by phonemes (`aa', `ao', `dcl', `iy',
+        `sh').
         The thick colored lines in the plot on the left mark the median curve
         across 400 examples in each of the five groups.
-        The boxplot shows classification accuracies (with 50\% of the data set
-        aside for training) for the following methods: maximum depth
-        classification using the first order (FM) and second order (FM$^2$)
-        Fraiman-Muniz depths in red, the RM and VOM classifiers in green, and
-        the maximum depth Mahalanobis (PM) and spatial (PSp) depth classifiers
-        after applying $d = 10$ projections in blue.
+        The boxplot shows classification accuracies for 20 runs of each of the
+        following methods: maximum depth classification using the first order
+        (FM) and second order (FM$^2$) Fraiman-Muniz depths in red, the RM and
+        VOM classifiers in green, and the maximum depth Mahalanobis (PM) and
+        spatial (PSp) depth classifiers on $d$-variate feature vectors
+        obtained by $d = 10$ random projections in blue.
+        In each run, 50\% of the data was been aside for training.
     }
     \label{fig:phoneme_classification}
 \end{figure}
@@ -100,7 +101,8 @@ For instance, one may define the classifier
 where $D'$ is a multivariate depth function.
 This is simply a maximum depth classifier applied on the feature vectors
 $\vY$.
-When $D'$ is chosen to be the robust Mahalanobis depth, we have the classifier
+When $D'$ is chosen to be the robust Mahalanobis depth, we have the RM
+classifier
 \begin{equation}
     \hat{\iota}_{RM}(\vX) = \argmax_{1 \leq i \leq k} D_{RM}(\vY(\vX, F_i), F_{\vY(\vX, F_i)}).
 \end{equation}
