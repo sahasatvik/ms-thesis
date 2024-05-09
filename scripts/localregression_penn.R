@@ -74,6 +74,7 @@ t <- min(SumHes$year):max(SumHes$year)
 X <- t(matrix(SumHes$gdp, 26))
 Y <- t(matrix(SumHes$sr, 26))
 colnames(X) <- t
+colnames(Y) <- t
 
 country <- unique(SumHes$country)
 test <- c(19, 66, 107, 102, 117)
@@ -91,6 +92,11 @@ X.train.df <- as.data.frame(X.train)
 X.train.df$id <- 1:nrow(X.train)
 X.train.df <- pivot_longer(X.train.df, -id, names_to = "t", values_to = "gdp")
 X.train.df$t <- as.numeric(X.train.df$t)
+
+Y.train.df <- as.data.frame(Y.train)
+Y.train.df$id <- 1:nrow(Y.train)
+Y.train.df <- pivot_longer(Y.train.df, -id, names_to = "t", values_to = "sr")
+Y.train.df$t <- as.numeric(Y.train.df$t)
 
 
 orange <- "#e99352"
@@ -117,10 +123,9 @@ theme.data <- list(
 )
 
 # pdf("penntable.pdf", width = 12, height = 6)
-cairo_pdf("../images/localregression_penntable.pdf", onefile = TRUE, width = 8, height = 4)
 # par(mfrow = c(1, 2))
 
-plots <- list()
+rows <- list()
 for (i in 1:nrow(X.test)) {
         # matplot(t, t(X), type = "l", lty = 1, col = "grey")
         # matplot(t, t(X[idx[i, ], ]), type = "l", lty = 1, col = "green", add = TRUE)
@@ -129,19 +134,55 @@ for (i in 1:nrow(X.test)) {
         # print(dim(X[idx[i, ], ]))
         df.i <- data.frame(
                 t = t,
-                gdp = X.test[i, ]
+                gdp = X.test[i, ],
+                sr = Y.test[i, ],
+                sr.hat = Y.hat[i, ]
         )
 
-        plots[[i]] <- ggplot(X.train.df, aes(x = t, y = gdp)) +
-                geom_line(aes(group = id), color = "grey") +
+        p.X <- ggplot(X.train.df, aes(x = t, y = gdp)) +
+                geom_line(aes(group = id), color = "grey", linewidth = 0.2) +
                 geom_line(data = X.train.df %>% filter(id %in% which(idx[i, ])), aes(group = id), color = orange) +
                 geom_line(data = df.i, color = "black") +
                 theme.data +
+                theme(
+                        plot.margin = margin(5, 5, 0, 5, unit = "pt"),
+                ) +
                 labs(
-                        x = "Year",
+                        x = NULL,
                         y = "GDP",
                         title = str_to_title(country[test[i]])
                 )
+
+        p.Y <- ggplot(Y.train.df, aes(x = t)) +
+                geom_line(aes(group = id, y = sr), color = "grey", linewidth = 0.2) +
+                geom_ribbon(
+                        data = Y.train.df %>%
+                                filter(id %in% which(idx[i, ])) %>%
+                                group_by(t) %>%
+                                summarize(
+                                        ymin = min(sr),
+                                        ymax = max(sr)
+                                ),
+                        aes(ymin = ymin, ymax = ymax),
+                        fill = orange,
+                        alpha = 0.20
+                ) +
+                geom_line(data = Y.train.df %>% filter(id %in% which(idx[i, ])), aes(group = id, y = sr), color = orange) +
+                geom_line(data = df.i, aes(y = sr), color = purple) +
+                geom_line(data = df.i, aes(y = sr.hat), color = "black") +
+                theme.data +
+                theme(
+                        plot.margin = margin(5, 10, 0, 5, unit = "pt"),
+                ) +
+                labs(
+                        x = NULL,
+                        y = "Saving rate"
+                )
+
+        if (i == nrow(X.test)) {
+                p.X <- p.X + xlab("Year")
+                p.Y <- p.Y + xlab("Year")
+        }
 
         # matplot(t, t(Y), type = "l", lty = 1, col = "grey")
         # matplot(t, t(Y[idx[i, ], ]), type = "l", lty = 1, col = "green", add = TRUE)
@@ -150,10 +191,15 @@ for (i in 1:nrow(X.test)) {
         # lines(t, apply(Y[idx[i, ], ], 2, max), type = "l", lty = 2, lw = 1, col = "black")
         # lines(t, apply(Y[idx[i, ], ], 2, min), type = "l", lty = 2, lw = 1, col = "black")
 
-        print(plot_grid(plots[[i]]))
+        rows[[i]] <- plot_grid(p.X, p.Y)
 
 }
 
+
+
+cairo_pdf("../images/localregression_penntable.pdf", onefile = TRUE, width = 8, height = 11)
+
+do.call(plot_grid, c(rows, ncol = 1))
 # plot_grid(plots[[1]], plots[[2]], ncol = 2)
 
 dev.off()
