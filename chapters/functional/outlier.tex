@@ -5,13 +5,15 @@
     \centering
     \includegraphics[width = \textwidth]{wine}
     \caption{
-        NMR spectra of 40 wine samples, from the R package \texttt{speaq},
-        with some curves showing outlying behaviour highlighted.
+        NMR spectra of 40 wine samples\protect\footnotemark, from the R
+        package \texttt{speaq}, with some curves showing outlying behaviour
+        highlighted.
         The green curve \#37 is an isolated outlier, the blue and red curves
         are shift outliers, and the purple curve is a shape outlier.
     }
     \label{fig:wine}
 \end{figure}
+\footnotetext{\url{https://ucphchemometrics.com/datasets/}}
 
 A curve $\vx\colon [0, 1] \to \R$ may exhibit outlying behaviour with respect
 to a body of curves in many ways; we use the useful classification as detailed
@@ -67,7 +69,7 @@ outliers.
 \textcite{nagy-gijbels-hlubinka-2017} show that this depth $D_F^J$
 incorporates information about the $J$-th order derivatives of the curves
 (along with potentially additional information about its shape), which makes
-it performance comparable to or even better than $D_F^{(J)}$.
+its performance comparable to or even better than $D_F^{(J)}$.
 They supply a simple algorithm based on $D_F^J$ values for identifying $J$-th
 order outliers.
 A similar argument can be made for the $J$-th order extension of the infimal

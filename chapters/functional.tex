@@ -1,11 +1,11 @@
 Consider a class of functions $\mathscr{X}$ of the form $\vx\colon [0, 1] \to
-\R^d$, equipped with a norm, and let $\mathscr{F}$ be a suitable class of
-distributions on $\mathscr{X}$.
+\R^d$, equipped with a norm $\norm{\Cdot}$, and let $\mathscr{F}$ be a
+suitable class of distributions on $\mathscr{X}$.
 Typically, we choose $\mathscr{X}$ to be either $L_2[0, 1]$ or $\mathcal{C}[0,
 1]$.
-
 It is desirable for a depth function $D\colon \mathscr{X} \times \mathscr{F}
 \to \R$ to satisfy the following properties \parencite{gijbels-nagy-2017}.
+
 \begin{enumerate}
     \item[\textbf{P0}.] \emph{Non-degeneracy.}
     For $F \in \mathscr{F}$,
@@ -15,8 +15,10 @@ It is desirable for a depth function $D\colon \mathscr{X} \times \mathscr{F}
     \end{equation}
 \end{enumerate}
 
-The property \textbf{P0} requires some care; the natural functional analogue
-to halfspace/Tukey depth when $\mathscr{X}$ is a Banach space,
+The property \textbf{P0} has been introduced to emphasize that generalizing
+multivariate depth to the functional setting requires some care; the natural
+functional analogue to halfspace/Tukey depth when $\mathscr{X}$ is a Banach
+space,
 \begin{equation}
     D_H(\vx, F) = \inf_{\vv \in \mathscr{X}^*} P_{\vX \sim F}(\vv(\vX) \leq \vv(\vx)),
 \end{equation}
@@ -87,7 +89,8 @@ Earlier, \textcite{reyes-battey-2016} proposed the following variant of
 The above notions of maximality at the center are \textbf{P2H} $>$
 \textbf{P2C} $>$ \textbf{P2G} in order of strength.
 
-The propertes \textbf{P3} and \textbf{P4} have straightforward generalization.
+The properties \textbf{P3} and \textbf{P4} have straightforward
+generalizations.
 \begin{enumerate}
     \item[\textbf{P3D}.] \emph{Monotonicity relative to deepest point.}
     For $F \in \mathscr{F}$ such that $D(\vth, F) = \sup_{\vx \in \mathscr{X}}
@@ -99,7 +102,7 @@ The propertes \textbf{P3} and \textbf{P4} have straightforward generalization.
     \item[\textbf{P4V}.] \emph{Vanishing at infinity.} For any $F \in
     \mathscr{F}$,
     \begin{equation}
-        D(\vx, F) \to 0\;\text{ as }\; \norm{x} \to \infty.
+        D(\vx, F) \to 0\;\text{ as }\; \norm{\vx} \to \infty.
     \end{equation}
 \end{enumerate}
 

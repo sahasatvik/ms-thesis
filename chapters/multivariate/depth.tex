@@ -24,8 +24,13 @@ The earliest formulation of a depth function may be attributed to
 \end{definition}
 
 \begin{remark}
-    If $F \in \mathscr{F}$ is supported on a convex region $C \subset \R^d$,
-    then $D(\Cdot, F)$ vanishes outside $C$.
+    If $F \in \mathscr{F}$ is supported on a convex region $K \subset \R^d$,
+    then $D(\Cdot, F)$ vanishes outside $K$.
+    More generally, for convex $K \subset \R^d$, we have $D_H(\vx, F) \leq
+    P_F(K^c)$ for all $\vx \in K^c$.
+    This is because one can choose a halfspace $H \in \mathcal{H}_{\vx}$
+    entirely contained within $K^c$.
+    Using this, we see that the halfspace depth obeys \textbf{P4}.
 \end{remark}
 
 \begin{proposition}
@@ -81,38 +86,6 @@ The earliest formulation of a depth function may be attributed to
     \textcite{nagy-2017} showed that spatial depth does not obey \textbf{P3}.
 \end{remark}
 
-\begin{lemma}\label{lem:spatial_vanish}
-    Spatial depth obeys \textbf{P4}, i.e.\ $D_{Sp}(\vx, F) \to 0$ as
-    $\norm{\vx} \to \infty$.
-\end{lemma}
-\begin{proof}
-    Let $\epsilon > 0$, and let $M > 0$ such that $P_{\vX \sim F}(\norm{\vX} >
-    M) = \epsilon$.
-    Denote $\vY = (\vx - \vX) / \norm{\vx - \vX}$, and observe that
-    \begin{equation}
-        \E_{\vX \sim F}\left[\vY\right]
-        = (1 - \epsilon)\E\left[\vY|\, \norm{\vX} \leq M\right] +
-          \epsilon\E\left[\vY|\, \norm{\vX} > M\right]
-    \end{equation}
-    Thus, using $\norm{\vY} = 1$ and the reverse triangle inequality,
-    \begin{equation}
-        \norm{\E\left[\vY\right]}
-        \geq (1 - \epsilon)\norm{\E\left[\vY|\, \norm{\vX} \leq M\right]} - \epsilon.
-    \end{equation}
-    Let $\alpha = \arccos((1 - 2\epsilon)/(1 - \epsilon))$, and let $r_\alpha =
-    M/\sin\alpha$.
-    It follows that the ball $\{\vx \in \R^d\colon \norm{\vx} \leq M\}$
-    subtends an angle of at most $2\alpha$ from any point $\vx$ such that
-    $\norm{\vx} > r_\alpha$.
-    This gives $\norm{\E[\vY \mid \norm{\vX} \leq M]} \geq \cos\alpha$.
-    Thus, for $\norm{\vx} > r_\alpha$,
-    \begin{equation}
-        \norm{\E[\vY]} \geq (1 - \epsilon)\cos\alpha - \epsilon = 1 - 3\epsilon,
-    \end{equation}
-    whence $D_{Sp}(\vx, F) \leq 3\epsilon$.
-\end{proof}
-
-
 
 \begin{definition}[Projection depth]
     The projection depth is defined as
@@ -122,18 +95,22 @@ The earliest formulation of a depth function may be attributed to
     \end{equation}
 \end{definition}
 
+\textcite{liu-1990} introduced the following depth function based on random
+simplices.
+
 \begin{definition}[Simplicial depth]
     The simplicial depth is defined as
     \begin{equation}
         D_{Sim}(\vx, F) = P_{\vX_i \iid F}(\vx \in \conv(\vX_1, \dots, \vX_{d + 1})),
     \end{equation}
-    where $\conv(\vx_1, \dots, \vx_{d + 1})$ denotes the convex hull of $\{\vx_1, \dots, \vx_{d + 1}\}$.
+    where $\conv(\vx_1, \dots, \vx_{d + 1})$ denotes the convex hull of
+    $\{\vx_1, \dots, \vx_{d + 1}\}$.
 \end{definition}
 
 \begin{definition}[Oja depth]
     The simplicial volume depth, or Oja depth, is defined as
     \begin{equation}
-        D_{Oja}(\vX, F) = \left(1 + \E_{\vX_i \iid F}\left[\vol(\conv(\vx, \vX_1, \dots, \vX_d))\right]\right)^{-1}.
+        D_{Oja}(\vx, F) = \left(1 + \E_{\vX_i \iid F}\left[\vol(\conv(\vx, \vX_1, \dots, \vX_d))\right]\right)^{-1}.
     \end{equation}
 \end{definition}
 
@@ -144,9 +121,18 @@ The earliest formulation of a depth function may be attributed to
     \end{equation}
     Instead, we may define an affine invariant version of Oja depth as
     \begin{equation}
-        D_{AIOja}(\vX, F) = \left(1 + \E_{\vX_i \iid F}\left[\frac{\vol(\conv(\vx, \vX_1, \dots, \vX_d))}{\sqrt{\det(\Sigma)}}\right]\right)^{-1},
+        D_{AIOja}(\vx, F) = \left(1 + \E_{\vX_i \iid F}\left[\frac{\vol(\conv(\vx, \vX_1, \dots, \vX_d))}{\sqrt{\det(\Sigma)}}\right]\right)^{-1},
     \end{equation}
     where $\Sigma$ is the covariance matrix of $F$.
+\end{remark}
+
+
+\begin{remark}
+    The Mahalanobis, projection, and Oja depths all follow the pattern of $(1
+    + O(\vx, F))^{-1}$, where $O(\vx, F)$ measures some kind of outlyingess of
+    $\vx$ in $F$.
+    We will often see this performed in reverse, extracting a measure of
+    outlyingess $1/D(\vx, F) - 1$ from a depth function $D$.
 \end{remark}
 
 
@@ -313,9 +299,40 @@ The spatial depth is similarly well behaved.
 
 \begin{remark}
     This result can be generalized from compact subsets $K$ to the whole of
-    $\R^d$, using Lemma~\ref{lem:spatial_vanish} and arguments similar to the
-    proof of Theorem~\ref{thm:halfspace_uniform}.
+    $\R^d$, using the following Lemma (\ref{lem:spatial_vanish}) and arguments
+    similar to the proof of Theorem~\ref{thm:halfspace_uniform}.
 \end{remark}
+
+\begin{lemma}\label{lem:spatial_vanish}
+    Spatial depth obeys \textbf{P4}, i.e.\ $D_{Sp}(\vx, F) \to 0$ as
+    $\norm{\vx} \to \infty$.
+\end{lemma}
+\begin{proof}
+    Let $\epsilon > 0$, and let $M > 0$ such that $P_{\vX \sim F}(\norm{\vX} >
+    M) = \epsilon$.
+    Denote $\vY = (\vx - \vX) / \norm{\vx - \vX}$, and observe that
+    \begin{equation}
+        \E_{\vX \sim F}\left[\vY\right]
+        = (1 - \epsilon)\E\left[\vY|\, \norm{\vX} \leq M\right] +
+          \epsilon\E\left[\vY|\, \norm{\vX} > M\right]
+    \end{equation}
+    Thus, using $\norm{\vY} = 1$ and the reverse triangle inequality,
+    \begin{equation}
+        \norm{\E\left[\vY\right]}
+        \geq (1 - \epsilon)\norm{\E\left[\vY|\, \norm{\vX} \leq M\right]} - \epsilon.
+    \end{equation}
+    Let $\alpha = \arccos((1 - 2\epsilon)/(1 - \epsilon))$, and let $r_\alpha =
+    M/\sin\alpha$.
+    It follows that the ball $\{\vx \in \R^d\colon \norm{\vx} \leq M\}$
+    subtends an angle of at most $2\alpha$ from any point $\vx$ such that
+    $\norm{\vx} > r_\alpha$.
+    This gives $\norm{\E[\vY \mid \norm{\vX} \leq M]} \geq \cos\alpha$.
+    Thus, for $\norm{\vx} > r_\alpha$,
+    \begin{equation}
+        \norm{\E[\vY]} \geq (1 - \epsilon)\cos\alpha - \epsilon = 1 - 3\epsilon,
+    \end{equation}
+    whence $D_{Sp}(\vx, F) \leq 3\epsilon$.
+\end{proof}
 
 
 

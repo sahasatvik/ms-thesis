@@ -1,6 +1,8 @@
 \section{Depth contours}
 \label{sec:multivariate_depthcontours}
 
+Given a depth function $D$ and some fixed distribution $F \in \mathscr{F}$, we
+may examine contours produced by $D(\Cdot, F)$.
 The following definitions are adapted from \cite{liu-parelius-singh-1999}.
 
 \begin{definition}
@@ -13,6 +15,9 @@ The following definitions are adapted from \cite{liu-parelius-singh-1999}.
         R_F(t) \,=\, \{\vx \in \R^d : D(\vx, F) > t\}.
     \end{equation}
 \end{definition}
+
+It is often more convenient to deal with depth contours and regions based on
+their probability content rather than a depth cutoff.
 
 \begin{definition}
     The $p$-th central region is the set
