@@ -96,7 +96,7 @@ Thus, we generally use $J = 3$.
 \begin{definition}[Modified band depth]
     Define the enveloping time
     \begin{equation}
-        \ET(\vx;\, \vx_1, \dots, \vx_j) = m_1(\{t \in [0, 1]\colon \vx \in \conv(\vx_1, \dots, \vx_j)\}),
+        \ET(\vx;\, \vx_1, \dots, \vx_j) = m_1(\{t \in [0, 1]\colon \vx(t) \in \conv(\vx_1(t), \dots, \vx_j(t))\}),
     \end{equation}
     where $m_1$ is the Lebesgue measure on $\R$.
     The modified band depth is defined as
@@ -145,7 +145,7 @@ proportion of curves that lie entirely above $\vx$.
 \end{remark}
 
 \begin{definition}[Modified half-region depth]
-    Denote the superior modified hypograph (MHI) and epigraph (MEI) indices
+    Denote the modified hypograph (MHI) and epigraph (MEI) indices
     \begin{align}
         \MHI_F(\vx) &= \E_{\vX \sim F}[m_1(\{t \in [0, 1]\colon \vx(t) \geq \vX(t)\})], \\
         \MEI_F(\vx) &= \E_{\vX \sim F}[m_1(\{t \in [0, 1]\colon \vx(t) \leq \vX(t)\})].
