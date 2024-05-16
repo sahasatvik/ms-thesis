@@ -137,6 +137,27 @@ plot_grid(p.data, og$plot, p.cs, p.mv, ncol = 2)
 dev.off()
 
 
+cairo_pdf("../images/octane.pdf", width = 8, height = 4)
+
+ggplot(octane.df, aes(x = variable, y = value, group = as.factor(id))) +
+        geom_line(linewidth = 0.5, color = "grey") +
+        geom_line(data = filter(octane.df, id %in% octane.outliers), linewidth = 0.2, color = purple, alpha = 0.6) +
+        scale_x_continuous(expand = expansion(mult = 0.01)) +
+        scale_color_manual(values = c(orange, purple, red)) +
+        labs(
+                x = "Wavelength",
+                y = "Response",
+                title = "NIR spectra of gasoline samples"
+        ) +
+        theme(
+                legend.position = "none",
+                plot.background = element_rect(fill = "transparent", color = NA),
+                panel.background = element_rect(fill = "#f7f7f7", colour = NA),
+                text = element_text(family = "Fira Sans"),
+        )
+
+dev.off()
+
 
 O.df <- as.data.frame(cs$O)
 O.df[, "id"] <- as.factor(1:nrow(octane))
