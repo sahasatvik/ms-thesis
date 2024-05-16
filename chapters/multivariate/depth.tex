@@ -19,7 +19,7 @@ The earliest formulation of a depth function may be attributed to
     by $\mathcal{H}_{\vx}$.
     The halfspace depth, or Tukey depth, is defined as
     \begin{equation}
-        D_H(\vx, F) = \inf_{H \in \mathcal{H}_{\vx}} P_{F}(H).
+        D_H(\vx, F) = \inf_{H \in \mathcal{H}_{\vx}} P_{F}(H). \label{eq:halfspace}
     \end{equation}
 \end{definition}
 
@@ -104,7 +104,7 @@ simplices.
 \begin{definition}[Simplicial depth]
     The simplicial depth is defined as
     \begin{equation}
-        D_{Sim}(\vx, F) = P_{\vX_i \iid F}(\vx \in \conv(\vX_1, \dots, \vX_{d + 1})),
+        D_{Sim}(\vx, F) = P_{\vX_i \iid F}(\vx \in \conv(\vX_1, \dots, \vX_{d + 1})), \label{eq:simplicial}
     \end{equation}
     where $\conv(\vx_1, \dots, \vx_{d + 1})$ denotes the convex hull of
     $\{\vx_1, \dots, \vx_{d + 1}\}$.

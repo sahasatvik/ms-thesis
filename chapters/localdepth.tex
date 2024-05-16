@@ -13,6 +13,36 @@
 \end{figure}
 
 
+The depth functions which we've encountered so far are well suited for
+unimodal, symmetric distributions.
+For instance, depth functions like the halfspace and Mahalanobis depths behave
+especially well with elliptical distributions: the depth and density contours
+coincide.
+These depth functions always produce convex, nested contours; the Zuo-Serfling
+property \textbf{P3} also forces star-shaped central regions.
+As a result, they may fail to capture the structure of distributions which are
+not convexly supported (Figure~\ref{fig:localdepth_banana}), or those with
+multiple modes (Figure~\ref{fig:localdepth_bimodal}).
+
+Remedying this requires moving away from the \emph{global} structure to
+\emph{local} structures of distributions.
+One formulation of such a \emph{local depth} is due to
+\textcite{agostinelli-romanazzi-2011}, where the halfspace and simplicial
+depths are modified so as to capture only local information around a given
+point $\vx \in \R^d$.
+The local halfspace depth is obtained not by considering halfspaces containing
+$\vx$ as in \ref{eq:halfspace}, but rather cuboidal slabs; similarly, the
+local simplicial depth is defined by restricting the volumes of the random
+simplices under consideration in \ref{eq:simplicial}.
+
+In this chapter, we focus on the definition of \emph{local depth} and
+\emph{local depth neighbourhoods} proposed by
+\textcite{paindaveine-bever-2013}.
+This allows the construction of a local counterpart of any existing global
+depth function (multivariate, functional, or otherwise), giving it a distinct
+advantage over the previous formulation.
+
+
 
 \section{Local depth regions}
 
