@@ -203,3 +203,12 @@ do.call(plot_grid, c(rows, ncol = 1))
 # plot_grid(plots[[1]], plots[[2]], ncol = 2)
 
 dev.off()
+
+
+cairo_pdf("../images/localregression_penntable_presentation.pdf", onefile = TRUE, width = 8, height = 4)
+
+for (i in 1:length(rows)) {
+        print(plot_grid(rows[[i]]))
+}
+
+dev.off()
