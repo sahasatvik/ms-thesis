@@ -64,6 +64,9 @@ The earliest formulation of a depth function may be attributed to
     The corresponding depth function is called the robust Mahalanobis depth.
 \end{remark}
 
+
+The spatial depth was introduced in \textcite{serfling-2002},
+
 \begin{definition}[Spatial depth]
     The spatial depth is defined as
     \begin{equation}
@@ -376,8 +379,10 @@ empirical distributions.
 characterization problem.
 Indeed, \textcite{nagy-2021} supplies examples of distinct probability
 distributions $F_1, F_2$ such that $D_H(\Cdot, F_1) = D_H(\Cdot, F_2)$.
-It can be shown that for an $\alpha$-symmetric distribution $F$ that $D_H(\vx,
-F) = G(-\norm{\vx}_{\alpha^*})$, where $G$ is the marginal distribution of the
-first component of $\vX \sim F$ and $1/\alpha + 1/\alpha^* = 1$.
+It can be shown that for an $\alpha$-symmetric distribution $F$ with $0 <
+\alpha \leq 1$ that $D_H(\vx, F) = G(-\norm{\vx}_\infty)$, where $G$ is the
+marginal distribution of the first component of $\vX \sim F$.
+Using this idea, \textcite{nagy-2021} produces two such distributions with the
+same marginal $G$.
 
 

@@ -42,6 +42,9 @@ their probability content rather than a depth cutoff.
 \end{example}
 
 
+Depth based central regions and contours may be approximated empirically as
+follows.
+
 \begin{definition}
     Let $\vX_1, \dots, \vX_n \iid F$.
     We introduce depth based order statistics $\vX_{[1]}, \dots, \vX_{[n]}$,
@@ -54,3 +57,67 @@ region is given by
 \begin{equation}
     C_{\hat{F}_n}(p) = \conv(\vX_{[1]}, \dots, \vX_{[\lceil np \rceil]}).
 \end{equation}
+
+The consistency of these sample central regions typically requires some
+continuity of type \textbf{C3} \parencite{liu-1990, donoho-gasko-1992,
+he-wang-1997}.
+
+Depths such as the halfspace depth, the Mahalanobis depth, and the Oja depth
+produce convex central regions.
+Any depth satisfying \textbf{P3} produces star-shaped central regions.
+Notably, the spatial depth does not necessarily produce convex nor star-shaped
+central regions \parencite{nagy-2017}.
+
+
+\subsection{The Monge-Kantorovich depth}
+
+Depths which produce convex, nested central regions are appropriate for a
+large class of unimodal distributions with some degree of symmetry.
+Indeed, the fact that depths satisfying \textbf{P1} and \textbf{C1}
+characterize elliptical distributions follows from the fact that the depth
+contours coincide with density contours.
+However, there are instances where this is unsuitable, such as in the
+distribution illustrated in Figures~\ref{fig:localdepth_banana} and
+\ref{fig:localdepth_bimodal}.
+In Chapter~\ref{chap:localdepth}, we will examine the idea of \emph{local
+depth}, which is capable of producing non-convex, non-star-shaped, un-nested
+central regions.
+
+Here, we briefly look at the Monge-Kantorovich depth introduced by
+\textcite{chernozhukov-galichon-hallin-henry-2017}, which is also capable of
+producing non-convex contours but retains their nestedness.
+This is based on the idea of `transporting' contours from a reference
+distribution $U_d$, say $\mathcal{U}(B^d)$, to the target distribution $F$ on
+$\R^d$ via a canonical \emph{vector quantile map} $Q\colon B^d \to \R^d$.
+We say that $Q$ `pushes forward' $U_d$ into $F$, denoted $Q\#F = U_d$; for $U
+\sim U_d$, we have $Q(U) \sim F$.
+The inverse map from $F$ to the reference $U_d$ is called the \emph{vector
+rank map} $R$; we write $R\#F = U_d$.
+Now, $Q$ is defined via the theory of optimal transport
+\parencite{villani-2003}; it is the map which minimizes the quadratic cost
+$\E_{U \sim U_d}[(Q(U) - U)^2]$ subject to $Q(U) \sim F$.
+Under certain conditions, the maps $Q, R$ exist and are unique; for instance,
+the absolute continuity of $U, F$ supported within convex subsets of $\R^d$.
+With this, we supply a loose definition of the Monge-Kantorovich depth below.
+
+\begin{definition}[Monge-Kantorovich depth]
+    Let $Q$ be the vector quantile map associated with $F$, and let $R$ be its
+    inverse, so that $R\#F = U_d$.
+    The Monge-Kantorovich depth is defined as
+    \begin{equation}
+        D_{MK}(\vx, F) = D_H(R(\vx), U_d).
+    \end{equation}
+\end{definition}
+
+Similarly, the Monge-Kantorovich rank of $\vx \in \R^d$ in $F$ is given by
+$\norm{R(\vx)}$.
+If $K_p = \partial C_{U_d}(p)$ is the $p$-th level contour of $U_d$, then the
+Monge-Kantorovich $p$-quantile of $F$ is the image $Q(K_p)$.
+The reference distribution $U_d$ and depth $D_H$ may of course be replaced as
+necessary.
+
+One major strength of this notion of depth is the distribution-free nature of
+the ranks produced.
+This has produced applications in areas such as distribution-free
+(nonparametric, multivariate) testing \parencite{ghosal-sen-2022,
+deb-sen-2023}.

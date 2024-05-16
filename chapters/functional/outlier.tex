@@ -31,12 +31,21 @@ it an \emph{amplitude outlier}.
 Some of these behaviours have been illustrated in the dataset in
 Figure~\ref{fig:wine}.
 
+A simple way of detecting shift outliers is using a \emph{functional boxplot}
+\parencite{sun-genton-2011}, which is a natural analogue of the boxplot for
+univariate data.
+Here, curves are ranked according to their depths (say using the modified band
+depth), and the 50\% central region is identified.
+A \emph{fence} is created by inflating this central region envelope by a
+factor of 1.5; curves straying outside this fence are identified as outliers.
+
 An important consideration when dealing with shape outliers is that each time
 slice $\vx(t)$ may be fairly inconspicuous with respect to the marginal
 $F_{\vX(t)}$.
-Thus, it seems clear that a tool like the Fraiman-Muniz depth may succeed in
-identifying shift or amplitude outliers, but fall short against shape
-outliers.
+For instance, a shape outlier may be significantly more oscillatory than the
+rest, yet remain within the central region.
+This means that a tool like the functional boxplot may succeed in identifying
+shift or amplitude outliers, but fall short against shape outliers.
 In general, the basic algorithm of iteratively selecting curves with low
 functional depth as outliers is often insufficient.
 
