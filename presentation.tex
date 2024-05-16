@@ -274,7 +274,7 @@
     \end{frame}
 
 
-    \begin{frame}{Affine invariance}
+    \begin{frame}{Affine Invariance}
         \begin{enumerate}
             \item[P1S.] \textbf{Scalar-affine invariance:} For $a, b \in \R$
             with $a$ non-zero and $\vx \in \mathscr{X}$, \[
@@ -287,7 +287,7 @@
         \end{enumerate}
     \end{frame}
 
-    \begin{frame}{Maximality at center}
+    \begin{frame}{Maximality at Center}
         We say that $F_{\vX}$ is symmetric about $\vth \in \mathscr{X}$ if for
         all $\varphi \in \mathscr{X}^*$, we have $\varphi(\vX)$ symmetric
         about $\varphi(\vth)$.
@@ -417,13 +417,13 @@
         \] where $w_o(t) = q(t) / \int_0 q(t)\:dt$.
 
         \blfootnote{
-            El\'ias, A., Jim\'enez, R., \& Shang, H. L. (2023) Depth-based
-            reconstruction method for incomplete functional data
+            El\'ias, A., Jim\'enez, R., Paganoni, A. M., \& Sangalli, L. M.
+            (2023) Integrated depths for partially observed functional data
         }
     \end{frame}
 
 
-    \begin{frame}{The functional reconstruction problem}
+    \begin{frame}{The Functional Reconstruction Problem}
         Given $(\vX, O)$, can we estimate $\vX$ on $M = [0, 1]\setminus O$?
 
         We may search for a reconstruction operator $\mathcal{R}\colon L^2(O)
@@ -435,10 +435,14 @@
         We may also search for a continuous linear reconstruction operator
         $\mathscr{A}$, by estimating terms of the Karhunen-Lo\'eve expansion
         of $\vX$.
+        \blfootnote{
+            Kneip, A., \& Liebl, D. (2020) On the optimal reconstruction of
+            partially observed functional data
+        }
     \end{frame}
 
 
-    \begin{frame}{The functional reconstruction problem}
+    \begin{frame}{The Functional Reconstruction Problem}
         Another approach is to take a convex linear combination of curves from
         a suitable curve envelope with indices $\mathscr{I}$.
 
@@ -449,14 +453,18 @@
         as possible (in the sense of the enveloping time $\ET$), and contain
         as many near curves (in an appropriately modified norm
         $\norm{\cdot}'$) to $(\vX, O)$ as possible.
+        \blfootnote{
+            El\'ias, A., Jim\'enez, R., \& Shang, H. L. (2023) Depth-based
+            reconstruction method for incomplete functional data
+        }
     \end{frame}
 
 
 
 
-    \section{Outlier detection for Functional Data}
+    \section{Outlier Detection for Functional Data}
 
-    \begin{frame}{A na\"ive outlier detection scheme}
+    \begin{Frame}{A Na\"ive Outlier Detection Scheme}
         Given data $\mathscr{D} = \{\vx_i\}_{i = 1}^n$, we may extract ranks
         $r_i = R(\vx_i, \hat{F}_n)$.
 
@@ -482,7 +490,7 @@
     \end{frame}
     }
 
-    \begin{frame}{Functional outliers}
+    \begin{frame}{Functional Outliers}
         A curve $\vx\colon [0, 1] \to \R$ may exhibit outlying behaviour
         within a body of curves in many ways.
 
@@ -509,7 +517,7 @@
         the marginals $F_{\vX(t)}$.
     }
 
-    \begin{frame}{Shape outliers and derivatives}
+    \begin{frame}{Shape Outliers and Derivatives}
         One way of incorporating shape information of a curve $\vx$ is to
         bundle it with its derivatives $\vx^{(j)}$.
 
@@ -523,7 +531,7 @@
         assumption of differentiability in the first place.
     }
 
-    \begin{frame}{Shape outliers and the $J$-th order Integrated depth}
+    \begin{frame}{Shape Outliers and the $J$-th order Integrated Depth}
         We say that a curve $\vx$ is a $J$-th order outlier with respect to
         $F_{\vX}$ if there exists $\bm{t} \in [0, 1]^J$ such that the vector
         $(\vx(t_1), \dots, \vx(t_J))^\top$ is outlying with respect to
@@ -548,7 +556,7 @@
     }
 
 
-    \begin{frame}{The Centrality-Stability scheme}
+    \begin{frame}{The Centrality-Stability Scheme}
         Consider an outlyingness function $O(\vx(t))$ which measures the
         outlyingness of $\vx(t)$ with respect to $F_{\vX(t)}$. For instance,
         we may choose \[
@@ -578,7 +586,7 @@
     \end{frame}
     }
 
-    \begin{frame}{The Centrality-Stability scheme}
+    \begin{frame}{The Centrality-Stability Scheme}
         Define \[
             \widetilde{MO}(\vx, F_{\vX}) = \int_{[0, 1]} |O(\vx(t))| \:dt
         \]
@@ -613,7 +621,7 @@
     }
 
 
-    \begin{frame}{The MO-VO scheme}
+    \begin{frame}{The MO-VO Scheme}
         We may measure the variability in outlyingness over time more simply
         via
         \begin{align*}
@@ -677,7 +685,7 @@
 
     \section{Local Depth Functions}
 
-    \begin{frame}{Elliptical distributions}
+    \begin{frame}{Elliptical Distributions}
         We say that a distribution $F$ is elliptical if it admits a density of
         the form \[
             f_{\vX}(\vx) = c |\Sigma|^{-1/2} h\left((\vx - \vmu)^\top \Sigma^{-1} (\vx - \vmu)\right)
@@ -714,7 +722,7 @@
     }
 
 
-    \begin{frame}{Local Depth neighbourhoods}
+    \begin{frame}{Local Depth Neighbourhoods}
         Given $\vx \in \mathscr{X}$, we may symmetrize $F_{\vX}$ as \[
             F_{\vX}^{\vx} = \frac{1}{2} F_{\vX} + \frac{1}{2} F_{2\vx - \vX}.
         \]
@@ -854,6 +862,34 @@
     }
 
 
+    \section{Concluding Remarks}
+
+    \begin{frame}{}
+        \begin{itemize}
+            \item Formulation and Properties of Depth Functions
+            \begin{itemize}
+                \item Multivariate Data
+                \item \alert<2>{Functional Data}
+            \end{itemize}
+            \item Extensions of Depth Functions
+            \begin{itemize}
+                \item \alert<2>{Partially Observed Functional Data}
+                \item \alert<2>{Local Depth}
+            \end{itemize}
+            \item Applications
+            \begin{itemize}
+                \item Exploratory Data Analysis
+                \item Testing
+                \item Classification
+                \item Clustering
+                \item \alert<2>{Outlier Detection}
+                \item \alert<2>{Data Reconstruction}
+                \item \alert<2>{Regression\only<2>{ ?}}
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+
 
     \begin{frame}[allowframebreaks]{References}
         \nocite{%
@@ -866,6 +902,9 @@
             nagy-gijbels-hlubinka-2017,
             pintado-romo-2009,
             pintado-romo-2011,
+            kraus-2015,
+            kneip-liebl-2020,
+            elias-jimenez-paganoni-sangalli-2023,
             elias-jimenez-shang-2023,
             hubert-rousseeuw-segaert-2015,
             dai-genton-2018,
