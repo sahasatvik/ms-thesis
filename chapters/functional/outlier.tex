@@ -17,7 +17,7 @@
 
 A curve $\vx\colon [0, 1] \to \R$ may exhibit outlying behaviour with respect
 to a body of curves in many ways; we use the useful classification as detailed
-in \textcite{hubert-rousseeuw-segeart-2015}.
+in \textcite{hubert-rousseeuw-segaert-2015}.
 It may deviate significantly over a short interval, in which case we call it
 an \emph{isolated outlier}.
 Alternatively, it may deviate over a large, or perhaps even the whole
@@ -165,13 +165,13 @@ curves, and a high MEI indicates that it lies below.
 \end{figure}
 
 In their discussion of methods of functional outlier detection,
-\textcite{hubert-rousseeuw-segeart-2015} proposed the centrality-stability
+\textcite{hubert-rousseeuw-segaert-2015} proposed the centrality-stability
 diagram, where both the `centrality' of a curve (measured by depth) and its
 variability in cross-sectional outlyingness over time are accounted for.
 A deviation in centrality may point towards a shift outlier, while a deviation
 in stability may point towards an isolated or shape outlier.
 
-\textcite{hubert-rousseeuw-segeart-2015} begin by choosing a multivariate
+\textcite{hubert-rousseeuw-segaert-2015} begin by choosing a multivariate
 depth function of the form $D'(\vx(t), F_{\vX(t)}) = (1 + O(\vx(t)))^{-1}$,
 where $O(\Cdot)$ is an outlyingness function.
 The Mahalanobis, projection, and Oja depths clearly fit this description.
