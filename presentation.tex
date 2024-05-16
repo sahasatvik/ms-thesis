@@ -297,6 +297,14 @@
         \[
             D_{Inf}(\vx, F_{\vX}) = \inf_{t \in [0, 1]} D(\vx(t), F_{\vX(t)}).
         \]
+
+        \blfootnote{
+            Fraiman, R., \& and Muniz, G. (2001) Trimmed means for functional
+            data
+        }
+        \blfootnote{
+            Mosler, K. (2013) Depth Statistics
+        }
     \end{frame}
 
     \begin{frame}{The $J$-th order Integrated and Infimal Depths}
@@ -307,6 +315,11 @@
         \[
             D_{Inf}^J(\vx, F_{\vX}) = \inf_{\bm{t} \in [0, 1]^J} D((\vx(t_1), \dots, \vx(t_J))^\top, F_{(\vX(t_1), \dots, \vX(t_J))^\top}).
         \]
+
+        \blfootnote{
+            Nagy, S., Gijbels, I., \& and Hlubinka, D. (2017) Depth-Based
+            Recognition of Shape Outlying Functions
+        }
     \end{frame}
 
     \note{
@@ -326,6 +339,11 @@
         The band depth becomes degenerate for $\mathscr{X} = \mathcal{C}[0,
         1]$, Feller processes $\vX$ (e.g. Brownian motion) with $P(\vX_0 = 0)
         = 1$ and each $\vX_t$ for $t > 1$ non-atomic and symmetric about $0$.
+
+        \blfootnote{
+            L\'opez Pintado, S., \& Romo, J. (2009) On the concept of depth
+            for functional data
+        }
     \end{frame}
 
     \begin{frame}{The Modified Band Depth}
@@ -348,6 +366,11 @@
         \]
 
         This suffers from the same degeneracy problems as the band depth.
+
+        \blfootnote{
+            L\'opez Pintado, S., \& Romo, J. (2011) A half-region depth for
+            functional data
+        }
     \end{frame}
 
     \begin{frame}{The Modified Half-Region Depth}
@@ -378,6 +401,11 @@
         We may define a depth function in this setting via \[
             D_{POIFD}((\vx, o), F_{\vX} \times Q) = \int_{o} D(\vx(t), F_{\vX(t)}) \:w_o(t)\:dt,
         \] where $w_o(t) = q(t) / \int_0 q(t)\:dt$.
+
+        \blfootnote{
+            El\'ias, A., Jim\'enez, R., \& Shang, H. L. (2023) Depth-based
+            reconstruction method for incomplete functional data
+        }
     \end{frame}
 
 
@@ -455,6 +483,11 @@
                 \item \textbf{Amplitude}
             \end{itemize}
         \end{itemize}
+
+        \blfootnote{
+            Hubert, M., Rousseeuw, P. J., \& Segaert, P. (2015) Multivariate
+            functional outlier detection
+        }
     \end{frame}
 
     \note{
@@ -485,6 +518,11 @@
         \[
             D_{FM}^J(\vx, F_{\vX}) = \int_{[0, 1]^J} D((\vx(t_1), \dots, \vx(t_J))^\top, F_{(\vX(t_1), \dots, \vX(t_J))^\top})\:w(\bm{t})\:d\bm{t}.
         \]
+
+        \blfootnote{
+            Nagy, S., Gijbels, I., \& and Hlubinka, D. (2017) Depth-Based
+            Recognition of Shape Outlying Functions
+        }
     \end{frame}
 
     \note[itemize]{
@@ -506,6 +544,11 @@
         Then, we may define a depth function \[
             D(\vx, F_{\vX}) = \int_{[0, 1]} (1 + |O(\vx(t))|)^{-1} \:dt.
         \]
+
+        \blfootnote{
+            Hubert, M., Rousseeuw, P. J., \& Segaert, P. (2015) Multivariate
+            functional outlier detection
+        }
     \end{frame}
 
     {
@@ -563,6 +606,11 @@
             \MO(\vx, F) &= \int_{[0, 1]} O(\vx(t)) \:dt, \\
             \VO(\vx, F) &= \int_{[0, 1]} \norm{O(\vx(t)) - \MO(\vx, F)}^2 \:dt.
         \end{align*}
+
+        \blfootnote{
+            Dai, W., \& Genton, M. G. (2018) An outlyingness matrix for
+            multivariate functional data classification
+        }
     \end{frame}
 
     {
@@ -587,6 +635,11 @@
 
         Thus, one may declare $\vx_i$ as an outlier if $d_i$ exceeds a cutoff
         such as $Q_3 + 1.5\IQR$.
+
+        \blfootnote{
+            Arribas-Gil, A., \& Romo, J. (2014). Shape outlier detection and
+            visualization for functional data: the outliergram
+        }
     \end{frame}
 
     \note{
@@ -655,6 +708,11 @@
         The probability-$\beta$ depth-based neighbourhood of $\vx$ in
         $F_{\vX}$ is simply the $\beta$-th central region of $F_{\vX}^{\vx}$.
         This is denoted by $N_{\beta}^{\vx}(F_{\vX})$.
+
+        \blfootnote{
+            Paindaveine, D., \& Van Bever, G. (2013) From depth to local
+            depth: A focus on centrality
+        }
     \end{frame}
 
     \begin{frame}{Local Depth}
