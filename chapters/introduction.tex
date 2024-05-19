@@ -12,10 +12,33 @@ like $L^2[a, b]$.
 
 
 The introduction of depth functions is motivated by a desire to lift the
-notions of univariate \emph{centers}, \emph{ranks}, \emph{quantiles},
-and \emph{order statistics} to the multivariate setting and beyond; this
-allows us to extend a number of powerful tools in univariate nonparametric
-inference \parencite{zuo-serfling-2000, mosler-mozharovskyi-2022}.
+notions of univariate \emph{centers}, \emph{quantiles}, \emph{ranks}, and
+\emph{order statistics} to the multivariate setting and beyond
+\parencite{zuo-serfling-2000, mosler-mozharovskyi-2022}.
+Indeed, once one has a suitable depth function $D(\Cdot, \Cdot)$ in hand, this
+may be accomplished as follows: the center $\vth$ of a distribution $F$ ought
+to be its deepest point, via $\vth = \argmax_{\vx \in \mathscr{X}} D(\vx, F)$.
+Instead of a $p$-th quantile, we may deal with a $p$-th quantile surface which
+consists of all points $\vx$ such that the probability of $\vX \sim F$ being
+deeper than $\vx$ is $p$, via
+\begin{equation}
+    R(\vx, F) = P_{\vX \sim F}(D(\vX, F) \leq D(\vx, F)) = p.
+\end{equation}
+Note the similarities between the `rank' map $R(\vx, F)$ and the cumulative
+distribution function $F(x) = P_{X \sim F}(X \leq x)$; this will be explored
+further in our discussion of multivariate testing (see
+Section~\ref{sec:multivariate_testing}).
+With this, the rank of a point $\vx_j$ within a sample $\{\vx_i\}_{i = 1}^n$
+may be defined as the proportion of sample points deeper than it, via
+\begin{equation}
+    R(\vx_j, \hat{F}_n) = \frac{1}{n}\sum_{i = 1}^n \bm{1}(D(\vx_i, \hat{F}_n) \leq D(\vx_j, \hat{F}_n)).
+\end{equation}
+Finally, the center-outward order induced by $D(\Cdot, \hat{F}_n)$ on
+$\mathscr{X}$ naturally lets us order our sample as $\vx_{[1]}, \dots,
+\vx_{[n]}$, where $D(\vx_{[1]}, \hat{F}_n) \leq \dots \leq D(\vx_{[n]},
+\hat{F}_n)$.
+This allows us to extend a number of powerful tools in univariate
+nonparametric inference.
 For instance, the median is a useful, robust measure of location in the
 univariate setting; the \emph{spatial median} of a distribution $F$, the point
 $\vth \in \R^d$ satisfying
@@ -33,17 +56,20 @@ univariate Wilcoxon rank-sum and Kruskal-Wallis tests.
 nonparametric multivariate procedures, including developing graphical tools
 such as the depth-depth plot (Definition~\ref{def:ddplot}) for exploratory
 data analysis.
-This idea later lead to the development of the DD classifier by
-\textcite{li-albertos-liu-2012}.
+This idea later lead to the development of the DD classifier
+\parencite{li-albertos-liu-2012} and the DD$^G$
+classifier \parencite{albertos-bande-fuente-2017}.
+A lot of these procedures exploit properties such as invariance, monotonicity,
+continuity, etc.\ of various depth functions as needed.
 Thus, depth functions provide a toolkit combining versatility, robustness and
 computational ease.
 
 
 It may seem natural at first to rely upon the density function as an
-indication of centrality; this approach presents a number of problems.
-Not every distribution admits a density function (consider discrete
-distributions), and even when one exists, it may not be particularly
-informative (see Example~\ref{ex:uniform}).
+indication of centrality, the corresponding center being the mode.
+This approach presents a number of problems -- not every distribution admits a
+density function (consider discrete distributions), and even when one exists,
+it may not be particularly informative (see Example~\ref{ex:uniform}).
 A more practical concern is that density functions become increasingly
 difficult to estimate for multivariate distributions on $\R^d$ as the
 dimension $d$ increases -- this is popularly known as the \emph{curse of
@@ -63,9 +89,9 @@ dimensionality}.
 \end{figure}
 
 
-One method of estimating the density function $f$ from a sample $\mathscr{D} =
-\{\vx_i\}_{i = 1}^n$ is via a \emph{kernel density estimator}
-\parencite{wasserman-2005}, of the form
+One method of estimating the density function $f$ from a sample $\{\vx_i\}_{i
+= 1}^n$ is via a \emph{kernel density estimator} \parencite{wasserman-2005},
+of the form
 \begin{equation}
     \hat{f}_{h}(\vx) = \frac{1}{n} \sum_{i = 1}^n K_h(\vx - \vx_i).
 \end{equation}
