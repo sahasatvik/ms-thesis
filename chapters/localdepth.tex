@@ -40,7 +40,7 @@ In this chapter, we focus on the definition of \emph{local depth} and
 \textcite{paindaveine-bever-2013}.
 This allows the construction of a local counterpart of any existing global
 depth function (multivariate, functional, or otherwise), giving it a distinct
-advantage over the previous formulation.
+advantage over the previous treatment.
 
 
 
@@ -194,15 +194,15 @@ points from $\{\vx_i\}$ `closest' to $\vx$ (in the sense of being more central
 in the symmetrized dataset $\mathscr{D}^{\vx}$), this neighbourhood ought to
 be smaller when $\vx$ is more central, and larger when $\vx$ has fewer points
 nearby.
-Thus, $K^{\vx}_\beta$ behaves somewhat like a variable bandwidth kernel, whose
-shape adjusts to the dataset.
+Thus, $K^{\vx}_\beta$ behaves somewhat like a variable bandwidth or adaptive
+kernel, whose shape adjusts to the surrounding data as $\vx$ varies.
 Furthermore, the `bandwidth' of $K^{\vx}_\beta$ is controlled solely by the
 parameter $\beta$ regardless of the dimensionality or nature of $\mathscr{X}$.
 This stands in contrast with more traditional kernels which often require a
 selection of multiple bandwidths.
 For instance, a Gaussian kernel of the form
 \begin{equation}
-    \vz \mapsto \exp\left(-\sum_i \frac{(x_i - z_i)^2}{2h_i^2}\right)
+    \vz \mapsto \frac{1}{\prod_{i = 1}^d h_i} \exp\left(-\sum_i \frac{(x_i - z_i)^2}{2h_i^2}\right)
     \label{eq:kernel_gaussian}
 \end{equation}
 needs $d$ parameters $\{h_i\}_{i = 1}^d$ to be determined.
