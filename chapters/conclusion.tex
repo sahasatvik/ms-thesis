@@ -1,0 +1,38 @@
+
+
+In conclusion, we have reviewed multiple realizations of depth functions in
+the multivariate and functional settings, and seen numerous applications,
+demonstrating the efficacy and versatility of this notion.
+For a majority of these tasks, we have performed simulation studies,
+reproduced results, and attempted to compare and contrast different procedures
+proposed in the literature.
+We have also tried to draw connections between different ideas; for instance,
+the centrality-stability and MO-VO diagrams for functional outlier detection
+(Section~\ref{sec:functional_outlier}) largely produce the same results, with
+similar aims but differing approaches.
+The use of random projections in functional data classification
+(Section~\ref{sec:functional_classification_RP}) draws inspiration from the
+random Tukey depth \parencite{albertos-reyes-2008a}, the $J$-th order depths
+\parencite{nagy-gijbels-hlubinka-2017}, and the Cramer-Wold device in Hilbert
+spaces \parencite{albertos-fraiman-ransford-2007}.
+We have also attempted to propose a new method of regression
+(Section~\ref{sec:localdepth_regression}) using the local depth regions of
+\textcite{paindaveine-bever-2013}; further study into its theoretical
+consistency as well as results from simulations are merited.
+
+One area which we have not covered in much detail is regression.
+For instance, \textcite{zuo-2021} gives an overview of depths used in the
+context of linear regression.
+\textcite{chowdhury-chaudhuri-2019} explore quantile regression for functional
+data using spatial depth.
+This uses the language of spatial quantiles
+\parencite{chakraborty-chaudhuri-2014b}, where the spatial $\vu$-quantile
+$\bm{Q}(\vu)$ for $\vu \in B^*(\bm{0}, 1) \subset \mathscr{X}^*$ is the
+minimizer of
+\begin{equation}
+    \E_{\vX \sim F}\left[\norm{\bm{Q} - \vX} - \norm{\vX}\right] - \vu(\bm{Q}).
+\end{equation}
+
+The code used to produce this document, its figures, and results can be found
+in this thesis' GitHub
+repository\footnote{\url{https://github.com/sahasatvik/ms-thesis}}.

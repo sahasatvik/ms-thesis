@@ -119,6 +119,7 @@ computing the depth of $\vx$ with respect to these elements.
 
 
 \section{Regression based on local depth}
+\label{sec:localdepth_regression}
 
 \begin{figure}
     \centering
@@ -216,3 +217,8 @@ When the depth function $D$ is chosen to be affine invariant, the estimator
 unchanged by an affine transformation of $\mathscr{X}$.
 This is because $N^{A\vx + \bm{b}}_\beta(F_{A\vX + \bm{b}})$ will simply be
 the affine image of $N^{\vx}_\beta(F_{\vX})$.
+
+The proposed estimator does however suffer from a lack of smoothness.
+Additionally, it is fairly computationally expensive, since one must obtain
+the symmetrized sample $\mathscr{D}^{\vx}$ for every $\vx$ where the estimate
+is required.
